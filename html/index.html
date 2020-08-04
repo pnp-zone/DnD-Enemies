@@ -1,0 +1,1396 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Monsters</title>
+    <link rel="shortcut icon" href="static/images/favicon.ico">
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="static/index.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="static/index.js"></script>
+    <script src="static/spells.js"></script>
+    <script src="static/monsters.js"></script>
+    <script src="static/magicitems.js"></script>
+</head>
+<body>
+    <nav class="container">
+        <a class="home btn btn-primary" href="/">Home</a>
+        <a class="collapse-details btn btn-default" onclick="$('.collapse').collapse('hide');">Collapse All</a>
+    </nav>
+<section class="container">
+<script>
+monsters = {"Aarakocra": {"name": "Aarakocra", "alignment": "neutral good", "challenge rating": 0.25, "legendary": false, "size": "medium", "type": "humanoid (aarakocra)"}, "Aboleth": {"name": "Aboleth", "alignment": "lawful evil", "challenge rating": 10.0, "legendary": true, "size": "large", "type": "aberration"}, "Abominable Yeti": {"name": "Abominable Yeti", "alignment": "chaotic evil", "challenge rating": 9.0, "legendary": false, "size": "huge", "type": "monstrosity"}, "Acolyte": {"name": "Acolyte", "alignment": "any alignment", "challenge rating": 0.25, "legendary": false, "size": "medium", "type": "humanoid (any race)"}, "Adult Black Dragon": {"name": "Adult Black Dragon", "alignment": "chaotic evil", "challenge rating": 14.0, "legendary": true, "size": "huge", "type": "dragon"}, "Adult Blue Dracolich": {"name": "Adult Blue Dracolich", "alignment": "lawful evil", "challenge rating": 17.0, "legendary": true, "size": "huge", "type": "undead"}, "Adult Blue Dragon": {"name": "Adult Blue Dragon", "alignment": "lawful evil", "challenge rating": 16.0, "legendary": true, "size": "huge", "type": "dragon"}, "Adult Brass Dragon": {"name": "Adult Brass Dragon", "alignment": "chaotic good", "challenge rating": 13.0, "legendary": true, "size": "huge", "type": "dragon"}, "Adult Bronze Dragon": {"name": "Adult Bronze Dragon", "alignment": "lawful good", "challenge rating": 15.0, "legendary": true, "size": "huge", "type": "dragon"}, "Adult Copper Dragon": {"name": "Adult Copper Dragon", "alignment": "chaotic good", "challenge rating": 14.0, "legendary": true, "size": "huge", "type": "dragon"}, "Adult Gold Dragon": {"name": "Adult Gold Dragon", "alignment": "lawful good", "challenge rating": 17.0, "legendary": true, "size": "huge", "type": "dragon"}, "Adult Green Dragon": {"name": "Adult Green Dragon", "alignment": "lawful evil", "challenge rating": 15.0, "legendary": true, "size": "huge", "type": "dragon"}, "Adult Red Dragon": {"name": "Adult Red Dragon", "alignment": "chaotic evil", "challenge rating": 17.0, "legendary": true, "size": "huge", "type": "dragon"}, "Adult Silver Dragon": {"name": "Adult Silver Dragon", "alignment": "lawful good", "challenge rating": 16.0, "legendary": true, "size": "huge", "type": "dragon"}, "Adult White Dragon": {"name": "Adult White Dragon", "alignment": "chaotic evil", "challenge rating": 13.0, "legendary": true, "size": "huge", "type": "dragon"}, "Aerisi Kalinoth": {"name": "Aerisi Kalinoth", "alignment": "neutral evil", "challenge rating": 7.0, "legendary": false, "size": "medium", "type": "humanoid (elf)"}, "Air Eelemental Myrmidon": {"name": "Air Eelemental Myrmidon", "alignment": "neutral", "challenge rating": 7.0, "legendary": false, "size": "medium", "type": "elemental"}, "Air Elemental": {"name": "Air Elemental", "alignment": "neutral", "challenge rating": 5.0, "legendary": false, "size": "large", "type": "elemental"}, "Allosaurus": {"name": "Allosaurus", "alignment": "unaligned", "challenge rating": 2.0, "legendary": false, "size": "large", "type": "beast"}, "Ambush Drake": {"name": "Ambush Drake", "alignment": "unaligned", "challenge rating": 0.5, "legendary": false, "size": "medium", "type": "dragon"}, "Ancient Black Dragon": {"name": "Ancient Black Dragon", "alignment": "chaotic evil", "challenge rating": 21.0, "legendary": true, "size": "gargantuan", "type": "dragon"}, "Ancient Blue Dragon": {"name": "Ancient Blue Dragon", "alignment": "lawful evil", "challenge rating": 23.0, "legendary": true, "size": "gargantuan", "type": "dragon"}, "Ancient Brass Dragon": {"name": "Ancient Brass Dragon", "alignment": "chaotic good", "challenge rating": 20.0, "legendary": true, "size": "gargantuan", "type": "dragon"}, "Ancient Bronze Dragon": {"name": "Ancient Bronze Dragon", "alignment": "lawful good", "challenge rating": 22.0, "legendary": true, "size": "gargantuan", "type": "dragon"}, "Ancient Copper Dragon": {"name": "Ancient Copper Dragon", "alignment": "chaotic good", "challenge rating": 21.0, "legendary": true, "size": "gargantuan", "type": "dragon"}, "Ancient Gold Dragon": {"name": "Ancient Gold Dragon", "alignment": "lawful good", "challenge rating": 24.0, "legendary": true, "size": "gargantuan", "type": "dragon"}, "Ancient Green Dragon": {"name": "Ancient Green Dragon", "alignment": "lawful evil", "challenge rating": 22.0, "legendary": true, "size": "gargantuan", "type": "dragon"}, "Ancient Red Dragon": {"name": "Ancient Red Dragon", "alignment": "chaotic evil", "challenge rating": 24.0, "legendary": true, "size": "gargantuan", "type": "dragon"}, "Ancient Silver Dragon": {"name": "Ancient Silver Dragon", "alignment": "lawful good", "challenge rating": 23.0, "legendary": true, "size": "gargantuan", "type": "dragon"}, "Ancient White Dragon": {"name": "Ancient White Dragon", "alignment": "chaotic evil", "challenge rating": 20.0, "legendary": true, "size": "gargantuan", "type": "dragon"}, "Androsphinx": {"name": "Androsphinx", "alignment": "lawful neutral", "challenge rating": 17.0, "legendary": true, "size": "large", "type": "monstrosity"}, "Animated Armor": {"name": "Animated Armor", "alignment": "unaligned", "challenge rating": 1.0, "legendary": false, "size": "medium", "type": "construct"}, "Ankheg": {"name": "Ankheg", "alignment": "unaligned", "challenge rating": 2.0, "legendary": false, "size": "large", "type": "monstrosity"}, "Ankylosaurus": {"name": "Ankylosaurus", "alignment": "unaligned", "challenge rating": 3.0, "legendary": false, "size": "huge", "type": "beast"}, "Ape": {"name": "Ape", "alignment": "unaligned", "challenge rating": 0.5, "legendary": false, "size": "medium", "type": "beast"}, "Arcanaloth": {"name": "Arcanaloth", "alignment": "neutral evil", "challenge rating": 12.0, "legendary": false, "size": "medium", "type": "fiend (yugoloth)"}, "Archmage": {"name": "Archmage", "alignment": "any alignment", "challenge rating": 12.0, "legendary": false, "size": "medium", "type": "humanoid (any race)"}, "Assassin": {"name": "Assassin", "alignment": "any non-good alignment", "challenge rating": 8.0, "legendary": false, "size": "medium", "type": "humanoid (any race)"}, "Aurochs": {"name": "Aurochs", "alignment": "unaligned", "challenge rating": 2.0, "legendary": false, "size": "large", "type": "beast"}, "Awakened Shrub": {"name": "Awakened Shrub", "alignment": "unaligned", "challenge rating": 0.0, "legendary": false, "size": "small", "type": "plant"}, "Awakened Tree": {"name": "Awakened Tree", "alignment": "unaligned", "challenge rating": 2.0, "legendary": false, "size": "huge", "type": "plant"}, "Axe Beak": {"name": "Axe Beak", "alignment": "unaligned", "challenge rating": 0.25, "legendary": false, "size": "large", "type": "beast"}, "Azbara Jos": {"name": "Azbara Jos", "alignment": "lawful evil", "challenge rating": 4.0, "legendary": false, "size": "medium", "type": "humanoid (human)"}, "Azer": {"name": "Azer", "alignment": "lawful neutral", "challenge rating": 2.0, "legendary": false, "size": "medium", "type": "elemental"}, "Baba Lysaga": {"name": "Baba Lysaga", "alignment": "chaotic evil", "challenge rating": 11.0, "legendary": false, "size": "medium", "type": "humanoid (human, shapechanger)"}, "Baba Lysaga's Creeping Hut": {"name": "Baba Lysaga's Creeping Hut", "alignment": "unaligned", "challenge rating": 11.0, "legendary": false, "size": "gargantuan", "type": "construct"}, "Baboon": {"name": "Baboon", "alignment": "unaligned", "challenge rating": 0.0, "legendary": false, "size": "small", "type": "beast"}, "Badger": {"name": "Badger", "alignment": "unaligned", "challenge rating": 0.0, "legendary": false, "size": "tiny", "type": "beast"}, "Balor": {"name": "Balor", "alignment": "chaotic evil", "challenge rating": 19.0, "legendary": false, "size": "huge", "type": "fiend (demon)"}, "Bandit": {"name": "Bandit", "alignment": "any non-lawful alignment", "challenge rating": 0.125, "legendary": false, "size": "medium", "type": "humanoid (any race)"}, "Bandit Captain": {"name": "Bandit Captain", "alignment": "any non-lawful alignment", "challenge rating": 2.0, "legendary": false, "size": "medium", "type": "humanoid (any race)"}, "Banshee": {"name": "Banshee", "alignment": "chaotic evil", "challenge rating": 4.0, "legendary": false, "size": "medium", "type": "undead"}, "Baphomet": {"name": "Baphomet", "alignment": "chaotic evil", "challenge rating": 23.0, "legendary": true, "size": "huge", "type": "fiend (demon)"}, "Barbed Devil": {"name": "Barbed Devil", "alignment": "lawful evil", "challenge rating": 5.0, "legendary": false, "size": "medium", "type": "fiend (devil)"}, "Barlgura": {"name": "Barlgura", "alignment": "chaotic evil", "challenge rating": 5.0, "legendary": false, "size": "large", "type": "fiend (demon)"}, "Barovian Witch": {"name": "Barovian Witch", "alignment": "chaotic evil", "challenge rating": 0.5, "legendary": false, "size": "medium", "type": "humanoid (human)"}, "Basilisk": {"name": "Basilisk", "alignment": "unaligned", "challenge rating": 3.0, "legendary": false, "size": "medium", "type": "monstrosity"}, "Bastian Thermandar": {"name": "Bastian Thermandar", "alignment": "neutral evil", "challenge rating": 8.0, "legendary": false, "size": "medium", "type": "humnaoid (fire genasi)"}, "Bat": {"name": "Bat", "alignment": "unaligned", "challenge rating": 0.0, "legendary": false, "size": "tiny", "type": "beast"}, "Bearded Devil": {"name": "Bearded Devil", "alignment": "lawful evil", "challenge rating": 3.0, "legendary": false, "size": "medium", "type": "fiend (devil)"}, "Behir": {"name": "Behir", "alignment": "neutral evil", "challenge rating": 11.0, "legendary": false, "size": "huge", "type": "monstrosity"}, "Beholder": {"name": "Beholder", "alignment": "lawful evil", "challenge rating": 13.0, "legendary": true, "size": "large", "type": "aberration"}, "Beholder Zombie": {"name": "Beholder Zombie", "alignment": "neutral evil", "challenge rating": 5.0, "legendary": false, "size": "large", "type": "undead"}, "Berserker": {"name": "Berserker", "alignment": "any chaotic alignment", "challenge rating": 2.0, "legendary": false, "size": "medium", "type": "humanoid (any race)"}, "Black Bear": {"name": "Black Bear", "alignment": "unaligned", "challenge rating": 0.5, "legendary": false, "size": "medium", "type": "beast"}, "Black Dragon Wyrmling": {"name": "Black Dragon Wyrmling", "alignment": "chaotic evil", "challenge rating": 2.0, "legendary": false, "size": "medium", "type": "dragon"}, "Black Earth Guard": {"name": "Black Earth Guard", "alignment": "neutral evil", "challenge rating": 2.0, "legendary": false, "size": "medium", "type": "humanoid (human)"}, "Black Earth Priest": {"name": "Black Earth Priest", "alignment": "neutral evil", "challenge rating": 3.0, "legendary": false, "size": "medium", "type": "humanoid (human)"}, "Black Pudding": {"name": "Black Pudding", "alignment": "unaligned", "challenge rating": 4.0, "legendary": false, "size": "large", "type": "ooze"}, "Blagothkus": {"name": "Blagothkus", "alignment": "neutral evil", "challenge rating": 9.0, "legendary": false, "size": "huge", "type": "giant (cloud giant)"}, "Blink Dog": {"name": "Blink Dog", "alignment": "lawful good", "challenge rating": 0.25, "legendary": false, "size": "medium", "type": "fey"}, "Blood Hawk": {"name": "Blood Hawk", "alignment": "unaligned", "challenge rating": 0.125, "legendary": false, "size": "small", "type": "beast"}, "Blue Dragon Wyrmling": {"name": "Blue Dragon Wyrmling", "alignment": "lawful evil", "challenge rating": 3.0, "legendary": false, "size": "medium", "type": "dragon"}, "Blue Slaad": {"name": "Blue Slaad", "alignment": "chaotic neutral", "challenge rating": 7.0, "legendary": false, "size": "large", "type": "aberration"}, "Boar": {"name": "Boar", "alignment": "unaligned", "challenge rating": 0.25, "legendary": false, "size": "medium", "type": "beast"}, "Bone Devil": {"name": "Bone Devil", "alignment": "lawful evil", "challenge rating": 9.0, "legendary": false, "size": "large", "type": "fiend (devil)"}, "Bone Naga": {"name": "Bone Naga", "alignment": "lawful evil", "challenge rating": 4.0, "legendary": false, "size": "large", "type": "undead"}, "Brass Dragon Wyrmling": {"name": "Brass Dragon Wyrmling", "alignment": "chaotic good", "challenge rating": 1.0, "legendary": false, "size": "medium", "type": "dragon"}, "Bridesmaid of Zuggtmoy": {"name": "Bridesmaid of Zuggtmoy", "alignment": "chaotic evil", "challenge rating": 0.125, "legendary": false, "size": "medium", "type": "plant"}, "Bronze Dragon Wyrmling": {"name": "Bronze Dragon Wyrmling", "alignment": "lawful good", "challenge rating": 2.0, "legendary": false, "size": "medium", "type": "dragon"}, "Broom of Animated Attack": {"name": "Broom of Animated Attack", "alignment": "unaligned", "challenge rating": 0.25, "legendary": false, "size": "small", "type": "construct"}, "Brown Bear": {"name": "Brown Bear", "alignment": "unaligned", "challenge rating": 1.0, "legendary": false, "size": "large", "type": "beast"}, "Bugbear": {"name": "Bugbear", "alignment": "chaotic evil", "challenge rating": 1.0, "legendary": false, "size": "medium", "type": "humanoid (goblinoid)"}, "Bugbear Chief": {"name": "Bugbear Chief", "alignment": "chaotic evil", "challenge rating": 3.0, "legendary": false, "size": "medium", "type": "humanoid (goblinoid)"}, "Bulette": {"name": "Bulette", "alignment": "unaligned", "challenge rating": 5.0, "legendary": false, "size": "large", "type": "monstrosity"}, "Bullywug": {"name": "Bullywug", "alignment": "neutral evil", "challenge rating": 0.25, "legendary": false, "size": "medium", "type": "humanoid (bullywug)"}, "Burrowshark": {"name": "Burrowshark", "alignment": "neutral evil", "challenge rating": 4.0, "legendary": false, "size": "medium", "type": "humanoid (human)"}, "Cambion": {"name": "Cambion", "alignment": "any evil alignment", "challenge rating": 5.0, "legendary": false, "size": "medium", "type": "fiend"}, "Camel": {"name": "Camel", "alignment": "unaligned", "challenge rating": 0.125, "legendary": false, "size": "large", "type": "beast"}, "Captain Othelstan": {"name": "Captain Othelstan", "alignment": "lawful evil", "challenge rating": 5.0, "legendary": false, "size": "medium", "type": "humanoid (human)"}, "Carrion Crawler": {"name": "Carrion Crawler", "alignment": "unaligned", "challenge rating": 2.0, "legendary": false, "size": "large", "type": "monstrosity"}, "Cat": {"name": "Cat", "alignment": "unaligned", "challenge rating": 0.0, "legendary": false, "size": "tiny", "type": "beast"}, "Centaur": {"name": "Centaur", "alignment": "neutral good", "challenge rating": 2.0, "legendary": false, "size": "large", "type": "monstrosity"}, "Chain Devil": {"name": "Chain Devil", "alignment": "lawful evil", "challenge rating": 8.0, "legendary": false, "size": "medium", "type": "fiend (devil)"}, "Chamberlain of Zuggtmoy": {"name": "Chamberlain of Zuggtmoy", "alignment": "chaotic evil", "challenge rating": 2.0, "legendary": false, "size": "large", "type": "plant"}, "Chasme": {"name": "Chasme", "alignment": "chaotic evil", "challenge rating": 6.0, "legendary": false, "size": "large", "type": "fiend (demon)"}, "Chimera": {"name": "Chimera", "alignment": "chaotic evil", "challenge rating": 6.0, "legendary": false, "size": "large", "type": "monstrosity"}, "Chuul": {"name": "Chuul", "alignment": "chaotic evil", "challenge rating": 4.0, "legendary": false, "size": "large", "type": "aberration"}, "Chuul Spore Servant": {"name": "Chuul Spore Servant", "alignment": "unaligned", "challenge rating": 4.0, "legendary": false, "size": "large", "type": "plant"}, "Clay Golem": {"name": "Clay Golem", "alignment": "unaligned", "challenge rating": 9.0, "legendary": false, "size": "large", "type": "construct"}, "Cloaker": {"name": "Cloaker", "alignment": "chaotic neutral", "challenge rating": 8.0, "legendary": false, "size": "large", "type": "aberration"}, "Cloud Giant": {"name": "Cloud Giant", "alignment": "neutral good (50%) or neutral evil (50%)", "challenge rating": 9.0, "legendary": false, "size": "huge", "type": "giant"}, "Cockatrice": {"name": "Cockatrice", "alignment": "unaligned", "challenge rating": 0.5, "legendary": false, "size": "small", "type": "monstrosity"}, "Commoner": {"name": "Commoner", "alignment": "any alignment", "challenge rating": 0.0, "legendary": false, "size": "medium", "type": "humanoid (any race)"}, "Constrictor Snake": {"name": "Constrictor Snake", "alignment": "unaligned", "challenge rating": 0.25, "legendary": false, "size": "large", "type": "beast"}, "Copper Dragon Wyrmling": {"name": "Copper Dragon Wyrmling", "alignment": "chaotic good", "challenge rating": 1.0, "legendary": false, "size": "medium", "type": "dragon"}, "Couatl": {"name": "Couatl", "alignment": "lawful good", "challenge rating": 4.0, "legendary": false, "size": "medium", "type": "celestial"}, "Cow": {"name": "Cow", "alignment": "unaligned", "challenge rating": 0.25, "legendary": false, "size": "large", "type": "beast"}, "Crab": {"name": "Crab", "alignment": "unaligned", "challenge rating": 0.0, "legendary": false, "size": "tiny", "type": "beast"}, "Crag Cat": {"name": "Crag Cat", "alignment": "unaligned", "challenge rating": 1.0, "legendary": false, "size": "large", "type": "beast"}, "Crawling Claw": {"name": "Crawling Claw", "alignment": "neutral evil", "challenge rating": 0.0, "legendary": false, "size": "tiny", "type": "undead"}, "Crocodile": {"name": "Crocodile", "alignment": "unaligned", "challenge rating": 0.5, "legendary": false, "size": "large", "type": "beast"}, "Crushing Wave Priest": {"name": "Crushing Wave Priest", "alignment": "neutral evil", "challenge rating": 2.0, "legendary": false, "size": "medium", "type": "humanoid (human)"}, "Crushing Wave Reaver": {"name": "Crushing Wave Reaver", "alignment": "neutral evil", "challenge rating": 0.5, "legendary": false, "size": "medium", "type": "humanoid (human)"}, "Cult Fanatic": {"name": "Cult Fanatic", "alignment": "any non-good alignment", "challenge rating": 2.0, "legendary": false, "size": "medium", "type": "humanoid (any race)"}, "Cultist": {"name": "Cultist", "alignment": "any non-good alignment", "challenge rating": 0.125, "legendary": false, "size": "medium", "type": "humanoid (any race)"}, "Cyclops": {"name": "Cyclops", "alignment": "chaotic neutral", "challenge rating": 6.0, "legendary": false, "size": "huge", "type": "giant"}, "Dao": {"name": "Dao", "alignment": "neutral evil", "challenge rating": 11.0, "legendary": false, "size": "large", "type": "elemental"}, "Dark Tide Knight": {"name": "Dark Tide Knight", "alignment": "lawful evil", "challenge rating": 3.0, "legendary": false, "size": "medium", "type": "humanoid (human)"}, "Darkmantle": {"name": "Darkmantle", "alignment": "unaligned", "challenge rating": 0.5, "legendary": false, "size": "small", "type": "monstrosity"}, "Death Dog": {"name": "Death Dog", "alignment": "neutral evil", "challenge rating": 1.0, "legendary": false, "size": "medium", "type": "monstrosity"}, "Death Knight": {"name": "Death Knight", "alignment": "chaotic evil", "challenge rating": 17.0, "legendary": false, "size": "medium", "type": "undead"}, "Death Slaad": {"name": "Death Slaad", "alignment": "chaotic evil", "challenge rating": 10.0, "legendary": false, "size": "medium", "type": "aberration (shapechanger)"}, "Death Tyrant": {"name": "Death Tyrant", "alignment": "lawful evil", "challenge rating": 14.0, "legendary": true, "size": "large", "type": "undead"}, "Deep Gnome (Svirfneblin)": {"name": "Deep Gnome (Svirfneblin)", "alignment": "neutral good", "challenge rating": 0.5, "legendary": false, "size": "small", "type": "humanoid (gnome)"}, "Deer": {"name": "Deer", "alignment": "unaligned", "challenge rating": 0.0, "legendary": false, "size": "medium", "type": "beast"}, "Demilich": {"name": "Demilich", "alignment": "neutral evil", "challenge rating": 18.0, "legendary": true, "size": "tiny", "type": "undead"}, "Demogorgon": {"name": "Demogorgon", "alignment": "chaotic evil", "challenge rating": 26.0, "legendary": true, "size": "huge", "type": "fiend (demon)"}, "Derro": {"name": "Derro", "alignment": "chaotic evil", "challenge rating": 0.25, "legendary": false, "size": "medium", "type": "humanoid (derro)"}, "Deva": {"name": "Deva", "alignment": "lawful good", "challenge rating": 10.0, "legendary": false, "size": "medium", "type": "celestial"}, "Dire Wolf": {"name": "Dire Wolf", "alignment": "unaligned", "challenge rating": 1.0, "legendary": false, "size": "large", "type": "beast"}, "Displacer Beast": {"name": "Displacer Beast", "alignment": "lawful evil", "challenge rating": 3.0, "legendary": false, "size": "large", "type": "monstrosity"}, "Djinni": {"name": "Djinni", "alignment": "chaotic good", "challenge rating": 11.0, "legendary": false, "size": "large", "type": "elemental"}, "Dolphin": {"name": "Dolphin", "alignment": "unaligned", "challenge rating": 0.125, "legendary": false, "size": "medium", "type": "beast"}, "Doppelganger": {"name": "Doppelganger", "alignment": "neutral", "challenge rating": 3.0, "legendary": false, "size": "medium", "type": "monstrosity (shapechanger)"}, "Draft Horse": {"name": "Draft Horse", "alignment": "unaligned", "challenge rating": 0.25, "legendary": false, "size": "large", "type": "beast"}, "Dragon Turtle": {"name": "Dragon Turtle", "alignment": "neutral", "challenge rating": 17.0, "legendary": false, "size": "gargantuan", "type": "dragon"}, "Dragonclaw": {"name": "Dragonclaw", "alignment": "neutral evil", "challenge rating": 1.0, "legendary": false, "size": "medium", "type": "humanoid (human)"}, "Dragonfang": {"name": "Dragonfang", "alignment": "neutral evil", "challenge rating": 5.0, "legendary": false, "size": "medium", "type": "humanoid (human)"}, "Dragonsoul": {"name": "Dragonsoul", "alignment": "neutral evil", "challenge rating": 7.0, "legendary": false, "size": "medium", "type": "humanoid (human)"}, "Dragonwing": {"name": "Dragonwing", "alignment": "neutral evil", "challenge rating": 2.0, "legendary": false, "size": "medium", "type": "humanoid (human)"}, "Dralmorrer Borngray": {"name": "Dralmorrer Borngray", "alignment": "neutral evil", "challenge rating": 3.0, "legendary": false, "size": "medium", "type": "humanoid (high-elf)"}, "Drannin Splithelm": {"name": "Drannin Splithelm", "alignment": "neutral evil", "challenge rating": 7.0, "legendary": false, "size": "medium", "type": "humanoid (shield dwarf)"}, "Dretch": {"name": "Dretch", "alignment": "chaotic evil", "challenge rating": 0.25, "legendary": false, "size": "small", "type": "fiend (demon)"}, "Drider": {"name": "Drider", "alignment": "chaotic evil", "challenge rating": 6.0, "legendary": false, "size": "large", "type": "monstrosity"}, "Droki": {"name": "Droki", "alignment": "chaotic evil", "challenge rating": 2.0, "legendary": false, "size": "small", "type": "humanoid (derro)"}, "Drow": {"name": "Drow", "alignment": "neutral evil", "challenge rating": 0.25, "legendary": false, "size": "medium", "type": "humanoid (elf)"}, "Drow Elite Warrior": {"name": "Drow Elite Warrior", "alignment": "neutral evil", "challenge rating": 5.0, "legendary": false, "size": "medium", "type": "humanoid (elf)"}, "Drow Mage": {"name": "Drow Mage", "alignment": "neutral evil", "challenge rating": 7.0, "legendary": false, "size": "medium", "type": "humanoid (elf)"}, "Drow Priestess of Lolth": {"name": "Drow Priestess of Lolth", "alignment": "neutral evil", "challenge rating": 8.0, "legendary": false, "size": "medium", "type": "humanoid (elf)"}, "Drow Spore Servant": {"name": "Drow Spore Servant", "alignment": "unaligned", "challenge rating": 0.125, "legendary": false, "size": "medium", "type": "plant"}, "Druid": {"name": "Druid", "alignment": "any alignment", "challenge rating": 2.0, "legendary": false, "size": "medium", "type": "humanoid (any race)"}, "Dryad": {"name": "Dryad", "alignment": "neutral", "challenge rating": 1.0, "legendary": false, "size": "medium", "type": "fey"}, "Duergar": {"name": "Duergar", "alignment": "lawful evil", "challenge rating": 1.0, "legendary": false, "size": "medium", "type": "humanoid (dwarf)"}, "Duergar Soulblade": {"name": "Duergar Soulblade", "alignment": "lawful evil", "challenge rating": 1.0, "legendary": false, "size": "medium", "type": "humanoid (dwarf)"}, "Duergar Spore Servant": {"name": "Duergar Spore Servant", "alignment": "unaligned", "challenge rating": 0.5, "legendary": false, "size": "medium", "type": "plant"}, "Duergar Stone Guard": {"name": "Duergar Stone Guard", "alignment": "lawful evil", "challenge rating": 2.0, "legendary": false, "size": "medium", "type": "humanoid (dwarf)"}, "Duergar Xarrorn": {"name": "Duergar Xarrorn", "alignment": "lawful evil", "challenge rating": 2.0, "legendary": false, "size": "medium", "type": "humanoid (dwarf)"}, "Duodrone": {"name": "Duodrone", "alignment": "lawful neutral", "challenge rating": 0.25, "legendary": false, "size": "medium", "type": "construct"}, "Dust Mephit": {"name": "Dust Mephit", "alignment": "neutral evil", "challenge rating": 0.5, "legendary": false, "size": "small", "type": "elemental"}, "Eagle": {"name": "Eagle", "alignment": "unaligned", "challenge rating": 0.0, "legendary": false, "size": "small", "type": "beast"}, "Earth Elemental": {"name": "Earth Elemental", "alignment": "neutral", "challenge rating": 5.0, "legendary": false, "size": "large", "type": "elemental"}, "Earth Elemental Myrmidon": {"name": "Earth Elemental Myrmidon", "alignment": "neutral", "challenge rating": 7.0, "legendary": false, "size": "medium", "type": "elemental"}, "Efreeti": {"name": "Efreeti", "alignment": "lawful evil", "challenge rating": 11.0, "legendary": false, "size": "large", "type": "elemental"}, "Elephant": {"name": "Elephant", "alignment": "unaligned", "challenge rating": 4.0, "legendary": false, "size": "huge", "type": "beast"}, "Elizar Dryflagon": {"name": "Elizar Dryflagon", "alignment": "neutral evil", "challenge rating": 5.0, "legendary": false, "size": "medium", "type": "humanoid (human)"}, "Elk": {"name": "Elk", "alignment": "unaligned", "challenge rating": 0.25, "legendary": false, "size": "large", "type": "beast"}, "Empyrean": {"name": "Empyrean", "alignment": "chaotic good (75%) or neutral evil (25%)", "challenge rating": 23.0, "legendary": true, "size": "huge", "type": "celestial (titan)"}, "Erinyes": {"name": "Erinyes", "alignment": "lawful evil", "challenge rating": 12.0, "legendary": false, "size": "medium", "type": "fiend (devil)"}, "Esmerelda d'Avenir": {"name": "Esmerelda d'Avenir", "alignment": "chaotic good", "challenge rating": 8.0, "legendary": false, "size": "medium", "type": "humanoid (human)"}, "Eternal Flame Guardian": {"name": "Eternal Flame Guardian", "alignment": "chaotic evil", "challenge rating": 2.0, "legendary": false, "size": "medium", "type": "humanoid (human)"}, "Eternal Flame Priest": {"name": "Eternal Flame Priest", "alignment": "neutral evil", "challenge rating": 3.0, "legendary": false, "size": "medium", "type": "humanoid (human)"}, "Ettercap": {"name": "Ettercap", "alignment": "neutral evil", "challenge rating": 2.0, "legendary": false, "size": "medium", "type": "monstrosity"}, "Ettin": {"name": "Ettin", "alignment": "chaotic evil", "challenge rating": 4.0, "legendary": false, "size": "large", "type": "giant"}, "Evil Mage": {"name": "Evil Mage", "alignment": "lawful evil", "challenge rating": 1.0, "legendary": false, "size": "medium", "type": "humanoid (human)"}, "Faerie Dragon": {"name": "Faerie Dragon", "alignment": "chaotic good", "challenge rating": 1.0, "legendary": false, "size": "tiny", "type": "dragon"}, "Fathomer": {"name": "Fathomer", "alignment": "neutral evil", "challenge rating": 2.0, "legendary": false, "size": "medium", "type": "humanoid (human)"}, "Feathergale Knight": {"name": "Feathergale Knight", "alignment": "lawful evil", "challenge rating": 1.0, "legendary": false, "size": "medium", "type": "humanoid (human)"}, "Female Steeder": {"name": "Female Steeder", "alignment": "unaligned", "challenge rating": 1.0, "legendary": false, "size": "large", "type": "beast"}, "Fire Elemental": {"name": "Fire Elemental", "alignment": "neutral", "challenge rating": 5.0, "legendary": false, "size": "large", "type": "elemental"}, "Fire Elemental Myrmidon": {"name": "Fire Elemental Myrmidon", "alignment": "neutral", "challenge rating": 7.0, "legendary": false, "size": "medium", "type": "elemental"}, "Fire Giant": {"name": "Fire Giant", "alignment": "lawful evil", "challenge rating": 9.0, "legendary": false, "size": "huge", "type": "giant"}, "Fire Snake": {"name": "Fire Snake", "alignment": "neutral evil", "challenge rating": 1.0, "legendary": false, "size": "medium", "type": "elemental"}, "Flameskull": {"name": "Flameskull", "alignment": "neutral evil", "challenge rating": 4.0, "legendary": false, "size": "tiny", "type": "undead"}, "Flamewrath": {"name": "Flamewrath", "alignment": "chaotic evil", "challenge rating": 6.0, "legendary": false, "size": "medium", "type": "humanoid (human)"}, "Flesh Golem": {"name": "Flesh Golem", "alignment": "neutral", "challenge rating": 5.0, "legendary": false, "size": "medium", "type": "construct"}, "Flumph": {"name": "Flumph", "alignment": "lawful good", "challenge rating": 0.125, "legendary": false, "size": "small", "type": "aberration"}, "Flying Snake": {"name": "Flying Snake", "alignment": "unaligned", "challenge rating": 0.125, "legendary": false, "size": "tiny", "type": "beast"}, "Flying Sword": {"name": "Flying Sword", "alignment": "unaligned", "challenge rating": 0.25, "legendary": false, "size": "small", "type": "construct"}, "Fomorian": {"name": "Fomorian", "alignment": "chaotic evil", "challenge rating": 8.0, "legendary": false, "size": "huge", "type": "giant"}, "Fraz-Urb'luu": {"name": "Fraz-Urb'luu", "alignment": "chaotic evil", "challenge rating": 23.0, "legendary": true, "size": "large", "type": "fiend (demon)"}, "Frog": {"name": "Frog", "alignment": "unaligned", "challenge rating": 0.0, "legendary": false, "size": "tiny", "type": "beast"}, "Frost Giant": {"name": "Frost Giant", "alignment": "neutral evil", "challenge rating": 8.0, "legendary": false, "size": "huge", "type": "giant"}, "Frulam Mondath": {"name": "Frulam Mondath", "alignment": "lawful evil", "challenge rating": 2.0, "legendary": false, "size": "medium", "type": "humanoid (human)"}, "Galeb Duhr": {"name": "Galeb Duhr", "alignment": "neutral", "challenge rating": 6.0, "legendary": false, "size": "medium", "type": "elemental"}, "Gar Shatterkeel": {"name": "Gar Shatterkeel", "alignment": "neutral evil", "challenge rating": 9.0, "legendary": false, "size": "medium", "type": "humanoid (human)"}, "Gargoyle": {"name": "Gargoyle", "alignment": "chaotic evil", "challenge rating": 2.0, "legendary": false, "size": "medium", "type": "elemental"}, "Gas Spore": {"name": "Gas Spore", "alignment": "unaligned", "challenge rating": 0.5, "legendary": false, "size": "large", "type": "plant"}, "Gelatinous Cube": {"name": "Gelatinous Cube", "alignment": "unaligned", "challenge rating": 2.0, "legendary": false, "size": "large", "type": "ooze"}, "Ghald": {"name": "Ghald", "alignment": "lawful evil", "challenge rating": 7.0, "legendary": false, "size": "medium", "type": "humanoid (sahuagin)"}, "Ghast": {"name": "Ghast", "alignment": "chaotic evil", "challenge rating": 2.0, "legendary": false, "size": "medium", "type": "undead"}, "Ghost": {"name": "Ghost", "alignment": "any alignment", "challenge rating": 4.0, "legendary": false, "size": "medium", "type": "undead"}, "Ghoul": {"name": "Ghoul", "alignment": "chaotic evil", "challenge rating": 1.0, "legendary": false, "size": "medium", "type": "undead"}, "Giant Ape": {"name": "Giant Ape", "alignment": "unaligned", "challenge rating": 7.0, "legendary": false, "size": "huge", "type": "beast"}, "Giant Badger": {"name": "Giant Badger", "alignment": "unaligned", "challenge rating": 0.25, "legendary": false, "size": "medium", "type": "beast"}, "Giant Bat": {"name": "Giant Bat", "alignment": "unaligned", "challenge rating": 0.25, "legendary": false, "size": "large", "type": "beast"}, "Giant Boar": {"name": "Giant Boar", "alignment": "unaligned", "challenge rating": 2.0, "legendary": false, "size": "large", "type": "beast"}, "Giant Centipede": {"name": "Giant Centipede", "alignment": "unaligned", "challenge rating": 0.25, "legendary": false, "size": "small", "type": "beast"}, "Giant Constrictor Snake": {"name": "Giant Constrictor Snake", "alignment": "unaligned", "challenge rating": 2.0, "legendary": false, "size": "huge", "type": "beast"}, "Giant Crab": {"name": "Giant Crab", "alignment": "unaligned", "challenge rating": 0.125, "legendary": false, "size": "medium", "type": "beast"}, "Giant Crocodile": {"name": "Giant Crocodile", "alignment": "unaligned", "challenge rating": 5.0, "legendary": false, "size": "huge", "type": "beast"}, "Giant Eagle": {"name": "Giant Eagle", "alignment": "neutral good", "challenge rating": 1.0, "legendary": false, "size": "large", "type": "beast"}, "Giant Elk": {"name": "Giant Elk", "alignment": "unaligned", "challenge rating": 2.0, "legendary": false, "size": "huge", "type": "beast"}, "Giant Fire Beetle": {"name": "Giant Fire Beetle", "alignment": "unaligned", "challenge rating": 0.0, "legendary": false, "size": "small", "type": "beast"}, "Giant Frog": {"name": "Giant Frog", "alignment": "unaligned", "challenge rating": 0.25, "legendary": false, "size": "medium", "type": "beast"}, "Giant Goat": {"name": "Giant Goat", "alignment": "unaligned", "challenge rating": 0.5, "legendary": false, "size": "large", "type": "beast"}, "Giant Hyena": {"name": "Giant Hyena", "alignment": "unaligned", "challenge rating": 1.0, "legendary": false, "size": "large", "type": "beast"}, "Giant Lizard": {"name": "Giant Lizard", "alignment": "unaligned", "challenge rating": 0.25, "legendary": false, "size": "large", "type": "beast"}, "Giant Octopus": {"name": "Giant Octopus", "alignment": "unaligned", "challenge rating": 1.0, "legendary": false, "size": "large", "type": "beast"}, "Giant Owl": {"name": "Giant Owl", "alignment": "neutral", "challenge rating": 0.25, "legendary": false, "size": "large", "type": "beast"}, "Giant Poisonous Snake": {"name": "Giant Poisonous Snake", "alignment": "unaligned", "challenge rating": 0.25, "legendary": false, "size": "medium", "type": "beast"}, "Giant Rat": {"name": "Giant Rat", "alignment": "unaligned", "challenge rating": 0.125, "legendary": false, "size": "small", "type": "beast"}, "Giant Scorpion": {"name": "Giant Scorpion", "alignment": "unaligned", "challenge rating": 3.0, "legendary": false, "size": "large", "type": "beast"}, "Giant Sea Horse": {"name": "Giant Sea Horse", "alignment": "unaligned", "challenge rating": 0.5, "legendary": false, "size": "large", "type": "beast"}, "Giant Shark": {"name": "Giant Shark", "alignment": "unaligned", "challenge rating": 5.0, "legendary": false, "size": "huge", "type": "beast"}, "Giant Spider": {"name": "Giant Spider", "alignment": "unaligned", "challenge rating": 1.0, "legendary": false, "size": "large", "type": "beast"}, "Giant Toad": {"name": "Giant Toad", "alignment": "unaligned", "challenge rating": 1.0, "legendary": false, "size": "large", "type": "beast"}, "Giant Vulture": {"name": "Giant Vulture", "alignment": "neutral evil", "challenge rating": 1.0, "legendary": false, "size": "large", "type": "beast"}, "Giant Wasp": {"name": "Giant Wasp", "alignment": "unaligned", "challenge rating": 0.5, "legendary": false, "size": "medium", "type": "beast"}, "Giant Weasel": {"name": "Giant Weasel", "alignment": "unaligned", "challenge rating": 0.125, "legendary": false, "size": "medium", "type": "beast"}, "Giant Wolf Spider": {"name": "Giant Wolf Spider", "alignment": "unaligned", "challenge rating": 0.25, "legendary": false, "size": "medium", "type": "beast"}, "Gibbering Mouther": {"name": "Gibbering Mouther", "alignment": "neutral", "challenge rating": 2.0, "legendary": false, "size": "medium", "type": "aberration"}, "Githyanki Knight": {"name": "Githyanki Knight", "alignment": "lawful evil", "challenge rating": 8.0, "legendary": false, "size": "medium", "type": "humanoid (gith)"}, "Githyanki Warrior": {"name": "Githyanki Warrior", "alignment": "lawful evil", "challenge rating": 3.0, "legendary": false, "size": "medium", "type": "humanoid (gith)"}, "Githzerai Monk": {"name": "Githzerai Monk", "alignment": "lawful neutral", "challenge rating": 2.0, "legendary": false, "size": "medium", "type": "humanoid (gith)"}, "Githzerai Zerth": {"name": "Githzerai Zerth", "alignment": "lawful neutral", "challenge rating": 6.0, "legendary": false, "size": "medium", "type": "humanoid (gith)"}, "Glabrezu": {"name": "Glabrezu", "alignment": "chaotic evil", "challenge rating": 9.0, "legendary": false, "size": "large", "type": "fiend (demon)"}, "Gladiator": {"name": "Gladiator", "alignment": "any alignment", "challenge rating": 5.0, "legendary": false, "size": "medium", "type": "humanoid (any race)"}, "Gnoll": {"name": "Gnoll", "alignment": "chaotic evil", "challenge rating": 0.5, "legendary": false, "size": "medium", "type": "humanoid (gnoll)"}, "Gnoll Fang of Yeenoghu": {"name": "Gnoll Fang of Yeenoghu", "alignment": "chaotic evil", "challenge rating": 4.0, "legendary": false, "size": "medium", "type": "fiend (gnoll)"}, "Gnoll Pack Lord": {"name": "Gnoll Pack Lord", "alignment": "chaotic evil", "challenge rating": 2.0, "legendary": false, "size": "medium", "type": "humanoid (gnoll)"}, "Goat": {"name": "Goat", "alignment": "unaligned", "challenge rating": 0.0, "legendary": false, "size": "medium", "type": "beast"}, "Goblin": {"name": "Goblin", "alignment": "neutral evil", "challenge rating": 0.25, "legendary": false, "size": "small", "type": "humanoid (goblinoid)"}, "Goblin Boss": {"name": "Goblin Boss", "alignment": "neutral evil", "challenge rating": 1.0, "legendary": false, "size": "small", "type": "humanoid (goblinoid)"}, "Gold Dragon Wyrmling": {"name": "Gold Dragon Wyrmling", "alignment": "lawful good", "challenge rating": 3.0, "legendary": false, "size": "medium", "type": "dragon"}, "Gorgon": {"name": "Gorgon", "alignment": "unaligned", "challenge rating": 5.0, "legendary": false, "size": "large", "type": "monstrosity"}, "Goristro": {"name": "Goristro", "alignment": "chaotic evil", "challenge rating": 17.0, "legendary": false, "size": "huge", "type": "fiend (demon)"}, "Gray Ooze": {"name": "Gray Ooze", "alignment": "unaligned", "challenge rating": 0.5, "legendary": false, "size": "medium", "type": "ooze"}, "Gray Slaad": {"name": "Gray Slaad", "alignment": "chaotic neutral", "challenge rating": 9.0, "legendary": false, "size": "medium", "type": "aberration (shapechanger)"}, "Graz'zt": {"name": "Graz'zt", "alignment": "chaotic evil", "challenge rating": 24.0, "legendary": true, "size": "large", "type": "fiend (demon, shapechanger)"}, "Green Dragon Wyrmling": {"name": "Green Dragon Wyrmling", "alignment": "lawful evil", "challenge rating": 2.0, "legendary": false, "size": "medium", "type": "dragon"}, "Green Hag": {"name": "Green Hag", "alignment": "neutral evil", "challenge rating": 3.0, "legendary": false, "size": "medium", "type": "fey"}, "Green Slaad": {"name": "Green Slaad", "alignment": "chaotic neutral", "challenge rating": 8.0, "legendary": false, "size": "large", "type": "aberration (shapechanger)"}, "Grell": {"name": "Grell", "alignment": "neutral evil", "challenge rating": 3.0, "legendary": false, "size": "medium", "type": "aberration"}, "Grick": {"name": "Grick", "alignment": "neutral", "challenge rating": 2.0, "legendary": false, "size": "medium", "type": "monstrosity"}, "Grick Alpha": {"name": "Grick Alpha", "alignment": "neutral", "challenge rating": 7.0, "legendary": false, "size": "large", "type": "monstrosity"}, "Griffon": {"name": "Griffon", "alignment": "unaligned", "challenge rating": 2.0, "legendary": false, "size": "large", "type": "monstrosity"}, "Grimlock": {"name": "Grimlock", "alignment": "neutral evil", "challenge rating": 0.25, "legendary": false, "size": "medium", "type": "humanoid (grimlock)"}, "Grisha": {"name": "Grisha", "alignment": "chaotic evil", "challenge rating": 2.0, "legendary": false, "size": "medium", "type": "humanoid (damaran human)"}, "Guard": {"name": "Guard", "alignment": "any alignment", "challenge rating": 0.125, "legendary": false, "size": "medium", "type": "humanoid (any race)"}, "Guard Drake": {"name": "Guard Drake", "alignment": "unaligned", "challenge rating": 2.0, "legendary": false, "size": "medium", "type": "dragon"}, "Guardian Naga": {"name": "Guardian Naga", "alignment": "lawful good", "challenge rating": 10.0, "legendary": false, "size": "large", "type": "monstrosity"}, "Guardian Portrait": {"name": "Guardian Portrait", "alignment": "unaligned", "challenge rating": 1.0, "legendary": false, "size": "medium", "type": "construct"}, "Gynosphinx": {"name": "Gynosphinx", "alignment": "lawful neutral", "challenge rating": 11.0, "legendary": true, "size": "large", "type": "monstrosity"}, "Half-Ogre": {"name": "Half-Ogre", "alignment": "any chaotic alignment", "challenge rating": 1.0, "legendary": false, "size": "large", "type": "giant"}, "Half-Red Dragon Veteran": {"name": "Half-Red Dragon Veteran", "alignment": "any alignment", "challenge rating": 5.0, "legendary": false, "size": "medium", "type": "humanoid (human)"}, "Harpy": {"name": "Harpy", "alignment": "chaotic evil", "challenge rating": 1.0, "legendary": false, "size": "medium", "type": "monstrosity"}, "Hawk": {"name": "Hawk", "alignment": "unaligned", "challenge rating": 0.0, "legendary": false, "size": "tiny", "type": "beast"}, "Hell Hound": {"name": "Hell Hound", "alignment": "lawful evil", "challenge rating": 3.0, "legendary": false, "size": "medium", "type": "fiend"}, "Hellenrae": {"name": "Hellenrae", "alignment": "lawful evil", "challenge rating": 5.0, "legendary": false, "size": "medium", "type": "humanoid (human)"}, "Helmed Horror": {"name": "Helmed Horror", "alignment": "neutral", "challenge rating": 4.0, "legendary": false, "size": "medium", "type": "construct"}, "Hezrou": {"name": "Hezrou", "alignment": "chaotic evil", "challenge rating": 8.0, "legendary": false, "size": "large", "type": "fiend (demon)"}, "Hill Giant": {"name": "Hill Giant", "alignment": "chaotic evil", "challenge rating": 5.0, "legendary": false, "size": "huge", "type": "giant"}, "Hippogriff": {"name": "Hippogriff", "alignment": "unaligned", "challenge rating": 1.0, "legendary": false, "size": "large", "type": "monstrosity"}, "Hobgoblin": {"name": "Hobgoblin", "alignment": "lawful evil", "challenge rating": 0.5, "legendary": false, "size": "medium", "type": "humanoid (goblinoid)"}, "Hobgoblin Captain": {"name": "Hobgoblin Captain", "alignment": "lawful evil", "challenge rating": 3.0, "legendary": false, "size": "medium", "type": "humanoid (goblinoid)"}, "Hobgoblin Warlord": {"name": "Hobgoblin Warlord", "alignment": "lawful evil", "challenge rating": 6.0, "legendary": false, "size": "medium", "type": "humanoid (goblinoid)"}, "Homunculus": {"name": "Homunculus", "alignment": "neutral", "challenge rating": 0.0, "legendary": false, "size": "tiny", "type": "construct"}, "Hook Horror": {"name": "Hook Horror", "alignment": "neutral", "challenge rating": 3.0, "legendary": false, "size": "large", "type": "monstrosity"}, "Hook Horror Spore Servant": {"name": "Hook Horror Spore Servant", "alignment": "unaligned", "challenge rating": 3.0, "legendary": false, "size": "medium", "type": "plant"}, "Horned Devil": {"name": "Horned Devil", "alignment": "lawful evil", "challenge rating": 11.0, "legendary": false, "size": "large", "type": "fiend (devil)"}, "Howling Hatred Initiate": {"name": "Howling Hatred Initiate", "alignment": "neutral evil", "challenge rating": 0.125, "legendary": false, "size": "medium", "type": "humanoid (human)"}, "Howling Hatred Priest": {"name": "Howling Hatred Priest", "alignment": "neutral evil", "challenge rating": 2.0, "legendary": false, "size": "medium", "type": "humanoid (human)"}, "Hulking Crab": {"name": "Hulking Crab", "alignment": "unaligned", "challenge rating": 5.0, "legendary": false, "size": "huge", "type": "beast"}, "Hunter Shark": {"name": "Hunter Shark", "alignment": "unaligned", "challenge rating": 2.0, "legendary": false, "size": "large", "type": "beast"}, "Hurricane": {"name": "Hurricane", "alignment": "lawful evil", "challenge rating": 2.0, "legendary": false, "size": "medium", "type": "humanoid (human)"}, "Hydra": {"name": "Hydra", "alignment": "unaligned", "challenge rating": 8.0, "legendary": false, "size": "huge", "type": "monstrosity"}, "Hyena": {"name": "Hyena", "alignment": "unaligned", "challenge rating": 0.0, "legendary": false, "size": "medium", "type": "beast"}, "Ice Devil": {"name": "Ice Devil", "alignment": "lawful evil", "challenge rating": 14.0, "legendary": false, "size": "large", "type": "fiend (devil)"}, "Ice Mephit": {"name": "Ice Mephit", "alignment": "neutral evil", "challenge rating": 0.5, "legendary": false, "size": "small", "type": "elemental"}, "Ice Toad": {"name": "Ice Toad", "alignment": "neutral", "challenge rating": 1.0, "legendary": false, "size": "medium", "type": "monstrosity"}, "Imix": {"name": "Imix", "alignment": "neutral evil", "challenge rating": 19.0, "legendary": true, "size": "huge", "type": "elemental"}, "Imp": {"name": "Imp", "alignment": "lawful evil", "challenge rating": 1.0, "legendary": false, "size": "tiny", "type": "fiend (devil, shapechanger)"}, "Intellect Devourer": {"name": "Intellect Devourer", "alignment": "lawful evil", "challenge rating": 2.0, "legendary": false, "size": "tiny", "type": "aberration"}, "Invisible Stalker": {"name": "Invisible Stalker", "alignment": "neutral", "challenge rating": 6.0, "legendary": false, "size": "medium", "type": "elemental"}, "Iron Golem": {"name": "Iron Golem", "alignment": "unaligned", "challenge rating": 16.0, "legendary": false, "size": "large", "type": "construct"}, "Ixitxachitl": {"name": "Ixitxachitl", "alignment": "chaotic evil", "challenge rating": 0.25, "legendary": false, "size": "small", "type": "aberration"}, "Izek Strazni": {"name": "Izek Strazni", "alignment": "neutral evil", "challenge rating": 5.0, "legendary": false, "size": "medium", "type": "humanoid (human)"}, "Jackal": {"name": "Jackal", "alignment": "unaligned", "challenge rating": 0.0, "legendary": false, "size": "small", "type": "beast"}, "Jackalwere": {"name": "Jackalwere", "alignment": "chaotic evil", "challenge rating": 0.5, "legendary": false, "size": "medium", "type": "humanoid (shapechanger)"}, "Jamna Gleamsilver": {"name": "Jamna Gleamsilver", "alignment": "neutral", "challenge rating": 1.0, "legendary": false, "size": "small", "type": "humanoid (gnome)"}, "Juiblex": {"name": "Juiblex", "alignment": "chaotic evil", "challenge rating": 23.0, "legendary": true, "size": "huge", "type": "fiend (demon)"}, "Kenku": {"name": "Kenku", "alignment": "chaotic neutral", "challenge rating": 0.25, "legendary": false, "size": "medium", "type": "humanoid (kenku)"}, "Killer Whale": {"name": "Killer Whale", "alignment": "unaligned", "challenge rating": 3.0, "legendary": false, "size": "huge", "type": "beast"}, "Knight": {"name": "Knight", "alignment": "any alignment", "challenge rating": 3.0, "legendary": false, "size": "medium", "type": "humanoid (any race)"}, "Kobold": {"name": "Kobold", "alignment": "lawful evil", "challenge rating": 0.125, "legendary": false, "size": "small", "type": "humanoid (kobold)"}, "Kraken": {"name": "Kraken", "alignment": "chaotic evil", "challenge rating": 23.0, "legendary": true, "size": "gargantuan", "type": "monstrosity (titan)"}, "Kuo-toa": {"name": "Kuo-toa", "alignment": "neutral evil", "challenge rating": 0.25, "legendary": false, "size": "medium", "type": "humanoid (kuo-toa)"}, "Kuo-toa Archpriest": {"name": "Kuo-toa Archpriest", "alignment": "neutral evil", "challenge rating": 6.0, "legendary": false, "size": "medium", "type": "humanoid (kuo-toa)"}, "Kuo-toa Whip": {"name": "Kuo-toa Whip", "alignment": "neutral evil", "challenge rating": 1.0, "legendary": false, "size": "medium", "type": "humanoid (kuo-toa)"}, "Lamia": {"name": "Lamia", "alignment": "chaotic evil", "challenge rating": 4.0, "legendary": false, "size": "large", "type": "monstrosity"}, "Langdedrosa Cyanwrath": {"name": "Langdedrosa Cyanwrath", "alignment": "lawful evil", "challenge rating": 4.0, "legendary": false, "size": "medium", "type": "humanoid (half-dragon)"}, "Lemure": {"name": "Lemure", "alignment": "lawful evil", "challenge rating": 0.0, "legendary": false, "size": "medium", "type": "fiend (devil)"}, "Lich": {"name": "Lich", "alignment": "any evil alignment", "challenge rating": 21.0, "legendary": true, "size": "medium", "type": "undead"}, "Lion": {"name": "Lion", "alignment": "unaligned", "challenge rating": 1.0, "legendary": false, "size": "large", "type": "beast"}, "Lizard": {"name": "Lizard", "alignment": "unaligned", "challenge rating": 0.0, "legendary": false, "size": "tiny", "type": "beast"}, "Lizard King/Queen": {"name": "Lizard King/Queen", "alignment": "chaotic evil", "challenge rating": 4.0, "legendary": false, "size": "medium", "type": "humanoid (lizardfolk)"}, "Lizardfolk": {"name": "Lizardfolk", "alignment": "neutral", "challenge rating": 0.5, "legendary": false, "size": "medium", "type": "humanoid (lizardfolk)"}, "Lizardfolk Shaman": {"name": "Lizardfolk Shaman", "alignment": "neutral", "challenge rating": 2.0, "legendary": false, "size": "medium", "type": "humanoid (lizardfolk)"}, "Madam Eva": {"name": "Madam Eva", "alignment": "chaotic neutral", "challenge rating": 10.0, "legendary": false, "size": "medium", "type": "humanoid (human)"}, "Maegera the Dawn Titan": {"name": "Maegera the Dawn Titan", "alignment": "chaotic neutral", "challenge rating": 23.0, "legendary": true, "size": "gargantuan", "type": "elemental"}, "Mage": {"name": "Mage", "alignment": "any alignment", "challenge rating": 6.0, "legendary": false, "size": "medium", "type": "humanoid (any race)"}, "Magma Mephit": {"name": "Magma Mephit", "alignment": "neutral evil", "challenge rating": 0.5, "legendary": false, "size": "small", "type": "elemental"}, "Magmin": {"name": "Magmin", "alignment": "chaotic neutral", "challenge rating": 0.5, "legendary": false, "size": "small", "type": "elemental"}, "Male Steeder": {"name": "Male Steeder", "alignment": "unaligned", "challenge rating": 0.25, "legendary": false, "size": "medium", "type": "beast"}, "Mammoth": {"name": "Mammoth", "alignment": "unaligned", "challenge rating": 6.0, "legendary": false, "size": "huge", "type": "beast"}, "Manes": {"name": "Manes", "alignment": "chaotic evil", "challenge rating": 0.125, "legendary": false, "size": "small", "type": "fiend (demon)"}, "Manticore": {"name": "Manticore", "alignment": "lawful evil", "challenge rating": 3.0, "legendary": false, "size": "large", "type": "monstrosity"}, "Marid": {"name": "Marid", "alignment": "chaotic neutral", "challenge rating": 11.0, "legendary": false, "size": "large", "type": "elemental"}, "Marilith": {"name": "Marilith", "alignment": "chaotic evil", "challenge rating": 16.0, "legendary": false, "size": "large", "type": "fiend (demon)"}, "Marlos Urnrayle": {"name": "Marlos Urnrayle", "alignment": "neutral evil", "challenge rating": 8.0, "legendary": false, "size": "medium", "type": "monstrosity"}, "Mastiff": {"name": "Mastiff", "alignment": "unaligned", "challenge rating": 0.125, "legendary": false, "size": "medium", "type": "beast"}, "Medusa": {"name": "Medusa", "alignment": "lawful evil", "challenge rating": 6.0, "legendary": false, "size": "medium", "type": "monstrosity"}, "Merfolk": {"name": "Merfolk", "alignment": "neutral", "challenge rating": 0.125, "legendary": false, "size": "medium", "type": "humanoid (merfolk)"}, "Merrow": {"name": "Merrow", "alignment": "chaotic evil", "challenge rating": 2.0, "legendary": false, "size": "large", "type": "monstrosity"}, "Mezzoloth": {"name": "Mezzoloth", "alignment": "neutral evil", "challenge rating": 5.0, "legendary": false, "size": "medium", "type": "fiend (yugoloth)"}, "Mimic": {"name": "Mimic", "alignment": "neutral", "challenge rating": 2.0, "legendary": false, "size": "medium", "type": "monstrosity (shapechanger)"}, "Mind Flayer": {"name": "Mind Flayer", "alignment": "lawful evil", "challenge rating": 7.0, "legendary": false, "size": "medium", "type": "aberration"}, "Minotaur": {"name": "Minotaur", "alignment": "chaotic evil", "challenge rating": 3.0, "legendary": false, "size": "large", "type": "monstrosity"}, "Minotaur Skeleton": {"name": "Minotaur Skeleton", "alignment": "lawful evil", "challenge rating": 2.0, "legendary": false, "size": "large", "type": "undead"}, "Miraj Vizann": {"name": "Miraj Vizann", "alignment": "neutral evil", "challenge rating": 6.0, "legendary": false, "size": "medium", "type": "humanoid (earth genasi)"}, "Mongrelfolk": {"name": "Mongrelfolk", "alignment": "any alignment", "challenge rating": 0.25, "legendary": false, "size": "medium", "type": "humanoid (mongrelfolk)"}, "Monodrone": {"name": "Monodrone", "alignment": "lawful neutral", "challenge rating": 0.125, "legendary": false, "size": "medium", "type": "construct"}, "Mormesk the Wraith": {"name": "Mormesk the Wraith", "alignment": "neutral evil", "challenge rating": 3.0, "legendary": false, "size": "medium", "type": "undead"}, "Mud Mephit": {"name": "Mud Mephit", "alignment": "neutral evil", "challenge rating": 0.25, "legendary": false, "size": "small", "type": "elemental"}, "Mule": {"name": "Mule", "alignment": "unaligned", "challenge rating": 0.125, "legendary": false, "size": "medium", "type": "beast"}, "Mummy": {"name": "Mummy", "alignment": "lawful evil", "challenge rating": 3.0, "legendary": false, "size": "medium", "type": "undead"}, "Mummy Lord": {"name": "Mummy Lord", "alignment": "lawful evil", "challenge rating": 15.0, "legendary": true, "size": "medium", "type": "undead"}, "Myconid Adult": {"name": "Myconid Adult", "alignment": "lawful neutral", "challenge rating": 0.5, "legendary": false, "size": "medium", "type": "plant"}, "Myconid Soverign": {"name": "Myconid Soverign", "alignment": "lawful neutral", "challenge rating": 2.0, "legendary": false, "size": "large", "type": "plant"}, "Myconid Sprout": {"name": "Myconid Sprout", "alignment": "lawful neutral", "challenge rating": 0.0, "legendary": false, "size": "small", "type": "plant"}, "Naergoth Bladelord": {"name": "Naergoth Bladelord", "alignment": "neutral evil", "challenge rating": 11.0, "legendary": false, "size": "medium", "type": "undead"}, "Nalfeshnee": {"name": "Nalfeshnee", "alignment": "chaotic evil", "challenge rating": 13.0, "legendary": false, "size": "large", "type": "fiend (demon)"}, "Narrak": {"name": "Narrak", "alignment": "chaotic evil", "challenge rating": 2.0, "legendary": false, "size": "small", "type": "humanoid (derro)"}, "Needle Blight": {"name": "Needle Blight", "alignment": "neutral evil", "challenge rating": 0.25, "legendary": false, "size": "medium", "type": "plant"}, "Neronvain": {"name": "Neronvain", "alignment": "neutral evil", "challenge rating": 9.0, "legendary": false, "size": "medium", "type": "humanoid (elf)"}, "Nezznar the Black Spider": {"name": "Nezznar the Black Spider", "alignment": "neutral evil", "challenge rating": 2.0, "legendary": false, "size": "medium", "type": "humanoid (elf)"}, "Night Hag": {"name": "Night Hag", "alignment": "neutral evil", "challenge rating": 5.0, "legendary": false, "size": "medium", "type": "fiend"}, "Nightmare": {"name": "Nightmare", "alignment": "neutral evil", "challenge rating": 3.0, "legendary": false, "size": "large", "type": "fiend"}, "Noble": {"name": "Noble", "alignment": "any alignment", "challenge rating": 0.125, "legendary": false, "size": "medium", "type": "humanoid (any race)"}, "Nothic": {"name": "Nothic", "alignment": "neutral evil", "challenge rating": 2.0, "legendary": false, "size": "medium", "type": "aberration"}, "Nycaloth": {"name": "Nycaloth", "alignment": "neutral evil", "challenge rating": 9.0, "legendary": false, "size": "large", "type": "fiend (yugoloth)"}, "Ochre Jelly": {"name": "Ochre Jelly", "alignment": "unaligned", "challenge rating": 2.0, "legendary": false, "size": "large", "type": "ooze"}, "Octopus": {"name": "Octopus", "alignment": "unaligned", "challenge rating": 0.0, "legendary": false, "size": "small", "type": "beast"}, "Ogre": {"name": "Ogre", "alignment": "chaotic evil", "challenge rating": 2.0, "legendary": false, "size": "large", "type": "giant"}, "Ogre Zombie": {"name": "Ogre Zombie", "alignment": "neutral evil", "challenge rating": 2.0, "legendary": false, "size": "large", "type": "undead"}, "Ogremoch": {"name": "Ogremoch", "alignment": "neutral evil", "challenge rating": 20.0, "legendary": true, "size": "gargantuan", "type": "elemental"}, "Olhydra": {"name": "Olhydra", "alignment": "neutral evil", "challenge rating": 18.0, "legendary": true, "size": "huge", "type": "elemental"}, "One-Eyed Shiver": {"name": "One-Eyed Shiver", "alignment": "chaotic evil", "challenge rating": 3.0, "legendary": false, "size": "medium", "type": "humanoid (human)"}, "Oni": {"name": "Oni", "alignment": "lawful evil", "challenge rating": 7.0, "legendary": false, "size": "large", "type": "giant"}, "Orc": {"name": "Orc", "alignment": "chaotic evil", "challenge rating": 0.5, "legendary": false, "size": "medium", "type": "humanoid (orc)"}, "Orc Eye of Gruumsh": {"name": "Orc Eye of Gruumsh", "alignment": "chaotic evil", "challenge rating": 2.0, "legendary": false, "size": "medium", "type": "humanoid (orc)"}, "Orc War Chief": {"name": "Orc War Chief", "alignment": "chaotic evil", "challenge rating": 4.0, "legendary": false, "size": "medium", "type": "humanoid (orc)"}, "Orcus": {"name": "Orcus", "alignment": "chaotic evil", "challenge rating": 26.0, "legendary": true, "size": "huge", "type": "fiend (demon)"}, "Oreioth": {"name": "Oreioth", "alignment": "chaotic evil", "challenge rating": 2.0, "legendary": false, "size": "medium", "type": "humanoid (human)"}, "Orog": {"name": "Orog", "alignment": "chaotic evil", "challenge rating": 2.0, "legendary": false, "size": "medium", "type": "humanoid (orc)"}, "Otyugh": {"name": "Otyugh", "alignment": "neutral", "challenge rating": 5.0, "legendary": false, "size": "large", "type": "aberration"}, "Owl": {"name": "Owl", "alignment": "unaligned", "challenge rating": 0.0, "legendary": false, "size": "tiny", "type": "beast"}, "Owlbear": {"name": "Owlbear", "alignment": "unaligned", "challenge rating": 3.0, "legendary": false, "size": "large", "type": "monstrosity"}, "Panther": {"name": "Panther", "alignment": "unaligned", "challenge rating": 0.25, "legendary": false, "size": "medium", "type": "beast"}, "Pegasus": {"name": "Pegasus", "alignment": "chaotic good", "challenge rating": 2.0, "legendary": false, "size": "large", "type": "celestial"}, "Pentadrone": {"name": "Pentadrone", "alignment": "lawful neutral", "challenge rating": 2.0, "legendary": false, "size": "large", "type": "construct"}, "Peryton": {"name": "Peryton", "alignment": "chaotic evil", "challenge rating": 2.0, "legendary": false, "size": "medium", "type": "monstrosity"}, "Phantom Warrior": {"name": "Phantom Warrior", "alignment": "any alignment", "challenge rating": 3.0, "legendary": false, "size": "medium", "type": "undead"}, "Pharblex Spattergoo": {"name": "Pharblex Spattergoo", "alignment": "chaotic evil", "challenge rating": 3.0, "legendary": false, "size": "medium", "type": "humanoid (bullywug)"}, "Phase Spider": {"name": "Phase Spider", "alignment": "unaligned", "challenge rating": 3.0, "legendary": false, "size": "large", "type": "monstrosity"}, "Pidlwick II": {"name": "Pidlwick II", "alignment": "neutral evil", "challenge rating": 0.25, "legendary": false, "size": "small", "type": "construct"}, "Piercer": {"name": "Piercer", "alignment": "unaligned", "challenge rating": 0.5, "legendary": false, "size": "medium", "type": "monstrosity"}, "Pit Fiend": {"name": "Pit Fiend", "alignment": "lawful evil", "challenge rating": 20.0, "legendary": false, "size": "large", "type": "fiend (devil)"}, "Pixie": {"name": "Pixie", "alignment": "neutral good", "challenge rating": 0.25, "legendary": false, "size": "tiny", "type": "fey"}, "Planetar": {"name": "Planetar", "alignment": "lawful good", "challenge rating": 16.0, "legendary": false, "size": "large", "type": "celestial"}, "Plesiosaurus": {"name": "Plesiosaurus", "alignment": "unaligned", "challenge rating": 2.0, "legendary": false, "size": "large", "type": "beast"}, "Poisonous Snake": {"name": "Poisonous Snake", "alignment": "unaligned", "challenge rating": 0.125, "legendary": false, "size": "tiny", "type": "beast"}, "Polar Bear": {"name": "Polar Bear", "alignment": "unaligned", "challenge rating": 2.0, "legendary": false, "size": "large", "type": "beast"}, "Pony": {"name": "Pony", "alignment": "unaligned", "challenge rating": 0.125, "legendary": false, "size": "medium", "type": "beast"}, "Priest": {"name": "Priest", "alignment": "any alignment", "challenge rating": 2.0, "legendary": false, "size": "medium", "type": "humanoid (any race)"}, "Pseudodragon": {"name": "Pseudodragon", "alignment": "neutral good", "challenge rating": 0.25, "legendary": false, "size": "tiny", "type": "dragon"}, "Pteranodon": {"name": "Pteranodon", "alignment": "unaligned", "challenge rating": 0.25, "legendary": false, "size": "medium", "type": "beast"}, "Purple Worm": {"name": "Purple Worm", "alignment": "unaligned", "challenge rating": 15.0, "legendary": false, "size": "gargantuan", "type": "monstrosity"}, "Purple Wormling": {"name": "Purple Wormling", "alignment": "unaligned", "challenge rating": 2.0, "legendary": false, "size": "large", "type": "monstrosity"}, "Quadrone": {"name": "Quadrone", "alignment": "lawful neutral", "challenge rating": 1.0, "legendary": false, "size": "medium", "type": "construct"}, "Quaggoth": {"name": "Quaggoth", "alignment": "chaotic neutral", "challenge rating": 2.0, "legendary": false, "size": "medium", "type": "humanoid (quaggoth)"}, "Quaggoth Spore Servant": {"name": "Quaggoth Spore Servant", "alignment": "unaligned", "challenge rating": 1.0, "legendary": false, "size": "medium", "type": "plant"}, "Quasit": {"name": "Quasit", "alignment": "chaotic evil", "challenge rating": 1.0, "legendary": false, "size": "tiny", "type": "fiend (demon, shapechanger)"}, "Quipper": {"name": "Quipper", "alignment": "unaligned", "challenge rating": 0.0, "legendary": false, "size": "tiny", "type": "beast"}, "Rahadin": {"name": "Rahadin", "alignment": "lawful evil", "challenge rating": 10.0, "legendary": false, "size": "medium", "type": "humanoid (elf)"}, "Rakshasa": {"name": "Rakshasa", "alignment": "lawful evil", "challenge rating": 13.0, "legendary": false, "size": "medium", "type": "fiend"}, "Rat": {"name": "Rat", "alignment": "unaligned", "challenge rating": 0.0, "legendary": false, "size": "tiny", "type": "beast"}, "Rath Modar": {"name": "Rath Modar", "alignment": "lawful evil", "challenge rating": 6.0, "legendary": false, "size": "medium", "type": "humanoid (human)"}, "Raven": {"name": "Raven", "alignment": "unaligned", "challenge rating": 0.0, "legendary": false, "size": "tiny", "type": "beast"}, "Razerblast": {"name": "Razerblast", "alignment": "chaotic evil", "challenge rating": 5.0, "legendary": false, "size": "medium", "type": "humanoid (human)"}, "Red Dragon Wyrmling": {"name": "Red Dragon Wyrmling", "alignment": "chaotic evil", "challenge rating": 4.0, "legendary": false, "size": "medium", "type": "dragon"}, "Red Slaad": {"name": "Red Slaad", "alignment": "chaotic neutral", "challenge rating": 5.0, "legendary": false, "size": "large", "type": "aberration"}, "Redbrand Ruffian": {"name": "Redbrand Ruffian", "alignment": "neutral evil", "challenge rating": 0.5, "legendary": false, "size": "medium", "type": "humanoid (human)"}, "Reef Shark": {"name": "Reef Shark", "alignment": "unaligned", "challenge rating": 0.5, "legendary": false, "size": "medium", "type": "beast"}, "Remorhaz": {"name": "Remorhaz", "alignment": "unaligned", "challenge rating": 11.0, "legendary": false, "size": "huge", "type": "monstrosity"}, "Revenant": {"name": "Revenant", "alignment": "neutral", "challenge rating": 5.0, "legendary": false, "size": "medium", "type": "undead"}, "Rezmir": {"name": "Rezmir", "alignment": "neutral evil", "challenge rating": 7.0, "legendary": true, "size": "medium", "type": "humanoid (half-black dragon)"}, "Rhinoceros": {"name": "Rhinoceros", "alignment": "unaligned", "challenge rating": 2.0, "legendary": false, "size": "large", "type": "beast"}, "Rictavio": {"name": "Rictavio", "alignment": "lawful good", "challenge rating": 5.0, "legendary": false, "size": "medium", "type": "humanoid (human)"}, "Riding Horse": {"name": "Riding Horse", "alignment": "unaligned", "challenge rating": 0.25, "legendary": false, "size": "large", "type": "beast"}, "Roc": {"name": "Roc", "alignment": "unaligned", "challenge rating": 11.0, "legendary": false, "size": "gargantuan", "type": "monstrosity"}, "Roper": {"name": "Roper", "alignment": "neutral evil", "challenge rating": 5.0, "legendary": false, "size": "large", "type": "monstrosity"}, "Rug of Smothering": {"name": "Rug of Smothering", "alignment": "unaligned", "challenge rating": 2.0, "legendary": false, "size": "large", "type": "construct"}, "Rust Monster": {"name": "Rust Monster", "alignment": "unaligned", "challenge rating": 0.5, "legendary": false, "size": "medium", "type": "monstrosity"}, "Saber-Toothed Tiger": {"name": "Saber-Toothed Tiger", "alignment": "unaligned", "challenge rating": 2.0, "legendary": false, "size": "large", "type": "beast"}, "Sacred Stone Monk": {"name": "Sacred Stone Monk", "alignment": "lawful evil", "challenge rating": 0.5, "legendary": false, "size": "medium", "type": "humanoid (human)"}, "Sahuagin": {"name": "Sahuagin", "alignment": "lawful evil", "challenge rating": 0.5, "legendary": false, "size": "medium", "type": "humanoid (sahuagin)"}, "Sahuagin Baron": {"name": "Sahuagin Baron", "alignment": "lawful evil", "challenge rating": 5.0, "legendary": false, "size": "large", "type": "humanoid (sahuagin)"}, "Sahuagin Priestess": {"name": "Sahuagin Priestess", "alignment": "lawful evil", "challenge rating": 2.0, "legendary": false, "size": "medium", "type": "humanoid (sahuagin)"}, "Salamander": {"name": "Salamander", "alignment": "neutral evil", "challenge rating": 5.0, "legendary": false, "size": "large", "type": "elemental"}, "Satyr": {"name": "Satyr", "alignment": "chaotic neutral", "challenge rating": 0.5, "legendary": false, "size": "medium", "type": "fey"}, "Scarecrow": {"name": "Scarecrow", "alignment": "chaotic evil", "challenge rating": 1.0, "legendary": false, "size": "medium", "type": "construct"}, "Scorpion": {"name": "Scorpion", "alignment": "unaligned", "challenge rating": 0.0, "legendary": false, "size": "tiny", "type": "beast"}, "Scout": {"name": "Scout", "alignment": "any alignment", "challenge rating": 0.5, "legendary": false, "size": "medium", "type": "humanoid (any race)"}, "Sea Hag": {"name": "Sea Hag", "alignment": "chaotic evil", "challenge rating": 2.0, "legendary": false, "size": "medium", "type": "fey"}, "Sea Horse": {"name": "Sea Horse", "alignment": "unaligned", "challenge rating": 0.0, "legendary": false, "size": "tiny", "type": "beast"}, "Severin": {"name": "Severin", "alignment": "neutral evil", "challenge rating": 11.0, "legendary": true, "size": "medium", "type": "humanoid (human)"}, "Shadow": {"name": "Shadow", "alignment": "chaotic evil", "challenge rating": 0.5, "legendary": false, "size": "medium", "type": "undead"}, "Shadow Demon": {"name": "Shadow Demon", "alignment": "chaotic evil", "challenge rating": 4.0, "legendary": false, "size": "medium", "type": "fiend (demon)"}, "Shambling Mound": {"name": "Shambling Mound", "alignment": "unaligned", "challenge rating": 5.0, "legendary": false, "size": "large", "type": "plant"}, "Shield Guardian": {"name": "Shield Guardian", "alignment": "unaligned", "challenge rating": 7.0, "legendary": false, "size": "large", "type": "construct"}, "Shoalar Quanderil": {"name": "Shoalar Quanderil", "alignment": "lawful evil", "challenge rating": 4.0, "legendary": false, "size": "medium", "type": "humanoid (water genasi)"}, "Shrieker": {"name": "Shrieker", "alignment": "unaligned", "challenge rating": 0.0, "legendary": false, "size": "medium", "type": "plant"}, "Sildar Hallwinter": {"name": "Sildar Hallwinter", "alignment": "neutral good", "challenge rating": 1.0, "legendary": false, "size": "medium", "type": "humanoid (human)"}, "Silver Dragon Wyrmling": {"name": "Silver Dragon Wyrmling", "alignment": "lawful good", "challenge rating": 2.0, "legendary": false, "size": "medium", "type": "dragon"}, "Skeleton": {"name": "Skeleton", "alignment": "lawful evil", "challenge rating": 0.25, "legendary": false, "size": "medium", "type": "undead"}, "Sky Weaver": {"name": "Sky Weaver", "alignment": "chaotic evil", "challenge rating": 3.0, "legendary": false, "size": "medium", "type": "humanoid (human)"}, "Slaad Tadpole": {"name": "Slaad Tadpole", "alignment": "chaotic neutral", "challenge rating": 0.125, "legendary": false, "size": "tiny", "type": "aberration"}, "Smoke Mephit": {"name": "Smoke Mephit", "alignment": "neutral evil", "challenge rating": 0.25, "legendary": false, "size": "small", "type": "elemental"}, "Solar": {"name": "Solar", "alignment": "lawful good", "challenge rating": 21.0, "legendary": true, "size": "large", "type": "celestial"}, "Spectator": {"name": "Spectator", "alignment": "lawful neutral", "challenge rating": 3.0, "legendary": false, "size": "medium", "type": "aberration"}, "Specter": {"name": "Specter", "alignment": "chaotic evil", "challenge rating": 1.0, "legendary": false, "size": "medium", "type": "undead"}, "Spider": {"name": "Spider", "alignment": "unaligned", "challenge rating": 0.0, "legendary": false, "size": "tiny", "type": "beast"}, "Spined Devil": {"name": "Spined Devil", "alignment": "lawful evil", "challenge rating": 2.0, "legendary": false, "size": "small", "type": "fiend (devil)"}, "Spirit Naga": {"name": "Spirit Naga", "alignment": "chaotic evil", "challenge rating": 8.0, "legendary": false, "size": "large", "type": "monstrosity"}, "Sprite": {"name": "Sprite", "alignment": "neutral good", "challenge rating": 0.25, "legendary": false, "size": "tiny", "type": "fey"}, "Spy": {"name": "Spy", "alignment": "any alignment", "challenge rating": 1.0, "legendary": false, "size": "medium", "type": "humanoid (any race)"}, "Steam Mephit": {"name": "Steam Mephit", "alignment": "neutral evil", "challenge rating": 0.25, "legendary": false, "size": "small", "type": "elemental"}, "Stirge": {"name": "Stirge", "alignment": "unaligned", "challenge rating": 0.125, "legendary": false, "size": "tiny", "type": "beast"}, "Stone Giant": {"name": "Stone Giant", "alignment": "neutral", "challenge rating": 7.0, "legendary": false, "size": "huge", "type": "giant"}, "Stone Golem": {"name": "Stone Golem", "alignment": "unaligned", "challenge rating": 10.0, "legendary": false, "size": "large", "type": "construct"}, "Stonemelder": {"name": "Stonemelder", "alignment": "neutral evil", "challenge rating": 4.0, "legendary": false, "size": "medium", "type": "humanoid (human)"}, "Storm Giant": {"name": "Storm Giant", "alignment": "chaotic good", "challenge rating": 13.0, "legendary": false, "size": "huge", "type": "giant"}, "Strahd Zombie": {"name": "Strahd Zombie", "alignment": "unaligned", "challenge rating": 1.0, "legendary": false, "size": "medium", "type": "undead"}, "Strahd von Zarovich": {"name": "Strahd von Zarovich", "alignment": "lawful evil", "challenge rating": 15.0, "legendary": true, "size": "medium", "type": "undead (shapechanger)"}, "Strahd's Animated Armor": {"name": "Strahd's Animated Armor", "alignment": "lawful evil", "challenge rating": 6.0, "legendary": false, "size": "medium", "type": "construct"}, "Succubus/Incubus": {"name": "Succubus/Incubus", "alignment": "neutral evil", "challenge rating": 4.0, "legendary": false, "size": "medium", "type": "fiend (shapechanger)"}, "Swarm of Bats": {"name": "Swarm of Bats", "alignment": "unaligned", "challenge rating": 0.25, "legendary": false, "size": "medium", "type": "swarm of tiny beasts"}, "Swarm of Insects": {"name": "Swarm of Insects", "alignment": "unaligned", "challenge rating": 0.5, "legendary": false, "size": "medium", "type": "swarm of tiny beasts"}, "Swarm of Poisonous Snakes": {"name": "Swarm of Poisonous Snakes", "alignment": "unaligned", "challenge rating": 2.0, "legendary": false, "size": "medium", "type": "swarm of tiny beasts"}, "Swarm of Quippers": {"name": "Swarm of Quippers", "alignment": "unaligned", "challenge rating": 1.0, "legendary": false, "size": "medium", "type": "swarm of tiny beasts"}, "Swarm of Rats": {"name": "Swarm of Rats", "alignment": "unaligned", "challenge rating": 0.25, "legendary": false, "size": "medium", "type": "swarm of tiny beasts"}, "Swarm of Ravens": {"name": "Swarm of Ravens", "alignment": "unaligned", "challenge rating": 0.25, "legendary": false, "size": "medium", "type": "swarm of tiny beasts"}, "Swarm of Rot Grubs": {"name": "Swarm of Rot Grubs", "alignment": "unaligned", "challenge rating": 0.5, "legendary": false, "size": "medium", "type": "swarm of tiny beasts"}, "Talis the White": {"name": "Talis the White", "alignment": "lawful evil", "challenge rating": 5.0, "legendary": false, "size": "medium", "type": "humanoid (half-elf)"}, "Tarrasque": {"name": "Tarrasque", "alignment": "unaligned", "challenge rating": 30.0, "legendary": true, "size": "gargantuan", "type": "monstrosity (titan)"}, "The Pudding King": {"name": "The Pudding King", "alignment": "chaotic evil", "challenge rating": 4.0, "legendary": false, "size": "small", "type": "humanoid (gnome, shapechanger)"}, "Thri-kreen": {"name": "Thri-kreen", "alignment": "chaotic neutral", "challenge rating": 1.0, "legendary": false, "size": "medium", "type": "humanoid (thri-kreen)"}, "Thug": {"name": "Thug", "alignment": "any non-good alignment", "challenge rating": 0.5, "legendary": false, "size": "medium", "type": "humanoid (any race)"}, "Thurl Merosska": {"name": "Thurl Merosska", "alignment": "lawful evil", "challenge rating": 3.0, "legendary": false, "size": "medium", "type": "humanoid (human)"}, "Tiamat": {"name": "Tiamat", "alignment": "chaotic evil", "challenge rating": 30.0, "legendary": true, "size": "gargantuan", "type": "fiend"}, "Tiger": {"name": "Tiger", "alignment": "unaligned", "challenge rating": 1.0, "legendary": false, "size": "large", "type": "beast"}, "Treant": {"name": "Treant", "alignment": "chaotic good", "challenge rating": 9.0, "legendary": false, "size": "huge", "type": "plant"}, "Tree Blight": {"name": "Tree Blight", "alignment": "neutral evil", "challenge rating": 7.0, "legendary": false, "size": "huge", "type": "plant"}, "Tressym": {"name": "Tressym", "alignment": "chaotic neutral", "challenge rating": 0.0, "legendary": false, "size": "tiny", "type": "beast"}, "Tribal Warrior": {"name": "Tribal Warrior", "alignment": "any alignment", "challenge rating": 0.125, "legendary": false, "size": "medium", "type": "humanoid (any race)"}, "Triceratops": {"name": "Triceratops", "alignment": "unaligned", "challenge rating": 5.0, "legendary": false, "size": "huge", "type": "beast"}, "Tridrone": {"name": "Tridrone", "alignment": "lawful neutral", "challenge rating": 0.5, "legendary": false, "size": "medium", "type": "construct"}, "Troglodyte": {"name": "Troglodyte", "alignment": "chaotic evil", "challenge rating": 0.25, "legendary": false, "size": "medium", "type": "humanoid (troglodyte)"}, "Troglodyte Champion of Laogzed": {"name": "Troglodyte Champion of Laogzed", "alignment": "chaotic evil", "challenge rating": 3.0, "legendary": false, "size": "medium", "type": "humanoid (troglodyte)"}, "Troll": {"name": "Troll", "alignment": "chaotic evil", "challenge rating": 5.0, "legendary": false, "size": "large", "type": "giant"}, "Twig Blight": {"name": "Twig Blight", "alignment": "neutral evil", "challenge rating": 0.125, "legendary": false, "size": "small", "type": "plant"}, "Tyrannosaurus Rex": {"name": "Tyrannosaurus Rex", "alignment": "unaligned", "challenge rating": 8.0, "legendary": false, "size": "huge", "type": "beast"}, "Ultroloth": {"name": "Ultroloth", "alignment": "neutral evil", "challenge rating": 13.0, "legendary": false, "size": "medium", "type": "fiend (yugoloth)"}, "Umber Hulk": {"name": "Umber Hulk", "alignment": "chaotic evil", "challenge rating": 5.0, "legendary": false, "size": "large", "type": "monstrosity"}, "Unicorn": {"name": "Unicorn", "alignment": "lawful good", "challenge rating": 5.0, "legendary": true, "size": "large", "type": "celestial"}, "Uthgardt Shaman": {"name": "Uthgardt Shaman", "alignment": "neutral evil", "challenge rating": 2.0, "legendary": false, "size": "medium", "type": "humanoid"}, "Vampire": {"name": "Vampire", "alignment": "lawful evil", "challenge rating": 13.0, "legendary": true, "size": "medium", "type": "undead (shapechanger)"}, "Vampire Spawn": {"name": "Vampire Spawn", "alignment": "neutral evil", "challenge rating": 5.0, "legendary": false, "size": "medium", "type": "undead"}, "Vampiric Ixitxachitl": {"name": "Vampiric Ixitxachitl", "alignment": "chaotic evil", "challenge rating": 2.0, "legendary": false, "size": "medium", "type": "aberration"}, "Vanifer": {"name": "Vanifer", "alignment": "neutral evil", "challenge rating": 9.0, "legendary": false, "size": "medium", "type": "humanoid (tiefling)"}, "Veteran": {"name": "Veteran", "alignment": "any alignment", "challenge rating": 3.0, "legendary": false, "size": "medium", "type": "humanoid (any race)"}, "Vine Blight": {"name": "Vine Blight", "alignment": "neutral evil", "challenge rating": 0.5, "legendary": false, "size": "medium", "type": "plant"}, "Violet Fungus": {"name": "Violet Fungus", "alignment": "unaligned", "challenge rating": 0.25, "legendary": false, "size": "medium", "type": "plant"}, "Vrock": {"name": "Vrock", "alignment": "chaotic evil", "challenge rating": 6.0, "legendary": false, "size": "large", "type": "fiend (demon)"}, "Vulture": {"name": "Vulture", "alignment": "unaligned", "challenge rating": 0.0, "legendary": false, "size": "medium", "type": "beast"}, "Warhorse": {"name": "Warhorse", "alignment": "unaligned", "challenge rating": 0.5, "legendary": false, "size": "large", "type": "beast"}, "Warhorse Skeleton": {"name": "Warhorse Skeleton", "alignment": "lawful evil", "challenge rating": 0.5, "legendary": false, "size": "large", "type": "undead"}, "Water Elemental": {"name": "Water Elemental", "alignment": "neutral", "challenge rating": 5.0, "legendary": false, "size": "large", "type": "elemental"}, "Water Elemental Myrmidon": {"name": "Water Elemental Myrmidon", "alignment": "neutral", "challenge rating": 7.0, "legendary": false, "size": "medium", "type": "elemental"}, "Water Weird": {"name": "Water Weird", "alignment": "neutral", "challenge rating": 3.0, "legendary": false, "size": "large", "type": "elemental"}, "Weasel": {"name": "Weasel", "alignment": "unaligned", "challenge rating": 0.0, "legendary": false, "size": "tiny", "type": "beast"}, "Werebear": {"name": "Werebear", "alignment": "neutral good", "challenge rating": 5.0, "legendary": false, "size": "medium", "type": "humanoid (human, shapechanger)"}, "Wereboar": {"name": "Wereboar", "alignment": "neutral evil", "challenge rating": 4.0, "legendary": false, "size": "medium", "type": "humanoid (human, shapechanger)"}, "Wererat": {"name": "Wererat", "alignment": "lawful evil", "challenge rating": 2.0, "legendary": false, "size": "medium", "type": "humanoid (human, shapechanger)"}, "Wereraven": {"name": "Wereraven", "alignment": "lawful good", "challenge rating": 2.0, "legendary": false, "size": "medium", "type": "humanoid (human, shapechanger)"}, "Weretiger": {"name": "Weretiger", "alignment": "neutral", "challenge rating": 4.0, "legendary": false, "size": "medium", "type": "humanoid (human, shapechanger)"}, "Werewolf": {"name": "Werewolf", "alignment": "chaotic evil", "challenge rating": 3.0, "legendary": false, "size": "medium", "type": "humanoid (human, shapechanger)"}, "White Dragon Wyrmling": {"name": "White Dragon Wyrmling", "alignment": "chaotic evil", "challenge rating": 2.0, "legendary": false, "size": "medium", "type": "dragon"}, "Wiggan Nettlebee": {"name": "Wiggan Nettlebee", "alignment": "neutral evil", "challenge rating": 2.0, "legendary": false, "size": "small", "type": "humanoid (halfling)"}, "Wight": {"name": "Wight", "alignment": "neutral evil", "challenge rating": 3.0, "legendary": false, "size": "medium", "type": "undead"}, "Will-o'-Wisp": {"name": "Will-o'-Wisp", "alignment": "chaotic evil", "challenge rating": 2.0, "legendary": false, "size": "tiny", "type": "undead"}, "Windharrow": {"name": "Windharrow", "alignment": "neutral evil", "challenge rating": 3.0, "legendary": false, "size": "medium", "type": "humanoid (half-elf)"}, "Winged Kobold": {"name": "Winged Kobold", "alignment": "lawful evil", "challenge rating": 0.25, "legendary": false, "size": "small", "type": "humanoid (kobold)"}, "Winter Wolf": {"name": "Winter Wolf", "alignment": "neutral evil", "challenge rating": 3.0, "legendary": false, "size": "large", "type": "monstrosity"}, "Wolf": {"name": "Wolf", "alignment": "unaligned", "challenge rating": 0.25, "legendary": false, "size": "medium", "type": "beast"}, "Worg": {"name": "Worg", "alignment": "neutral evil", "challenge rating": 0.5, "legendary": false, "size": "large", "type": "monstrosity"}, "Wraith": {"name": "Wraith", "alignment": "neutral evil", "challenge rating": 5.0, "legendary": false, "size": "medium", "type": "undead"}, "Wyvern": {"name": "Wyvern", "alignment": "unaligned", "challenge rating": 6.0, "legendary": false, "size": "large", "type": "dragon"}, "Xorn": {"name": "Xorn", "alignment": "neutral", "challenge rating": 5.0, "legendary": false, "size": "medium", "type": "elemental"}, "Yakfolk Priest": {"name": "Yakfolk Priest", "alignment": "neutral evil", "challenge rating": 4.0, "legendary": false, "size": "large", "type": "monstrosity"}, "Yakfolk Warrior": {"name": "Yakfolk Warrior", "alignment": "neutral evil", "challenge rating": 3.0, "legendary": false, "size": "large", "type": "monstrosity"}, "Yan-C-Bin": {"name": "Yan-C-Bin", "alignment": "neutral evil", "challenge rating": 18.0, "legendary": true, "size": "huge", "type": "elemental"}, "Yeenoghu": {"name": "Yeenoghu", "alignment": "chaotic evil", "challenge rating": 24.0, "legendary": true, "size": "huge", "type": "fiend (demon)"}, "Yestabrod": {"name": "Yestabrod", "alignment": "chaotic evil", "challenge rating": 4.0, "legendary": true, "size": "large", "type": "monstrosity"}, "Yeti": {"name": "Yeti", "alignment": "chaotic evil", "challenge rating": 3.0, "legendary": false, "size": "large", "type": "monstrosity"}, "Yochlol": {"name": "Yochlol", "alignment": "chaotic evil", "challenge rating": 10.0, "legendary": false, "size": "medium", "type": "fiend (demon, shapechanger)"}, "Young Black Dragon": {"name": "Young Black Dragon", "alignment": "chaotic evil", "challenge rating": 7.0, "legendary": false, "size": "large", "type": "dragon"}, "Young Blue Dragon": {"name": "Young Blue Dragon", "alignment": "lawful evil", "challenge rating": 9.0, "legendary": false, "size": "large", "type": "dragon"}, "Young Brass Dragon": {"name": "Young Brass Dragon", "alignment": "chaotic good", "challenge rating": 6.0, "legendary": false, "size": "large", "type": "dragon"}, "Young Bronze Dragon": {"name": "Young Bronze Dragon", "alignment": "lawful good", "challenge rating": 8.0, "legendary": false, "size": "large", "type": "dragon"}, "Young Copper Dragon": {"name": "Young Copper Dragon", "alignment": "chaotic good", "challenge rating": 7.0, "legendary": false, "size": "large", "type": "dragon"}, "Young Gold Dragon": {"name": "Young Gold Dragon", "alignment": "lawful good", "challenge rating": 10.0, "legendary": false, "size": "large", "type": "dragon"}, "Young Green Dragon": {"name": "Young Green Dragon", "alignment": "lawful evil", "challenge rating": 8.0, "legendary": false, "size": "large", "type": "dragon"}, "Young Red Dragon": {"name": "Young Red Dragon", "alignment": "chaotic evil", "challenge rating": 10.0, "legendary": false, "size": "large", "type": "dragon"}, "Young Red Shadow Dragon": {"name": "Young Red Shadow Dragon", "alignment": "chaotic evil", "challenge rating": 13.0, "legendary": false, "size": "large", "type": "undead"}, "Young Remorhaz": {"name": "Young Remorhaz", "alignment": "unaligned", "challenge rating": 5.0, "legendary": false, "size": "large", "type": "monstrosity"}, "Young Silver Dragon": {"name": "Young Silver Dragon", "alignment": "lawful good", "challenge rating": 9.0, "legendary": false, "size": "large", "type": "dragon"}, "Young White Dragon": {"name": "Young White Dragon", "alignment": "chaotic evil", "challenge rating": 6.0, "legendary": false, "size": "large", "type": "dragon"}, "Yuan-ti Abomination": {"name": "Yuan-ti Abomination", "alignment": "neutral evil", "challenge rating": 7.0, "legendary": false, "size": "large", "type": "monstrosity (shapechanger, yuan-ti)"}, "Yuan-ti Malison": {"name": "Yuan-ti Malison", "alignment": "neutral evil", "challenge rating": 3.0, "legendary": false, "size": "medium", "type": "monstrosity (shapechanger, yuan-ti)"}, "Yuan-ti Pureblood": {"name": "Yuan-ti Pureblood", "alignment": "neutral evil", "challenge rating": 1.0, "legendary": false, "size": "medium", "type": "humanoid (yuan-ti)"}, "Zombie": {"name": "Zombie", "alignment": "neutral evil", "challenge rating": 0.25, "legendary": false, "size": "medium", "type": "undead"}, "Zuggtmoy": {"name": "Zuggtmoy", "alignment": "chaotic evil", "challenge rating": 23.0, "legendary": true, "size": "large", "type": "fiend (demon)"}};
+</script>
+<div>
+<button class="collapse-toggle" data-toggle="collapse" data-target="#6c1a935e-1e84-46bd-8a96-3ca73ab40974" aria-expanded="false" aria-controls="6c1a935e-1e84-46bd-8a96-3ca73ab40974"><h1>Monsters</h1>
+
+</button>
+<div id="6c1a935e-1e84-46bd-8a96-3ca73ab40974" class="collapse" aria-expanded="false">
+<p><em>Monster Manual</em></p>
+
+<p>This bestiary is for storytellers and world-builders. If you have ever thought about running a Dungeons &amp; Dragons game for your friends, either a single night&#8217;s adventure or a long-running campaign, this tome contains page after page of inspiration. It&#8217;s your one-stop shop for creatures both malevolent and benign.</p>
+
+<p>Some of the creatures that inhabit the worlds of D&amp;D have origins rooted in real-world mythology and fantasy literature. Other creatures are D&amp;D originals. The monsters in this book have been culled from all previous editions of the game. Herein you&#8217;ll discover classic critters such as the beholder and the displacer beast next to more recent creations such as the chuul and the twig blight. Common beasts mingle with the weird, the terrifying, and the ridiculous. In collecting           from the past, we&#8217;ve endeavored to reflect the multifaceted nature of the game, warts and all. D&amp;D monsters come in all shapes and sizes, with stories that not only thrill us but also make us smile.</p>
+
+<p>If you&#8217;re an experienced Dungeon Master (DM), a few of the monster write-ups might surprise you, for we&#8217;ve gone into the <em>Monster Manuals</em> of yore and discovered some long-lost factoids. We&#8217;ve also added a few new twists. Naturally, you can do with these monsters what you will. Nothing we say here is intended to curtail your creativity. If the minotaurs in your world are shipbuilders and pirates, who are we to argue with you? It&#8217;s your world, after all.</p>
+
+<div>
+<button class="collapse-toggle" data-toggle="collapse" data-target="#20a8e594-117c-491b-8b0b-efbc52e69336" aria-expanded="false" aria-controls="20a8e594-117c-491b-8b0b-efbc52e69336"><h2>How to Use This Book</h2></button>
+<div id="20a8e594-117c-491b-8b0b-efbc52e69336" class="collapse" aria-expanded="false">
+
+<p>The best thing about being a DM is that you get to invent your own fantasy world and bring it to life, and nothing brings a D&amp;D world to life more than the creatures that inhabit it. You might read a monster&#8217;s entry and be spurred to create an adventure revolving around it, or you might have an awesome idea for a dungeon and need just the right monsters to populate it. That&#8217;s where the Monster Manual comes in handy.</p>
+
+<p>The Monster Manual is one of three books that form the foundation of the Dungeons &amp; Dragons game, the other two being the Player&#8217;s Handbook and the Dungeon Master&#8217;s Guide. The Monster Manual, like the Dungeon Master&#8217;s Guide, is a book for DMs. Use it to populate your D&amp;D adventures with pesky goblins, stinky troglodytes, savage orcs, mighty dragons, and a veritable horde of creepy crawlies.</p>
+
+<p>Guidelines for creating encounters with monsters can be found in the Dungeon Master&#8217;s Guide. That book also contains wandering monster tables and other goodies to help you use the monsters in this book in interesting ways, as well as advice for modifying monsters and creating your own.</p>
+
+<p>If you&#8217;ve never run a D&amp;D adventure before, we recommend that you pick up the Dungeons &amp; Dragons Starter Set, which demonstrates how to take a bunch of monsters and build an exciting adventure around them.</p>
+
+</div>
+<button class="collapse-toggle" data-toggle="collapse" data-target="#9089ad41-6860-4f0c-b4be-c17e5fd3de72" aria-expanded="false" aria-controls="9089ad41-6860-4f0c-b4be-c17e5fd3de72"><h2>What Is a Monster?</h2></button>
+<div id="9089ad41-6860-4f0c-b4be-c17e5fd3de72" class="collapse" aria-expanded="false">
+
+<p>A monster is defined as any creature that can be interacted with and potentially fought and killed. Even something as harmless as a frog or as benevolent as a unicorn is a monster by this definition. The term also applies to humans, elves, dwarves, and other civilized folk who might be friends or rivals to the player characters. Most of the monsters that haunt the D&amp;D world, however, are threats that are meant to be stopped: rampaging demons, conniving devils, soul-sucking undead, summoned elementals&#8212;the list goes on.</p>
+
+<p>This book contains ready-to-play, easy-to-run monsters of all levels, and for nearly every climate and terrain imaginable. Whether your adventure takes place in a swamp, a dungeon, or the outer planes of existence, there are creatures in this book to populate that environment.</p>
+
+<h3>Where do Monsters Dwell?</h3>
+
+<p>If you are new to the D&amp;D game, you might not be familiar with the weird and wondrous places where monsters can be found and fought.</p>
+
+<h4>Dungeons</h4>
+
+<p>When most people think of a dungeon, images of dark cells with iron bars and shackles spring to mind. In the D&amp;D game, the word &#8220;dungeon&#8221; takes on a broader meaning to include any enclosed, monster-infested location. Most dungeons are sprawling underground complexes. Here are a few other examples:</p>
+
+<ul>
+<li>A ruined wizard&#8217;s tower atop a lonely hill riddled with goblin-infested tunnels</li>
+<li>A pharaoh&#8217;s pyramid filled with haunted crypts and secret treasure vaults</li>
+<li>A lost city in the jungle, overgrown with vines and overrun with demons and demon-worshiping cultists</li>
+<li>The icy tomb of a frost giant king</li>
+<li>A filthy, labyrinthine sewer system controlled by a gang of wererats</li>
+</ul>
+
+<h4>The Underdark</h4>
+
+<p>There is no greater dungeon than the Underdark, the underworld beneath the surface world. It is a vast subterranean realm where monsters accustomed to darkness dwell. It is a place filled with lightless caverns connected by tunnels that wind ever downward. One could spend a lifetime (however brief!) exploring the Underdark and find such places as the following:</p>
+
+<ul>
+<li>A mind flayer prison or asylum, filled with mindless thralls and raving lunatics</li>
+<li>A lost dwarven necropolis containing row after row of dusty tombs waiting to be plundered</li>
+<li>A fortified outpost bristling with armaments, guarding the way to a magnificent drow city</li>
+<li>A subterranean rift filled with giant fungi and ruled by a megalomaniacal beholder or mad fomorian king</li>
+<li>A chain of rocky islands on a vast, sunless sea that&#8217;s home to aboleths and insane kuo-toa</li>
+</ul>
+
+<h4>The Wilderness</h4>
+
+<p>Not all monsters lurk underground. Many of them inhabit deserts, mountains, swamps, canyons, forests, and other natural settings. The wilderness can be just as dangerous as any dungeon, particularly when there&#8217;s nowhere to hide! Some wilderness locations are just as memorable as any dungeon:</p>
+
+<ul>
+<li>A roc&#8217;s nest made of shattered ship hulls, built atop a lonely mountain or rocky hill</li>
+<li>A vast arctic tundra that serves as a hunting ground for berserkers and yeti</li>
+<li>A primeval forest protected by treants or corrupted by demon-worshiping gnolls</li>
+<li>A fog-shrouded swamp haunted by lizardfolk that worship a vile black dragon</li>
+<li>A jungle island inhabited by dinosaurs and human tribal warriors</li>
+</ul>
+
+<h4>Towns and Cities</h4>
+
+<p>Some of the best adventures unfold in the cradles of civilization. Urban settings afford adventurers the chance to rub shoulders with the rich and powerful, butt heads with the dregs of society, and peel back the veneer of civility to see the monstrous evil lurking beneath. Within a medieval town or city are places as deadly as any dungeon:</p>
+
+<ul>
+<li>A clock tower that serves as a base for a guild of kenku rogues and assassins</li>
+<li>A slavers&#8217; den hidden in an orphanage run by a rakshasa disguised as the headmaster</li>
+<li>A wizard&#8217;s academy rife with corruption and practitioners of the necromantic arts</li>
+<li>A noble&#8217;s manor where rich, devil-worshiping cultists gather to perform sacrifices</li>
+<li>A temple, vault, or museum watched day and night by animated constructs</li>
+</ul>
+
+<h4>Underwater</h4>
+
+<p>Not all adventures take place on land. This book casts light on several creatures that haunt the oceans of the world, from the devilish sahuagin to the peaceful aquatic elves who loathe them. Within this aquatic domain are many surprising adventure locations:</p>
+
+<ul>
+<li>A graveyard of sunken ships haunted by sharks, aquatic ghouls, and angry ghosts</li>
+<li>A storm giant&#8217;s coral castle, beautiful yet foreboding</li>
+<li>A lost city on the sea floor, encased in a magic bubble of air and ruled by a medusa queen</li>
+<li>A kraken&#8217;s cave or bronze dragon&#8217;s cavernous lair, filled with ancient treasures</li>
+<li>A sunken temple of Sekolah, evil god of the sahuagin</li>
+</ul>
+
+<h4>The Planes of Existance</h4>
+
+<p>The Abyss. The Nine Hells. The City of Brass. Such faraway places beckon high-level adventurers to their doorsteps, defying the brave and the foolhardy to overthrow their evil masters and unlock their hidden mysteries. Many powerful, weird creatures live on other planes of existence, from orderly modrons to murderous demons. When it comes to interesting adventure locations, not even the sky is the limit when you pass beyond the boundaries of the world:</p>
+
+<ul>
+<li>A pit fiend&#8217;s stronghold on Avernus, the first layer of the Nine Hells</li>
+<li>A haunted castle in the Shadowfell that serves as a shadow dragon&#8217;s lair</li>
+<li>An elf queen&#8217;s tomb in the Feywild</li>
+<li>A djinni&#8217;s palace on the Elemental Plane of Air, filled with marvelous stolen treasures</li>
+<li>A lich&#8217;s secret demiplane, where the undead archmage hides its phylactery and spellbook</li>
+</ul>
+
+<p>See the <em>Dungeon Master&#8217;s Guide</em> for more information on the planes of existence.</p>
+
+<h3>What Monsters to Use?</h3>
+
+<p>Many monsters inhabit dungeons, while others live in deserts, forests, labyrinths, and other environments. Regardless of which environment a monster traditionally calls home, you can place it anywhere you want. After all, &#8220;fish out of water&#8221; stories are memorable, and sometimes it&#8217;s fun to surprise players with gricks hiding under the desert sands or a dryad living in a giant mushroom in the Underdark.</p>
+
+</div>
+<button class="collapse-toggle" data-toggle="collapse" data-target="#fec78bd1-a807-4cf4-b688-4767f1982904" aria-expanded="false" aria-controls="fec78bd1-a807-4cf4-b688-4767f1982904"><h2>Statistics</h2></button>
+<div id="fec78bd1-a807-4cf4-b688-4767f1982904" class="collapse" aria-expanded="false">
+
+<p>A monster&#8217;s statistics, sometimes referred to as its <strong>stat block</strong>, provide the essential information that you need to run the monster.</p>
+
+<h3>Modifying Creatures</h3>
+
+<p>Despite the versatile collection of monsters in this book, you might be at a loss when it comes to finding the perfect creature for part of an adventure. Feel free to tweak an existing creature to make it into something more useful for you, perhaps by borrowing a trait or two from a different monster or by using a variant or template, as the ones in this book. Keep in mind that modifying a monster, including when you apply a template to it, might change its challenge rating.</p>
+
+<p>For advice on how to customize creatures and calculate their challenge ratings, see the <em>Dungeon Master&#8217;s Guide</em>.</p>
+
+<h3>Size</h3>
+
+<p>A monster can be Tiny, Small, Medium, Large, Huge, or Gargantuan. The Size Categories table shows how much space a creature of a particular size controls in combat. See the <em>Player&#8217;s Handbook</em> for more information on creature size and space.</p>
+
+<p><strong>Size Categories</strong></p>
+
+<table>
+<thead>
+<tr>
+  <th align="left">Size</th>
+  <th align="left">Space</th>
+  <th align="left">Examples</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td align="left">Tiny</td>
+  <td align="left">2.5 by 2.5 ft.</td>
+  <td align="left">Imp, sprite</td>
+</tr>
+<tr>
+  <td align="left">Small</td>
+  <td align="left">5 by 5 ft.</td>
+  <td align="left">Giant rat, goblin</td>
+</tr>
+<tr>
+  <td align="left">Medium</td>
+  <td align="left">5 by 5 ft.</td>
+  <td align="left">Orc, werewolf</td>
+</tr>
+<tr>
+  <td align="left">Large</td>
+  <td align="left">10 by 10 ft.</td>
+  <td align="left">Hippogriff, ogre</td>
+</tr>
+<tr>
+  <td align="left">Huge</td>
+  <td align="left">15 by 15 ft.</td>
+  <td align="left">Fire giant, treant</td>
+</tr>
+<tr>
+  <td align="left">Gargantuan</td>
+  <td align="left">20 by 20 ft. or larger</td>
+  <td align="left">Kraken, purple worm</td>
+</tr>
+</tbody>
+</table>
+
+<h3>Type</h3>
+
+<p>A monster&#8217;s type speaks to its fundamental nature. Certain spells, magic items, class features, and other effects in the game interact in special ways with creatures of a particular type. For example, an arrow of dragon slaying deals extra damage not only to dragons but also other creatures of the dragon type, such as dragon turtles and wyverns.</p>
+
+<p>The game includes the following monster types, which have no rules of their own.</p>
+
+<p><strong>Aberrations</strong> are utterly alien beings. Many of them have innate magical abilities drawn from the creature&#8217;s alien mind rather than the mystical forces of the world. The quintessential aberrations are aboleths, beholders, mind flayers, and slaadi.</p>
+
+<p><strong>Beasts</strong> are nonhumanoid creatures that are a natural part of the fantasy ecology. Some of them have magical powers, but most are unintelligent and lack any society or language. Beasts include all varieties of ordinary animals, dinosaurs, and giant versions of animals.</p>
+
+<p><strong>Celestials</strong> are creatures native to the Upper Planes. Many of them are the servants of deities, employed as messengers or agents in the mortal realm and throughout the planes. Celestials are good by nature, so the exceptional celestial who strays from a good alignment is a horrifying rarity. Celestials include angels, couatls, and pegasi.</p>
+
+<p><strong>Constructs</strong> are made, not born. Some are programmed by their creators to follow a simple set of instructions, while others are imbued with sentience and capable of independent thought. Golems are the iconic constructs. Many creatures native to the outer plane of Mechanus, such as modrons, are constructs shaped from the raw material of the plane by the will of more powerful creatures.</p>
+
+<p><strong>Dragons</strong> are large reptilian creatures of ancient origin and tremendous power. True dragons, including the good metallic dragons and the evil chromatic dragons, are highly intelligent and have innate magic. Also in this category are creatures distantly related to true dragons, but less powerful, less intelligent, and less magical, such as wyverns and pseudodragons.</p>
+
+<p><strong>Elementals</strong> are creatures native to the elemental planes. Some creatures of this type are little more than animate masses of their respective elements, including the creatures simply called elementals. Others have biological forms infused with elemental energy. The races of genies, including djinn and efreet, form the most important civilizations on the elemental planes. Other elemental creatures include azers, invisible stalkers, and water weirds.</p>
+
+<p><strong>Fey</strong> are magical creatures closely tied to the forces of nature. They dwell in twilight groves and misty forests. In some worlds, they are closely tied to the Feywild, also called the Plane of Faerie. Some are also found in the Outer Planes, particularly the planes of Arborea and the Beastlands. Fey include dryads, pixies, and satyrs.</p>
+
+<p><strong>Fiends</strong> are creatures of wickedness that are native to the Lower Planes. A few are the servants of deities, but many more labor under the leadership of archdevils and demon princes. Evil priests and mages sometimes summon fiends to the material world to do their bidding. If an evil celestial is a rarity, a good fiend is almost inconceivable. Fiends include demons, devils, hell hounds, rakshasas, and yugoloths.</p>
+
+<p><strong>Giants</strong> tower over humans and their kind. They are humanlike in shape, though some have multiple heads (ettins) or deformities (fomorians). The six varieties of true giant are hill giants, stone giants, frost giants, fire giants, cloud giants, and storm giants. Besides these, creatures such as ogres and trolls are giants.</p>
+
+<p><strong>Humanoids</strong> are the main peoples of the D&amp;D
+world, both civilized and savage, including humans and a tremendous variety of other species. They have language and culture, few if any innate magical abilities (though most humanoids can learn spellcasting), and a bipedal form. The most common humanoid races are the ones most suitable as player characters: humans, dwarves, elves, and halflings. Almost as numerous but far more savage and brutal, and almost uniformly evil, are the races of goblinoids (gobilins, hobgoblins, and bugbears), orcs, gnolls, lizardfolk, and kobolds.</p>
+
+<p>A variety of humanoids appear throughout this book, but the races detailed in the <em>Player&#8217;s Handbook</em>&#8212;with the exception of drow&#8212;are dealt with in appendix B. That appendix gives you a number of stat blocks that you can use to make various members of those races.</p>
+
+<p><strong>Monstrosities</strong> are monsters in the strictest sense&#8212;frightening creatures that are not ordinary, not truly natural, and almost never benign. Some are the results of magical experimentation gone awry (such as owlbears), and others are the product of terrible curses (including minotaurs and yuan-ti). They defy categorization, and in some sense serve as a catch-all category for creatures that don&#8217;t fit into any other type.</p>
+
+<p><strong>Oozes</strong> are gelatinous creatures that rarely have a fixed shape. They are mostly subterranean, dwelling in caves and dungeons and feeding on refuse, carrion, or creatures unlucky enough to get in their way. Black puddings and gelatinous cubes are among the most recognizable oozes.</p>
+
+<p><strong>Plants</strong> in this context are vegetable creatures, not ordinary flora. Most of them are ambulatory, and some are carnivorous. The quintessential plants are the shambling mound and the treant. Fungal creatures such as the gas spore and the myconid also fall into this category.</p>
+
+<p><strong>Undead</strong> are once-living creatures brought to a horrifying state of undeath through the practice of necromantic magic or some unholy curse. Undead include walking corpses, such as vampires and zombies, as well as bodiless spirits, such as ghosts and specters.</p>
+
+<h4>Tags</h4>
+
+<p>A monster might have one or more tags appended to its type, in parentheses. For example, an orc has the (orc) type. The parenthetical tags provide additional categorization for certain creatures. The tags have no rules of their own, but something in the game, such as a magic item, might refer to them. For instance, a spear that is especially effective at fighting demons would work any monster that has the demon tag.</p>
+
+<h3>Alignment</h3>
+
+<p>A monster&#8217;s alignment provides a clue to its              and how it behaves in a roleplaying or combat situation. For example, a chaotic evil monster might be difficult to reason with and might attack characters on sight, whereas a neutral monster might be willing to Regotiate. See the <em>Player&#8217;s Handbook</em> for descriptions of the different alignments.</p>
+
+<p>The alignment specified in a monster&#8217;s stat is the default. Feel free to depart from it and change a monster&#8217;s alignment to suit the needs of your campaign. If you want a good-aligned green dragon or an evil storm giant, there&#8217;s nothing stopping you.</p>
+
+<p>Some creatures can have <strong>any alignment</strong>. In       words, you choose the monster&#8217;s alignment. Some monster&#8217;s alignment entry indicates a tendency or aversion toward law, chaos, good, or evil. For example, a berserker can be any chaotic alignment (chaotic good, chaotic neutral, or chaotic evil), as befits its wild nature.</p>
+
+<p>Many creatures of low intelligence have no comprehension of law or chaos, good or evil. They don&#8217;t make moral or ethical choices, but rather act on instinct. These creatures are <strong>unaligned</strong>, which means they don&#8217;t have an alignment.</p>
+
+<h3>Armor Class</h3>
+
+<p>A monster that wears armor or carries a shield has an Armor Class (AC) that takes its armor, shield, and Dexterity into account. Otherwise, a monster&#8217;s AC is based on its Dexterity modifier and natural armor, if any. If a monster has natural armor, wears armor, or carries a shield, this is noted in parentheses after its AC value.</p>
+
+<h3>Hit Points</h3>
+
+<p>A monster usually dies or is destroyed when it drops to 0 hit points. For more on hit points, see the <em>Player&#8217;s Handbook</em>.
+A monster&#8217;s hit points are presented both as a die expression and as an average number. For example, a monster with 2d8 hit points has 9 hit points on average (2 x 4.5).</p>
+
+<p>A monster&#8217;s size determines the die used to calculate its hit points, as shown in the Hit Dice by Size table.</p>
+
+<p><strong>Hit Dice by Size</strong></p>
+
+<table>
+<thead>
+<tr>
+  <th align="left">Monster Size</th>
+  <th align="center">Hit Die</th>
+  <th align="center">Average HP per Die</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td align="left">Tiny</td>
+  <td align="center">d4</td>
+  <td align="center">2.5</td>
+</tr>
+<tr>
+  <td align="left">Small</td>
+  <td align="center">d6</td>
+  <td align="center">3.5</td>
+</tr>
+<tr>
+  <td align="left">Medium</td>
+  <td align="center">d8</td>
+  <td align="center">4.5</td>
+</tr>
+<tr>
+  <td align="left">Large</td>
+  <td align="center">d10</td>
+  <td align="center">5.5</td>
+</tr>
+<tr>
+  <td align="left">Huge</td>
+  <td align="center">d12</td>
+  <td align="center">6.5</td>
+</tr>
+<tr>
+  <td align="left">Gargantuan</td>
+  <td align="center">d20</td>
+  <td align="center">10.5</td>
+</tr>
+</tbody>
+</table>
+
+<p>A monster&#8217;s Constitution modifier also affects the number of hit points it has. Its Constitution modifier is multiplied by the number of Hit Dice it possesses, and the result is added to its hit points. For example, if a monster has a Constitution of 12 (+1 modifier) and 2cl8 Hit Dice, it has 2d8 + 2 hit points (average 11).</p>
+
+<h3>Speed</h3>
+
+<p>A monster&#8217;s speed tells you how far it can move on its turn. For more information on speed, see the <em>Player&#8217;s Handbook</em>.</p>
+
+<p>All creatures have a walking speed, simply called the monster&#8217;s speed. Creatures that have no form of ground-based locomotion have a walking speed of 0 feet.</p>
+
+<p>Some creatures have one or more of the following additional movement modes.</p>
+
+<h4>Burrow</h4>
+
+<p>A monster that has a burrowing speed can use that speed to move through sand, earth, mud, or ice. A monster can&#8217;t burrow through solid rock unless it has a special trait that allows it to do so.</p>
+
+<h4>Climb</h4>
+
+<p>A monster that has a climbing speed can use all or part of its movement to move on vertical surfaces. The monster doesn&#8217;t need to spend extra movement to climb.</p>
+
+<h4>Fly</h4>
+
+<p>A monster that has a flying speed can use all or part of its movement to fly. Some monsters have the ability to hover, which makes them hard to knock out of the air (as explained in the rules on flying in the <em>Player&#8217;s Handbook</em>). Such a monster stops hovering when it dies.</p>
+
+<h4>Swim</h4>
+
+<p>A monster that has a swimming speed doesn&#8217;t need to spend extra movement to swim.</p>
+
+<h3>Ability Scores</h3>
+
+<p>Every monster has six ability scores (Strength, Dexterity, Constitution, Intelligence, Wisdom, and Charisma) and corresponding modifiers. For more information on ability scores and how they&#8217;re used in play, see the <em>Player&#8217;s Handbook</em>.</p>
+
+<h3>Saving Throws</h3>
+
+<p>The Saving Throws entry is reserved for creatures that are adept at resisting certain kinds of effects. For example, a creature that isn&#8217;t easily charmed or frightened might gain a bonus on its Wisdom saving throws. Most creatures don&#8217;t have special saving throw bonuses, in which case this section is absent.</p>
+
+<p>A saving throw bonus is the sum of a monster&#8217;s relevant ability modifier and its proficiency bonus, which is determined by the monster&#8217;s challenge rating (as shown in the Proficiency Bonus by Challenge Rating table).</p>
+
+<p><strong>Proficiency Bonus by Challenge Rating</strong></p>
+
+<table>
+<thead>
+<tr>
+  <th align="center">Challenge</th>
+  <th align="center">Proficiency Bonus</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td align="center">0</td>
+  <td align="center">+2</td>
+</tr>
+<tr>
+  <td align="center">1/8</td>
+  <td align="center">+2</td>
+</tr>
+<tr>
+  <td align="center">1/4</td>
+  <td align="center">+2</td>
+</tr>
+<tr>
+  <td align="center">1/2</td>
+  <td align="center">+2</td>
+</tr>
+<tr>
+  <td align="center">1</td>
+  <td align="center">+2</td>
+</tr>
+<tr>
+  <td align="center">2</td>
+  <td align="center">+2</td>
+</tr>
+<tr>
+  <td align="center">3</td>
+  <td align="center">+2</td>
+</tr>
+<tr>
+  <td align="center">4</td>
+  <td align="center">+2</td>
+</tr>
+<tr>
+  <td align="center">5</td>
+  <td align="center">+3</td>
+</tr>
+<tr>
+  <td align="center">6</td>
+  <td align="center">+3</td>
+</tr>
+<tr>
+  <td align="center">7</td>
+  <td align="center">+3</td>
+</tr>
+<tr>
+  <td align="center">8</td>
+  <td align="center">+3</td>
+</tr>
+<tr>
+  <td align="center">9</td>
+  <td align="center">+4</td>
+</tr>
+<tr>
+  <td align="center">10</td>
+  <td align="center">+4</td>
+</tr>
+<tr>
+  <td align="center">11</td>
+  <td align="center">+4</td>
+</tr>
+<tr>
+  <td align="center">12</td>
+  <td align="center">+4</td>
+</tr>
+<tr>
+  <td align="center">13</td>
+  <td align="center">+5</td>
+</tr>
+<tr>
+  <td align="center">14</td>
+  <td align="center">+5</td>
+</tr>
+<tr>
+  <td align="center">15</td>
+  <td align="center">+5</td>
+</tr>
+<tr>
+  <td align="center">16</td>
+  <td align="center">+5</td>
+</tr>
+<tr>
+  <td align="center">17</td>
+  <td align="center">+6</td>
+</tr>
+<tr>
+  <td align="center">18</td>
+  <td align="center">+6</td>
+</tr>
+<tr>
+  <td align="center">19</td>
+  <td align="center">+6</td>
+</tr>
+<tr>
+  <td align="center">20</td>
+  <td align="center">+6</td>
+</tr>
+<tr>
+  <td align="center">21</td>
+  <td align="center">+7</td>
+</tr>
+<tr>
+  <td align="center">22</td>
+  <td align="center">+7</td>
+</tr>
+<tr>
+  <td align="center">23</td>
+  <td align="center">+7</td>
+</tr>
+<tr>
+  <td align="center">24</td>
+  <td align="center">+7</td>
+</tr>
+<tr>
+  <td align="center">25</td>
+  <td align="center">+8</td>
+</tr>
+<tr>
+  <td align="center">26</td>
+  <td align="center">+8</td>
+</tr>
+<tr>
+  <td align="center">27</td>
+  <td align="center">+8</td>
+</tr>
+<tr>
+  <td align="center">28</td>
+  <td align="center">+8</td>
+</tr>
+<tr>
+  <td align="center">29</td>
+  <td align="center">+9</td>
+</tr>
+<tr>
+  <td align="center">30</td>
+  <td align="center">+9</td>
+</tr>
+</tbody>
+</table>
+
+<h3>Skills</h3>
+
+<p>The Skills entry is reserved for monsters that are proficient in one or more skills. For example, a monster that is very perceptive and stealthy might have bonuses to Wisdom (Perception) and Dexterity (Stealth) checks.</p>
+
+<p>A skill bonus is the sum of a monster&#8217;s relevant ability modifier and its proficiency bonus, which is determined by the monster&#8217;s challenge rating (as shown in the Proficiency Bonus by Challenge Rating table). Other modifiers might apply. For instance, a monster might have a larger-than-expected bonus (usually double its proficiency bonus) to account for its heightened expertise.</p>
+
+<h3>Vulnerabilities, Resistances, and Immunities</h3>
+
+<p>Some creatures have vulnerability, resistance, or immunity to certain types of damage. Particular creatures are even resistant or immune to damage from nonmagical attacks (a magical attack is an attack delivered by a spell, a magic item, or another magical source). In addition, some creatures are immune to certain conditions.</p>
+
+<h3>Senses</h3>
+
+<p>The Senses entry notes a monster&#8217;s passive Wisdom (Perception) score, as well as any special senses the monster might have. Special senses are described below.</p>
+
+<h4>Blindsight</h4>
+
+<p>A monster with blindsight can perceive its surroundings without relying on sight, within a specific radius.</p>
+
+<p>Creatures without eyes, such as grimlocks and gray oozes, typically have this special sense, as do creatures with echolocation or heightened senses, such as bats and true dragons.</p>
+
+<p>If a monster is naturally blind, it has a parenthetical note to this effect, indicating that the radius of its blindsight defines the maximum range of its perception.</p>
+
+<h4>Darkvision</h4>
+
+<p>A monster with darkvision can see in the dark within a specific radius. The monster can see in dim light within the radius as if it were bright light, and in darkness as if it were dim light. The monster can&#8217;t discern color in darkness, only shades of gray. Many creatures that live underground have this special sense.</p>
+
+<h4>Tremorsense</h4>
+
+<p>A monster with tremorsense can detect and pinpoint the origin of vibrations within a specific radius, provided that the monster and the source of the vibrations are in contact with the same ground or substance. Tremorsense can&#8217;t be used to detect flying or incorporeal creatures. Many burrowing creatures, such as ankhegs and umber hulks, have this special sense.</p>
+
+<h4>Truesight</h4>
+
+<p>A monster with truesight can, out to a specific range, see in normal and magical darkness, see invisible creatures and objects, automatically detect visual iilusions and succeed on saving throws against them, and perceive the original form of a shapechanger or a creature that is transformed by magic. Furthermore, the monster can see into the Ethereal Plane within the same range.</p>
+
+<h3>Languages</h3>
+
+<p>The languages that a monster can speak are listed in alphabetical order. Sometimes a monster can understand a language but can&#8217;t speak it, and this is noted in its entry. A &#8220;-&#8221; indicates that a creature neither speaks nor understands any language.</p>
+
+<h4>Telepathy</h4>
+
+<p>Telepathy is a magical ability that allows a monster to communicate mentally with another creature within a specified range. The contacted creature doesn&#8217;t need to share a language with the monster to communicate in this way with it, but it must be able to understand at least one language. A creature without telepathy can receive and respond to telepathic messages but can&#8217;t initiate or terminate a telepathic conversation.</p>
+
+<p>A telepathic monster doesn&#8217;t need to see a contacted creature and can end the telepathic contact at any time. The contact is broken as soon as the two creatures are no longer within range of each other or if the telepathic monster contacts a different creature within range. A telepathic monster can initiate or terminate a telepathic conversation without using an action, but while the monster is incapacitated, it can&#8217;t initiate telepathic contact, and any current contact is terminated.</p>
+
+<p>A creature within the area of an <em>antimagic field</em> or in any other location where magic doesn&#8217;t function can&#8217;t send or receive telepathic messages.</p>
+
+<h3>Challenge</h3>
+
+<p>A monster&#8217;s challenge rating tells you how great a threat the monster is. An appropriately equipped and well-rested party of four adventurers should be able to defeat a monster that has a challenge rating equal to its level without suffering any deaths. For example, a party of four 3rd-level characters should find a monster with a challenge rating of 3 to be a worthy challenge, but not a deadly one.</p>
+
+<p>Monsters that are significantly weaker than 1st-level characters have a challenge rating lower than 1. Monsters with a challenge rating of 0 are insignificant except in large numbers; those with no effective attacks are worth no experience points, while those that have attacks are worth 10 XP each.</p>
+
+<p>Some monsters present a greater challenge than even a typical 20th-level party can handle. These monsters have a challenge rating of 21 or higher and are specifically designed to test player skill.</p>
+
+<h4>Experience Points</h4>
+
+<p>The number of experience points (XP) a monster is worth is based on its challenge rating. Typically, XP is awarded for defeating the monster, although the DM may also award XP for neutralizing the threat posed by the monster in some other manner.</p>
+
+<p>Unless something tells you otherwise, a monster summoned by a spell or other magical ability is worth the XP noted in its stat block.</p>
+
+<p>The <em>Dungeon Master&#8217;s Guide</em> explains how to create encounters using XP budgets, as well as how to adjust an encounter&#8217;s difficulty.</p>
+
+<p><strong>Experience Points by Challenge Rating</strong></p>
+
+<table>
+<thead>
+<tr>
+  <th align="center">Challenge</th>
+  <th align="center">XP</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td align="center">0</td>
+  <td align="center">0 or 10</td>
+</tr>
+<tr>
+  <td align="center">1/8</td>
+  <td align="center">25</td>
+</tr>
+<tr>
+  <td align="center">1/4</td>
+  <td align="center">50</td>
+</tr>
+<tr>
+  <td align="center">1/2</td>
+  <td align="center">100</td>
+</tr>
+<tr>
+  <td align="center">1</td>
+  <td align="center">200</td>
+</tr>
+<tr>
+  <td align="center">2</td>
+  <td align="center">450</td>
+</tr>
+<tr>
+  <td align="center">3</td>
+  <td align="center">700</td>
+</tr>
+<tr>
+  <td align="center">4</td>
+  <td align="center">1,100</td>
+</tr>
+<tr>
+  <td align="center">5</td>
+  <td align="center">1,800</td>
+</tr>
+<tr>
+  <td align="center">6</td>
+  <td align="center">2,300</td>
+</tr>
+<tr>
+  <td align="center">7</td>
+  <td align="center">2,900</td>
+</tr>
+<tr>
+  <td align="center">8</td>
+  <td align="center">3,900</td>
+</tr>
+<tr>
+  <td align="center">9</td>
+  <td align="center">5,000</td>
+</tr>
+<tr>
+  <td align="center">10</td>
+  <td align="center">5,900</td>
+</tr>
+<tr>
+  <td align="center">11</td>
+  <td align="center">7,200</td>
+</tr>
+<tr>
+  <td align="center">12</td>
+  <td align="center">8,400</td>
+</tr>
+<tr>
+  <td align="center">13</td>
+  <td align="center">10,000</td>
+</tr>
+<tr>
+  <td align="center">14</td>
+  <td align="center">11,500</td>
+</tr>
+<tr>
+  <td align="center">15</td>
+  <td align="center">13,000</td>
+</tr>
+<tr>
+  <td align="center">16</td>
+  <td align="center">15,000</td>
+</tr>
+<tr>
+  <td align="center">17</td>
+  <td align="center">18,000</td>
+</tr>
+<tr>
+  <td align="center">18</td>
+  <td align="center">20,000</td>
+</tr>
+<tr>
+  <td align="center">19</td>
+  <td align="center">22,000</td>
+</tr>
+<tr>
+  <td align="center">20</td>
+  <td align="center">25,000</td>
+</tr>
+<tr>
+  <td align="center">21</td>
+  <td align="center">33,000</td>
+</tr>
+<tr>
+  <td align="center">22</td>
+  <td align="center">41,000</td>
+</tr>
+<tr>
+  <td align="center">23</td>
+  <td align="center">50,000</td>
+</tr>
+<tr>
+  <td align="center">24</td>
+  <td align="center">62,000</td>
+</tr>
+<tr>
+  <td align="center">25</td>
+  <td align="center">75,000</td>
+</tr>
+<tr>
+  <td align="center">26</td>
+  <td align="center">90,000</td>
+</tr>
+<tr>
+  <td align="center">27</td>
+  <td align="center">105,000</td>
+</tr>
+<tr>
+  <td align="center">28</td>
+  <td align="center">120,000</td>
+</tr>
+<tr>
+  <td align="center">29</td>
+  <td align="center">135,000</td>
+</tr>
+<tr>
+  <td align="center">30</td>
+  <td align="center">155,000</td>
+</tr>
+</tbody>
+</table>
+
+<h3>Special Traits</h3>
+
+<p>Special traits (which appear after a monster&#8217;s challenge rating but before any actions or reactions) are characteristics that are likely to be relevant in a combat encounter and that require some explanation.</p>
+
+<h4>Innate Spellcasting</h4>
+
+<p>A monster with the innate ability to cast spells has the Innate Spellcasting special trait. Unless noted otherwise, an innate spell of 1st level or higher is always cast at its lowest possible level and can&#8217;t be cast at a higher level. If a monster has a cantrip where its level matters and no level is given, use the monster&#8217;s challenge rating.</p>
+
+<p>An innate spell can have special rules or restrictions. For example, a drow mage can innately cast the <em>levitate</em> spell, but the spell has a &#8220;self only&#8221; restriction, which means that the spell affects only the drow mage.</p>
+
+<p>A monster&#8217;s innate spells can&#8217;t be swapped out with other spells. If a monster&#8217;s innate spells don&#8217;t require attack rolls, no attack bonus is given for them.</p>
+
+<h4>Spellcasting</h4>
+
+<p>A monster with the Spellcasting class feature has a spellcaster level and spell slots, which it uses to cast its spells of 1st level and higher (as explained in the <em>Player&#8217;s Handbook</em>). The spellcaster level is also used for any cantrips included in the feature.</p>
+
+<p>The monster has a list of spells known or prepared from a particular class. The list might also include spells from a feature in that class, such as the Divine Domain feature of the cleric or the Druid Circle feature of the druid. The monster is considered a member of that class when attuning to or using a magic item that requires membership in the class or access to its spell list.</p>
+
+<p>A monster can cast a spell from its list at a higher level if it has the spell slot to do so. For example, a drow mage with the 3rd-level <em>lightning bolt</em> spell can cast it as a 5th-level spell by using one of its 5th-level spell slots.</p>
+
+<p>You can change the spells that a monster knows or has prepared, replacing any spell on a monster&#8217;s spell list with a different spell of the same level and from the same class list. If you do so, you might cause the monster to be a greater or lesser threat than suggested by its challenge rating.</p>
+
+<h4>Psionics</h4>
+
+<p>A monster that casts spells using only the power of its mind has the psionics tag added to its Spellcasting or Innate Spellcasting special trait. This tag carries no special rules of its own, but other parts of the game might refer to it. A monster that has this tag typically doesn&#8217;t require any components to cast its spells.</p>
+
+<h3>Actions</h3>
+
+<p>When a monster takes its action, it can choose from the options in the Actions section of its stat block or use one of the actions available to all creatures, such as the Dash or Hide action, as described in the <em>Player&#8217;s Handbook</em>.</p>
+
+<h4>Melee and Ranged Attacks</h4>
+
+<p>The most common actions that a monster will take in combat are melee and ranged attacks. These can be spell attacks or weapon attacks, where the &#8220;weapon&#8221; might be a manufactured item or a natural weapon, such as a claw or tail spike. For more information on different kinds of attacks, see the <em>Player&#8217;s Handbook</em>.</p>
+
+<p><strong>Creature vs. Target.</strong> The target of a melee or ranged attack is usually either one creature or one target, the difference being that a &#8220;target&#8221; can be a creature or an object.</p>
+
+<p><strong>Hit.</strong> Any damage dealt or other effects that occur as a result of an attack hitting a target are described after the &#8220;<em>Hit</em>&#8221; notation. You have the option of taking average damage or rolling the damage; for this reason, both the average damage and the die expression are presented.</p>
+
+<p><strong>Miss.</strong> If an attack has an effect that occurs on a miss, that information is presented after the &#8220;<em>Miss:</em>&#8221; notation.</p>
+
+<h4>Multiattack</h4>
+
+<p>A creature that can make multiple attacks on its turn has the Multiattack ability. A creature can&#8217;t use Multiattack when making an opportunity attack, which must be a single melee attack.</p>
+
+<h4>Ammunition</h4>
+
+<p>A monster carries enough ammunition to make its ranged attacks. You can assume that a monster has 2d4 pieces of ammunition for a thrown weapon attack, and 2d10 pieces of ammunition for a projectile weapon such as a bow or crossbow.</p>
+
+<h3>Reactions</h3>
+
+<p>If a monster can do something special with its reaction, that information is contained here. If a creature has no special reaction, this section is absent.</p>
+
+<h3>Limited Usage</h3>
+
+<p>Some special abilities have restrictions on the number of times they can be used.</p>
+
+<p><strong>X/Day.</strong> The notation &#8220;X/Day&#8221; means a special ability can be used X number of times and that a monster must finish a long rest to regain expended uses. For example, &#8220;1/Day&#8221; means a special ability can be used once and that the monster must finish a long rest to use it again.</p>
+
+<p><strong>Recharge X-Y.</strong> The notation &#8220;Recharge X-Y&#8221; means a monster can use a special ability once and that the ability then has a random chance of recharging during each subsequent round of combat. At the start of each of the monster&#8217;s turns, roll a d6. If the roll is one of the numbers in the recharge notation, the monster regains the use of the special ability. The ability also recharges when the monster finishes a short or long rest.</p>
+
+<p>For example, &#8220;Recharge 5-6&#8221; means a monster can use the special ability once. Then, at the start of the monster&#8217;s turn, it regains the use of that ability if it rolls a 5 or 6 on a d6.</p>
+
+<p><strong>Recharge after a Short or Long Rest.</strong> This notation means that a monster can use a special ability once and then must finish a short or long rest to use it again.</p>
+
+<h3>Equipment</h3>
+
+<p>A stat block rarely refers to equipment, other than armor or weapons used by a monster. A creature that customarily wears clothes, such as a humanoid, is assumed to be dressed appropriately.</p>
+
+<p>You can equip monsters with additional gear and trinkets however you like, using the equipment chapter of the <em>Player&#8217;s Handbook</em> for inspiration, and you decide how much of a monster&#8217;s equipment is recoverable after the creature is slain and whether any of that equipment is still usable. A battered suit of armor made for a monster is rarely usable by someone else, for instance.</p>
+
+<p>If a spellcasting monster needs material components to cast its spells, assume that it has the material components it needs to cast the spells in its stat block.</p>
+
+<h4>Armor, Weapon, and Tool Proficiencies</h4>
+
+<p>Assume that a creature is proficient with its armor, weapons, and tools. If you swap them out, you decide whether the creature is proficient with its new equipment.</p>
+
+<p>For example, a hill giant typically wears hide armor and wields a greatclub. You could equip a hill giant with chain mail and a greataxe instead, and assume the giant is proficient with both, one or the other, or neither.</p>
+
+<p>See the Player&#8217;s Handbook for rules on using armor or weapons without proficiency.</p>
+
+<h3>Grapple Rules for Monsters</h3>
+
+<p>Many monsters have special attacks that allow them to quickly grapple prey. When a monster hits with such an attack, it doesn&#8217;t need to make an additional ability check to determine whether the grapple succeeds, unless the attack says otherwise.</p>
+
+<p>A creature grappled by the monster can use its action to try to escape. To do so, it must succeed on a Strength (Athletics) or Dexterity (Acrobatics) check against the escape DC in the monster&#8217;s stat block. If no escape DC is given, assume the DC is 10 + the monster&#8217;s Strength (Athletics) modifier.</p>
+
+</div>
+<button class="collapse-toggle" data-toggle="collapse" data-target="#31e5f447-0b58-4971-9b8a-454a494dd49c" aria-expanded="false" aria-controls="31e5f447-0b58-4971-9b8a-454a494dd49c"><h2>Legendary Creatures</h2></button>
+<div id="31e5f447-0b58-4971-9b8a-454a494dd49c" class="collapse" aria-expanded="false">
+
+<p>A legendary creature can do things that ordinary creatures can&#8217;t. Legendary creatures can take special actions outside their turns, and a few can exert power over their environment, causing extraordinary magical effects to occur in their vicinity.</p>
+
+<p>If a creature assumes the form of a legendary creature, such as through a spell, it doesn&#8217;t gain that form&#8217;s legendary actions, lair actions, or regional effects.</p>
+
+<h3>Legendary Actions</h3>
+
+<p>A legendary creature can take a certain number of special actions&#8212;called legendary actions&#8212;outside its turn. Only one legendary action option can be used at a time and only at the end of another creature&#8217;s turn. A legendary creature regains spent legendary actions at the start of its turn. It can forgo using them, and it can&#8217;t use them while incapacitated or otherwise unable to take actions. If surprised, it can&#8217;t use them until after its first turn in the combat.</p>
+
+<h3>A Legendary Creature&#8217;s Lair</h3>
+
+<p>A legendary creature might have a section describing its lair and the special effects it can create while there, either by act of will or simply by being present. Not all legendary creatures have lairs. This section only applies to legendary creatures that spend a great deal of time in their lairs and are most likely to be encountered there.</p>
+
+<h4>Lair Actions</h4>
+
+<p>If a legendary creature has lair actions, it can use them to harness the ambient magic in its lair. On initiative count 20 (losing all initiative ties), it can use one of its lair action options. It can&#8217;t do so while incapacitated or otherwise unable to take actions. If surprised, it can&#8217;t use one until after its first turn in the combat.</p>
+
+<h4>Regional Effects</h4>
+
+<p>The mere presence of a legendary creature can have strange and wondrous effects on its environment, as noted in this section. Regional effects end abruptly or dissipate over time when the legendary creature dies.</p>
+</div>
+</div>
+</div>
+</div>
+
+        <div class="search-box clearfix">
+        <h2>Search</h2>
+        <div class="pull-right">
+            <p><label><input type="checkbox" class="filter size" id="tiny"> Tiny </label></p>
+            <p><label><input type="checkbox" class="filter size" id="small"> Small</label></p>
+            <p><label><input type="checkbox" class="filter size" id="medium"> Medium</label></p>
+            <p><label><input type="checkbox" class="filter size" id="large"> Large</label></p>
+            <p><label><input type="checkbox" class="filter size" id="huge"> Huge</label></p>
+            <p><label><input type="checkbox" class="filter size" id="gargantuan"> Gargantuan</label></p>
+        </div>
+        <p>Name: <input class="filter" id="name"></p>
+        <p>Type: <input class="filter" id="type"></p>
+        <br>
+        <p>Min CR <input class="filter" id="crge"></p>
+        <p>Max CR <input class="filter" id="crle"></p>
+        <br>
+        <p><label><input type="checkbox" class="filter" id="legendary"> Legendary</label></p>
+        <br>
+        <p>Count: <span id="count">0</span></p>
+        </div>
+        <ul id="monsters" class="link-list">
+<li><a href="aarakocra">Aarakocra</a></li>
+<li><a href="aboleth">Aboleth</a></li>
+<li><a href="abominable-yeti">Abominable Yeti</a></li>
+<li><a href="acolyte">Acolyte</a></li>
+<li><a href="adult-black-dragon">Adult Black Dragon</a></li>
+<li><a href="adult-blue-dracolich">Adult Blue Dracolich</a></li>
+<li><a href="adult-blue-dragon">Adult Blue Dragon</a></li>
+<li><a href="adult-brass-dragon">Adult Brass Dragon</a></li>
+<li><a href="adult-bronze-dragon">Adult Bronze Dragon</a></li>
+<li><a href="adult-copper-dragon">Adult Copper Dragon</a></li>
+<li><a href="adult-gold-dragon">Adult Gold Dragon</a></li>
+<li><a href="adult-green-dragon">Adult Green Dragon</a></li>
+<li><a href="adult-red-dragon">Adult Red Dragon</a></li>
+<li><a href="adult-silver-dragon">Adult Silver Dragon</a></li>
+<li><a href="adult-white-dragon">Adult White Dragon</a></li>
+<li><a href="aerisi-kalinoth">Aerisi Kalinoth</a></li>
+<li><a href="air-eelemental-myrmidon">Air Eelemental Myrmidon</a></li>
+<li><a href="air-elemental">Air Elemental</a></li>
+<li><a href="allosaurus">Allosaurus</a></li>
+<li><a href="ambush-drake">Ambush Drake</a></li>
+<li><a href="ancient-black-dragon">Ancient Black Dragon</a></li>
+<li><a href="ancient-blue-dragon">Ancient Blue Dragon</a></li>
+<li><a href="ancient-brass-dragon">Ancient Brass Dragon</a></li>
+<li><a href="ancient-bronze-dragon">Ancient Bronze Dragon</a></li>
+<li><a href="ancient-copper-dragon">Ancient Copper Dragon</a></li>
+<li><a href="ancient-gold-dragon">Ancient Gold Dragon</a></li>
+<li><a href="ancient-green-dragon">Ancient Green Dragon</a></li>
+<li><a href="ancient-red-dragon">Ancient Red Dragon</a></li>
+<li><a href="ancient-silver-dragon">Ancient Silver Dragon</a></li>
+<li><a href="ancient-white-dragon">Ancient White Dragon</a></li>
+<li><a href="androsphinx">Androsphinx</a></li>
+<li><a href="animated-armor">Animated Armor</a></li>
+<li><a href="ankheg">Ankheg</a></li>
+<li><a href="ankylosaurus">Ankylosaurus</a></li>
+<li><a href="ape">Ape</a></li>
+<li><a href="arcanaloth">Arcanaloth</a></li>
+<li><a href="archmage">Archmage</a></li>
+<li><a href="assassin">Assassin</a></li>
+<li><a href="aurochs">Aurochs</a></li>
+<li><a href="awakened-shrub">Awakened Shrub</a></li>
+<li><a href="awakened-tree">Awakened Tree</a></li>
+<li><a href="axe-beak">Axe Beak</a></li>
+<li><a href="azbara-jos">Azbara Jos</a></li>
+<li><a href="azer">Azer</a></li>
+<li><a href="baba-lysaga">Baba Lysaga</a></li>
+<li><a href="baba-lysagas-creeping-hut">Baba Lysaga's Creeping Hut</a></li>
+<li><a href="baboon">Baboon</a></li>
+<li><a href="badger">Badger</a></li>
+<li><a href="balor">Balor</a></li>
+<li><a href="bandit">Bandit</a></li>
+<li><a href="bandit-captain">Bandit Captain</a></li>
+<li><a href="banshee">Banshee</a></li>
+<li><a href="baphomet">Baphomet</a></li>
+<li><a href="barbed-devil">Barbed Devil</a></li>
+<li><a href="barlgura">Barlgura</a></li>
+<li><a href="barovian-witch">Barovian Witch</a></li>
+<li><a href="basilisk">Basilisk</a></li>
+<li><a href="bastian-thermandar">Bastian Thermandar</a></li>
+<li><a href="bat">Bat</a></li>
+<li><a href="bearded-devil">Bearded Devil</a></li>
+<li><a href="behir">Behir</a></li>
+<li><a href="beholder">Beholder</a></li>
+<li><a href="beholder-zombie">Beholder Zombie</a></li>
+<li><a href="berserker">Berserker</a></li>
+<li><a href="black-bear">Black Bear</a></li>
+<li><a href="black-dragon-wyrmling">Black Dragon Wyrmling</a></li>
+<li><a href="black-earth-guard">Black Earth Guard</a></li>
+<li><a href="black-earth-priest">Black Earth Priest</a></li>
+<li><a href="black-pudding">Black Pudding</a></li>
+<li><a href="blagothkus">Blagothkus</a></li>
+<li><a href="blink-dog">Blink Dog</a></li>
+<li><a href="blood-hawk">Blood Hawk</a></li>
+<li><a href="blue-dragon-wyrmling">Blue Dragon Wyrmling</a></li>
+<li><a href="blue-slaad">Blue Slaad</a></li>
+<li><a href="boar">Boar</a></li>
+<li><a href="bone-devil">Bone Devil</a></li>
+<li><a href="bone-naga">Bone Naga</a></li>
+<li><a href="brass-dragon-wyrmling">Brass Dragon Wyrmling</a></li>
+<li><a href="bridesmaid-of-zuggtmoy">Bridesmaid of Zuggtmoy</a></li>
+<li><a href="bronze-dragon-wyrmling">Bronze Dragon Wyrmling</a></li>
+<li><a href="broom-of-animated-attack">Broom of Animated Attack</a></li>
+<li><a href="brown-bear">Brown Bear</a></li>
+<li><a href="bugbear">Bugbear</a></li>
+<li><a href="bugbear-chief">Bugbear Chief</a></li>
+<li><a href="bulette">Bulette</a></li>
+<li><a href="bullywug">Bullywug</a></li>
+<li><a href="burrowshark">Burrowshark</a></li>
+<li><a href="cambion">Cambion</a></li>
+<li><a href="camel">Camel</a></li>
+<li><a href="captain-othelstan">Captain Othelstan</a></li>
+<li><a href="carrion-crawler">Carrion Crawler</a></li>
+<li><a href="cat">Cat</a></li>
+<li><a href="centaur">Centaur</a></li>
+<li><a href="chain-devil">Chain Devil</a></li>
+<li><a href="chamberlain-of-zuggtmoy">Chamberlain of Zuggtmoy</a></li>
+<li><a href="chasme">Chasme</a></li>
+<li><a href="chimera">Chimera</a></li>
+<li><a href="chuul">Chuul</a></li>
+<li><a href="chuul-spore-servant">Chuul Spore Servant</a></li>
+<li><a href="clay-golem">Clay Golem</a></li>
+<li><a href="cloaker">Cloaker</a></li>
+<li><a href="cloud-giant">Cloud Giant</a></li>
+<li><a href="cockatrice">Cockatrice</a></li>
+<li><a href="commoner">Commoner</a></li>
+<li><a href="constrictor-snake">Constrictor Snake</a></li>
+<li><a href="copper-dragon-wyrmling">Copper Dragon Wyrmling</a></li>
+<li><a href="couatl">Couatl</a></li>
+<li><a href="cow">Cow</a></li>
+<li><a href="crab">Crab</a></li>
+<li><a href="crag-cat">Crag Cat</a></li>
+<li><a href="crawling-claw">Crawling Claw</a></li>
+<li><a href="crocodile">Crocodile</a></li>
+<li><a href="crushing-wave-priest">Crushing Wave Priest</a></li>
+<li><a href="crushing-wave-reaver">Crushing Wave Reaver</a></li>
+<li><a href="cult-fanatic">Cult Fanatic</a></li>
+<li><a href="cultist">Cultist</a></li>
+<li><a href="cyclops">Cyclops</a></li>
+<li><a href="dao">Dao</a></li>
+<li><a href="dark-tide-knight">Dark Tide Knight</a></li>
+<li><a href="darkmantle">Darkmantle</a></li>
+<li><a href="death-dog">Death Dog</a></li>
+<li><a href="death-knight">Death Knight</a></li>
+<li><a href="death-slaad">Death Slaad</a></li>
+<li><a href="death-tyrant">Death Tyrant</a></li>
+<li><a href="deep-gnome-(svirfneblin)">Deep Gnome (Svirfneblin)</a></li>
+<li><a href="deer">Deer</a></li>
+<li><a href="demilich">Demilich</a></li>
+<li><a href="demogorgon">Demogorgon</a></li>
+<li><a href="derro">Derro</a></li>
+<li><a href="deva">Deva</a></li>
+<li><a href="dire-wolf">Dire Wolf</a></li>
+<li><a href="displacer-beast">Displacer Beast</a></li>
+<li><a href="djinni">Djinni</a></li>
+<li><a href="dolphin">Dolphin</a></li>
+<li><a href="doppelganger">Doppelganger</a></li>
+<li><a href="draft-horse">Draft Horse</a></li>
+<li><a href="dragon-turtle">Dragon Turtle</a></li>
+<li><a href="dragonclaw">Dragonclaw</a></li>
+<li><a href="dragonfang">Dragonfang</a></li>
+<li><a href="dragonsoul">Dragonsoul</a></li>
+<li><a href="dragonwing">Dragonwing</a></li>
+<li><a href="dralmorrer-borngray">Dralmorrer Borngray</a></li>
+<li><a href="drannin-splithelm">Drannin Splithelm</a></li>
+<li><a href="dretch">Dretch</a></li>
+<li><a href="drider">Drider</a></li>
+<li><a href="droki">Droki</a></li>
+<li><a href="drow">Drow</a></li>
+<li><a href="drow-elite-warrior">Drow Elite Warrior</a></li>
+<li><a href="drow-mage">Drow Mage</a></li>
+<li><a href="drow-priestess-of-lolth">Drow Priestess of Lolth</a></li>
+<li><a href="drow-spore-servant">Drow Spore Servant</a></li>
+<li><a href="druid">Druid</a></li>
+<li><a href="dryad">Dryad</a></li>
+<li><a href="duergar">Duergar</a></li>
+<li><a href="duergar-soulblade">Duergar Soulblade</a></li>
+<li><a href="duergar-spore-servant">Duergar Spore Servant</a></li>
+<li><a href="duergar-stone-guard">Duergar Stone Guard</a></li>
+<li><a href="duergar-xarrorn">Duergar Xarrorn</a></li>
+<li><a href="duodrone">Duodrone</a></li>
+<li><a href="dust-mephit">Dust Mephit</a></li>
+<li><a href="eagle">Eagle</a></li>
+<li><a href="earth-elemental">Earth Elemental</a></li>
+<li><a href="earth-elemental-myrmidon">Earth Elemental Myrmidon</a></li>
+<li><a href="efreeti">Efreeti</a></li>
+<li><a href="elephant">Elephant</a></li>
+<li><a href="elizar-dryflagon">Elizar Dryflagon</a></li>
+<li><a href="elk">Elk</a></li>
+<li><a href="empyrean">Empyrean</a></li>
+<li><a href="erinyes">Erinyes</a></li>
+<li><a href="esmerelda-davenir">Esmerelda d'Avenir</a></li>
+<li><a href="eternal-flame-guardian">Eternal Flame Guardian</a></li>
+<li><a href="eternal-flame-priest">Eternal Flame Priest</a></li>
+<li><a href="ettercap">Ettercap</a></li>
+<li><a href="ettin">Ettin</a></li>
+<li><a href="evil-mage">Evil Mage</a></li>
+<li><a href="faerie-dragon">Faerie Dragon</a></li>
+<li><a href="fathomer">Fathomer</a></li>
+<li><a href="feathergale-knight">Feathergale Knight</a></li>
+<li><a href="female-steeder">Female Steeder</a></li>
+<li><a href="fire-elemental">Fire Elemental</a></li>
+<li><a href="fire-elemental-myrmidon">Fire Elemental Myrmidon</a></li>
+<li><a href="fire-giant">Fire Giant</a></li>
+<li><a href="fire-snake">Fire Snake</a></li>
+<li><a href="flameskull">Flameskull</a></li>
+<li><a href="flamewrath">Flamewrath</a></li>
+<li><a href="flesh-golem">Flesh Golem</a></li>
+<li><a href="flumph">Flumph</a></li>
+<li><a href="flying-snake">Flying Snake</a></li>
+<li><a href="flying-sword">Flying Sword</a></li>
+<li><a href="fomorian">Fomorian</a></li>
+<li><a href="fraz-urbluu">Fraz-Urb'luu</a></li>
+<li><a href="frog">Frog</a></li>
+<li><a href="frost-giant">Frost Giant</a></li>
+<li><a href="frulam-mondath">Frulam Mondath</a></li>
+<li><a href="galeb-duhr">Galeb Duhr</a></li>
+<li><a href="gar-shatterkeel">Gar Shatterkeel</a></li>
+<li><a href="gargoyle">Gargoyle</a></li>
+<li><a href="gas-spore">Gas Spore</a></li>
+<li><a href="gelatinous-cube">Gelatinous Cube</a></li>
+<li><a href="ghald">Ghald</a></li>
+<li><a href="ghast">Ghast</a></li>
+<li><a href="ghost">Ghost</a></li>
+<li><a href="ghoul">Ghoul</a></li>
+<li><a href="giant-ape">Giant Ape</a></li>
+<li><a href="giant-badger">Giant Badger</a></li>
+<li><a href="giant-bat">Giant Bat</a></li>
+<li><a href="giant-boar">Giant Boar</a></li>
+<li><a href="giant-centipede">Giant Centipede</a></li>
+<li><a href="giant-constrictor-snake">Giant Constrictor Snake</a></li>
+<li><a href="giant-crab">Giant Crab</a></li>
+<li><a href="giant-crocodile">Giant Crocodile</a></li>
+<li><a href="giant-eagle">Giant Eagle</a></li>
+<li><a href="giant-elk">Giant Elk</a></li>
+<li><a href="giant-fire-beetle">Giant Fire Beetle</a></li>
+<li><a href="giant-frog">Giant Frog</a></li>
+<li><a href="giant-goat">Giant Goat</a></li>
+<li><a href="giant-hyena">Giant Hyena</a></li>
+<li><a href="giant-lizard">Giant Lizard</a></li>
+<li><a href="giant-octopus">Giant Octopus</a></li>
+<li><a href="giant-owl">Giant Owl</a></li>
+<li><a href="giant-poisonous-snake">Giant Poisonous Snake</a></li>
+<li><a href="giant-rat">Giant Rat</a></li>
+<li><a href="giant-scorpion">Giant Scorpion</a></li>
+<li><a href="giant-sea-horse">Giant Sea Horse</a></li>
+<li><a href="giant-shark">Giant Shark</a></li>
+<li><a href="giant-spider">Giant Spider</a></li>
+<li><a href="giant-toad">Giant Toad</a></li>
+<li><a href="giant-vulture">Giant Vulture</a></li>
+<li><a href="giant-wasp">Giant Wasp</a></li>
+<li><a href="giant-weasel">Giant Weasel</a></li>
+<li><a href="giant-wolf-spider">Giant Wolf Spider</a></li>
+<li><a href="gibbering-mouther">Gibbering Mouther</a></li>
+<li><a href="githyanki-knight">Githyanki Knight</a></li>
+<li><a href="githyanki-warrior">Githyanki Warrior</a></li>
+<li><a href="githzerai-monk">Githzerai Monk</a></li>
+<li><a href="githzerai-zerth">Githzerai Zerth</a></li>
+<li><a href="glabrezu">Glabrezu</a></li>
+<li><a href="gladiator">Gladiator</a></li>
+<li><a href="gnoll">Gnoll</a></li>
+<li><a href="gnoll-fang-of-yeenoghu">Gnoll Fang of Yeenoghu</a></li>
+<li><a href="gnoll-pack-lord">Gnoll Pack Lord</a></li>
+<li><a href="goat">Goat</a></li>
+<li><a href="goblin">Goblin</a></li>
+<li><a href="goblin-boss">Goblin Boss</a></li>
+<li><a href="gold-dragon-wyrmling">Gold Dragon Wyrmling</a></li>
+<li><a href="gorgon">Gorgon</a></li>
+<li><a href="goristro">Goristro</a></li>
+<li><a href="gray-ooze">Gray Ooze</a></li>
+<li><a href="gray-slaad">Gray Slaad</a></li>
+<li><a href="grazzt">Graz'zt</a></li>
+<li><a href="green-dragon-wyrmling">Green Dragon Wyrmling</a></li>
+<li><a href="green-hag">Green Hag</a></li>
+<li><a href="green-slaad">Green Slaad</a></li>
+<li><a href="grell">Grell</a></li>
+<li><a href="grick">Grick</a></li>
+<li><a href="grick-alpha">Grick Alpha</a></li>
+<li><a href="griffon">Griffon</a></li>
+<li><a href="grimlock">Grimlock</a></li>
+<li><a href="grisha">Grisha</a></li>
+<li><a href="guard">Guard</a></li>
+<li><a href="guard-drake">Guard Drake</a></li>
+<li><a href="guardian-naga">Guardian Naga</a></li>
+<li><a href="guardian-portrait">Guardian Portrait</a></li>
+<li><a href="gynosphinx">Gynosphinx</a></li>
+<li><a href="half-ogre">Half-Ogre</a></li>
+<li><a href="half-red-dragon-veteran">Half-Red Dragon Veteran</a></li>
+<li><a href="harpy">Harpy</a></li>
+<li><a href="hawk">Hawk</a></li>
+<li><a href="hell-hound">Hell Hound</a></li>
+<li><a href="hellenrae">Hellenrae</a></li>
+<li><a href="helmed-horror">Helmed Horror</a></li>
+<li><a href="hezrou">Hezrou</a></li>
+<li><a href="hill-giant">Hill Giant</a></li>
+<li><a href="hippogriff">Hippogriff</a></li>
+<li><a href="hobgoblin">Hobgoblin</a></li>
+<li><a href="hobgoblin-captain">Hobgoblin Captain</a></li>
+<li><a href="hobgoblin-warlord">Hobgoblin Warlord</a></li>
+<li><a href="homunculus">Homunculus</a></li>
+<li><a href="hook-horror">Hook Horror</a></li>
+<li><a href="hook-horror-spore-servant">Hook Horror Spore Servant</a></li>
+<li><a href="horned-devil">Horned Devil</a></li>
+<li><a href="howling-hatred-initiate">Howling Hatred Initiate</a></li>
+<li><a href="howling-hatred-priest">Howling Hatred Priest</a></li>
+<li><a href="hulking-crab">Hulking Crab</a></li>
+<li><a href="hunter-shark">Hunter Shark</a></li>
+<li><a href="hurricane">Hurricane</a></li>
+<li><a href="hydra">Hydra</a></li>
+<li><a href="hyena">Hyena</a></li>
+<li><a href="ice-devil">Ice Devil</a></li>
+<li><a href="ice-mephit">Ice Mephit</a></li>
+<li><a href="ice-toad">Ice Toad</a></li>
+<li><a href="imix">Imix</a></li>
+<li><a href="imp">Imp</a></li>
+<li><a href="intellect-devourer">Intellect Devourer</a></li>
+<li><a href="invisible-stalker">Invisible Stalker</a></li>
+<li><a href="iron-golem">Iron Golem</a></li>
+<li><a href="ixitxachitl">Ixitxachitl</a></li>
+<li><a href="izek-strazni">Izek Strazni</a></li>
+<li><a href="jackal">Jackal</a></li>
+<li><a href="jackalwere">Jackalwere</a></li>
+<li><a href="jamna-gleamsilver">Jamna Gleamsilver</a></li>
+<li><a href="juiblex">Juiblex</a></li>
+<li><a href="kenku">Kenku</a></li>
+<li><a href="killer-whale">Killer Whale</a></li>
+<li><a href="knight">Knight</a></li>
+<li><a href="kobold">Kobold</a></li>
+<li><a href="kraken">Kraken</a></li>
+<li><a href="kuo-toa">Kuo-toa</a></li>
+<li><a href="kuo-toa-archpriest">Kuo-toa Archpriest</a></li>
+<li><a href="kuo-toa-whip">Kuo-toa Whip</a></li>
+<li><a href="lamia">Lamia</a></li>
+<li><a href="langdedrosa-cyanwrath">Langdedrosa Cyanwrath</a></li>
+<li><a href="lemure">Lemure</a></li>
+<li><a href="lich">Lich</a></li>
+<li><a href="lion">Lion</a></li>
+<li><a href="lizard">Lizard</a></li>
+<li><a href="lizard-king-queen">Lizard King/Queen</a></li>
+<li><a href="lizardfolk">Lizardfolk</a></li>
+<li><a href="lizardfolk-shaman">Lizardfolk Shaman</a></li>
+<li><a href="madam-eva">Madam Eva</a></li>
+<li><a href="maegera-the-dawn-titan">Maegera the Dawn Titan</a></li>
+<li><a href="mage">Mage</a></li>
+<li><a href="magma-mephit">Magma Mephit</a></li>
+<li><a href="magmin">Magmin</a></li>
+<li><a href="male-steeder">Male Steeder</a></li>
+<li><a href="mammoth">Mammoth</a></li>
+<li><a href="manes">Manes</a></li>
+<li><a href="manticore">Manticore</a></li>
+<li><a href="marid">Marid</a></li>
+<li><a href="marilith">Marilith</a></li>
+<li><a href="marlos-urnrayle">Marlos Urnrayle</a></li>
+<li><a href="mastiff">Mastiff</a></li>
+<li><a href="medusa">Medusa</a></li>
+<li><a href="merfolk">Merfolk</a></li>
+<li><a href="merrow">Merrow</a></li>
+<li><a href="mezzoloth">Mezzoloth</a></li>
+<li><a href="mimic">Mimic</a></li>
+<li><a href="mind-flayer">Mind Flayer</a></li>
+<li><a href="minotaur">Minotaur</a></li>
+<li><a href="minotaur-skeleton">Minotaur Skeleton</a></li>
+<li><a href="miraj-vizann">Miraj Vizann</a></li>
+<li><a href="mongrelfolk">Mongrelfolk</a></li>
+<li><a href="monodrone">Monodrone</a></li>
+<li><a href="mormesk-the-wraith">Mormesk the Wraith</a></li>
+<li><a href="mud-mephit">Mud Mephit</a></li>
+<li><a href="mule">Mule</a></li>
+<li><a href="mummy">Mummy</a></li>
+<li><a href="mummy-lord">Mummy Lord</a></li>
+<li><a href="myconid-adult">Myconid Adult</a></li>
+<li><a href="myconid-soverign">Myconid Soverign</a></li>
+<li><a href="myconid-sprout">Myconid Sprout</a></li>
+<li><a href="naergoth-bladelord">Naergoth Bladelord</a></li>
+<li><a href="nalfeshnee">Nalfeshnee</a></li>
+<li><a href="narrak">Narrak</a></li>
+<li><a href="needle-blight">Needle Blight</a></li>
+<li><a href="neronvain">Neronvain</a></li>
+<li><a href="nezznar-the-black-spider">Nezznar the Black Spider</a></li>
+<li><a href="night-hag">Night Hag</a></li>
+<li><a href="nightmare">Nightmare</a></li>
+<li><a href="noble">Noble</a></li>
+<li><a href="nothic">Nothic</a></li>
+<li><a href="nycaloth">Nycaloth</a></li>
+<li><a href="ochre-jelly">Ochre Jelly</a></li>
+<li><a href="octopus">Octopus</a></li>
+<li><a href="ogre">Ogre</a></li>
+<li><a href="ogre-zombie">Ogre Zombie</a></li>
+<li><a href="ogremoch">Ogremoch</a></li>
+<li><a href="olhydra">Olhydra</a></li>
+<li><a href="one-eyed-shiver">One-Eyed Shiver</a></li>
+<li><a href="oni">Oni</a></li>
+<li><a href="orc">Orc</a></li>
+<li><a href="orc-eye-of-gruumsh">Orc Eye of Gruumsh</a></li>
+<li><a href="orc-war-chief">Orc War Chief</a></li>
+<li><a href="orcus">Orcus</a></li>
+<li><a href="oreioth">Oreioth</a></li>
+<li><a href="orog">Orog</a></li>
+<li><a href="otyugh">Otyugh</a></li>
+<li><a href="owl">Owl</a></li>
+<li><a href="owlbear">Owlbear</a></li>
+<li><a href="panther">Panther</a></li>
+<li><a href="pegasus">Pegasus</a></li>
+<li><a href="pentadrone">Pentadrone</a></li>
+<li><a href="peryton">Peryton</a></li>
+<li><a href="phantom-warrior">Phantom Warrior</a></li>
+<li><a href="pharblex-spattergoo">Pharblex Spattergoo</a></li>
+<li><a href="phase-spider">Phase Spider</a></li>
+<li><a href="pidlwick-ii">Pidlwick II</a></li>
+<li><a href="piercer">Piercer</a></li>
+<li><a href="pit-fiend">Pit Fiend</a></li>
+<li><a href="pixie">Pixie</a></li>
+<li><a href="planetar">Planetar</a></li>
+<li><a href="plesiosaurus">Plesiosaurus</a></li>
+<li><a href="poisonous-snake">Poisonous Snake</a></li>
+<li><a href="polar-bear">Polar Bear</a></li>
+<li><a href="pony">Pony</a></li>
+<li><a href="priest">Priest</a></li>
+<li><a href="pseudodragon">Pseudodragon</a></li>
+<li><a href="pteranodon">Pteranodon</a></li>
+<li><a href="purple-worm">Purple Worm</a></li>
+<li><a href="purple-wormling">Purple Wormling</a></li>
+<li><a href="quadrone">Quadrone</a></li>
+<li><a href="quaggoth">Quaggoth</a></li>
+<li><a href="quaggoth-spore-servant">Quaggoth Spore Servant</a></li>
+<li><a href="quasit">Quasit</a></li>
+<li><a href="quipper">Quipper</a></li>
+<li><a href="rahadin">Rahadin</a></li>
+<li><a href="rakshasa">Rakshasa</a></li>
+<li><a href="rat">Rat</a></li>
+<li><a href="rath-modar">Rath Modar</a></li>
+<li><a href="raven">Raven</a></li>
+<li><a href="razerblast">Razerblast</a></li>
+<li><a href="red-dragon-wyrmling">Red Dragon Wyrmling</a></li>
+<li><a href="red-slaad">Red Slaad</a></li>
+<li><a href="redbrand-ruffian">Redbrand Ruffian</a></li>
+<li><a href="reef-shark">Reef Shark</a></li>
+<li><a href="remorhaz">Remorhaz</a></li>
+<li><a href="revenant">Revenant</a></li>
+<li><a href="rezmir">Rezmir</a></li>
+<li><a href="rhinoceros">Rhinoceros</a></li>
+<li><a href="rictavio">Rictavio</a></li>
+<li><a href="riding-horse">Riding Horse</a></li>
+<li><a href="roc">Roc</a></li>
+<li><a href="roper">Roper</a></li>
+<li><a href="rug-of-smothering">Rug of Smothering</a></li>
+<li><a href="rust-monster">Rust Monster</a></li>
+<li><a href="saber-toothed-tiger">Saber-Toothed Tiger</a></li>
+<li><a href="sacred-stone-monk">Sacred Stone Monk</a></li>
+<li><a href="sahuagin">Sahuagin</a></li>
+<li><a href="sahuagin-baron">Sahuagin Baron</a></li>
+<li><a href="sahuagin-priestess">Sahuagin Priestess</a></li>
+<li><a href="salamander">Salamander</a></li>
+<li><a href="satyr">Satyr</a></li>
+<li><a href="scarecrow">Scarecrow</a></li>
+<li><a href="scorpion">Scorpion</a></li>
+<li><a href="scout">Scout</a></li>
+<li><a href="sea-hag">Sea Hag</a></li>
+<li><a href="sea-horse">Sea Horse</a></li>
+<li><a href="severin">Severin</a></li>
+<li><a href="shadow">Shadow</a></li>
+<li><a href="shadow-demon">Shadow Demon</a></li>
+<li><a href="shambling-mound">Shambling Mound</a></li>
+<li><a href="shield-guardian">Shield Guardian</a></li>
+<li><a href="shoalar-quanderil">Shoalar Quanderil</a></li>
+<li><a href="shrieker">Shrieker</a></li>
+<li><a href="sildar-hallwinter">Sildar Hallwinter</a></li>
+<li><a href="silver-dragon-wyrmling">Silver Dragon Wyrmling</a></li>
+<li><a href="skeleton">Skeleton</a></li>
+<li><a href="sky-weaver">Sky Weaver</a></li>
+<li><a href="slaad-tadpole">Slaad Tadpole</a></li>
+<li><a href="smoke-mephit">Smoke Mephit</a></li>
+<li><a href="solar">Solar</a></li>
+<li><a href="spectator">Spectator</a></li>
+<li><a href="specter">Specter</a></li>
+<li><a href="spider">Spider</a></li>
+<li><a href="spined-devil">Spined Devil</a></li>
+<li><a href="spirit-naga">Spirit Naga</a></li>
+<li><a href="sprite">Sprite</a></li>
+<li><a href="spy">Spy</a></li>
+<li><a href="steam-mephit">Steam Mephit</a></li>
+<li><a href="stirge">Stirge</a></li>
+<li><a href="stone-giant">Stone Giant</a></li>
+<li><a href="stone-golem">Stone Golem</a></li>
+<li><a href="stonemelder">Stonemelder</a></li>
+<li><a href="storm-giant">Storm Giant</a></li>
+<li><a href="strahd-zombie">Strahd Zombie</a></li>
+<li><a href="strahd-von-zarovich">Strahd von Zarovich</a></li>
+<li><a href="strahds-animated-armor">Strahd's Animated Armor</a></li>
+<li><a href="succubus-incubus">Succubus/Incubus</a></li>
+<li><a href="swarm-of-bats">Swarm of Bats</a></li>
+<li><a href="swarm-of-insects">Swarm of Insects</a></li>
+<li><a href="swarm-of-poisonous-snakes">Swarm of Poisonous Snakes</a></li>
+<li><a href="swarm-of-quippers">Swarm of Quippers</a></li>
+<li><a href="swarm-of-rats">Swarm of Rats</a></li>
+<li><a href="swarm-of-ravens">Swarm of Ravens</a></li>
+<li><a href="swarm-of-rot-grubs">Swarm of Rot Grubs</a></li>
+<li><a href="talis-the-white">Talis the White</a></li>
+<li><a href="tarrasque">Tarrasque</a></li>
+<li><a href="the-pudding-king">The Pudding King</a></li>
+<li><a href="thri-kreen">Thri-kreen</a></li>
+<li><a href="thug">Thug</a></li>
+<li><a href="thurl-merosska">Thurl Merosska</a></li>
+<li><a href="tiamat">Tiamat</a></li>
+<li><a href="tiger">Tiger</a></li>
+<li><a href="treant">Treant</a></li>
+<li><a href="tree-blight">Tree Blight</a></li>
+<li><a href="tressym">Tressym</a></li>
+<li><a href="tribal-warrior">Tribal Warrior</a></li>
+<li><a href="triceratops">Triceratops</a></li>
+<li><a href="tridrone">Tridrone</a></li>
+<li><a href="troglodyte">Troglodyte</a></li>
+<li><a href="troglodyte-champion-of-laogzed">Troglodyte Champion of Laogzed</a></li>
+<li><a href="troll">Troll</a></li>
+<li><a href="twig-blight">Twig Blight</a></li>
+<li><a href="tyrannosaurus-rex">Tyrannosaurus Rex</a></li>
+<li><a href="ultroloth">Ultroloth</a></li>
+<li><a href="umber-hulk">Umber Hulk</a></li>
+<li><a href="unicorn">Unicorn</a></li>
+<li><a href="uthgardt-shaman">Uthgardt Shaman</a></li>
+<li><a href="vampire">Vampire</a></li>
+<li><a href="vampire-spawn">Vampire Spawn</a></li>
+<li><a href="vampiric-ixitxachitl">Vampiric Ixitxachitl</a></li>
+<li><a href="vanifer">Vanifer</a></li>
+<li><a href="veteran">Veteran</a></li>
+<li><a href="vine-blight">Vine Blight</a></li>
+<li><a href="violet-fungus">Violet Fungus</a></li>
+<li><a href="vrock">Vrock</a></li>
+<li><a href="vulture">Vulture</a></li>
+<li><a href="warhorse">Warhorse</a></li>
+<li><a href="warhorse-skeleton">Warhorse Skeleton</a></li>
+<li><a href="water-elemental">Water Elemental</a></li>
+<li><a href="water-elemental-myrmidon">Water Elemental Myrmidon</a></li>
+<li><a href="water-weird">Water Weird</a></li>
+<li><a href="weasel">Weasel</a></li>
+<li><a href="werebear">Werebear</a></li>
+<li><a href="wereboar">Wereboar</a></li>
+<li><a href="wererat">Wererat</a></li>
+<li><a href="wereraven">Wereraven</a></li>
+<li><a href="weretiger">Weretiger</a></li>
+<li><a href="werewolf">Werewolf</a></li>
+<li><a href="white-dragon-wyrmling">White Dragon Wyrmling</a></li>
+<li><a href="wiggan-nettlebee">Wiggan Nettlebee</a></li>
+<li><a href="wight">Wight</a></li>
+<li><a href="will-o-wisp">Will-o'-Wisp</a></li>
+<li><a href="windharrow">Windharrow</a></li>
+<li><a href="winged-kobold">Winged Kobold</a></li>
+<li><a href="winter-wolf">Winter Wolf</a></li>
+<li><a href="wolf">Wolf</a></li>
+<li><a href="worg">Worg</a></li>
+<li><a href="wraith">Wraith</a></li>
+<li><a href="wyvern">Wyvern</a></li>
+<li><a href="xorn">Xorn</a></li>
+<li><a href="yakfolk-priest">Yakfolk Priest</a></li>
+<li><a href="yakfolk-warrior">Yakfolk Warrior</a></li>
+<li><a href="yan-c-bin">Yan-C-Bin</a></li>
+<li><a href="yeenoghu">Yeenoghu</a></li>
+<li><a href="yestabrod">Yestabrod</a></li>
+<li><a href="yeti">Yeti</a></li>
+<li><a href="yochlol">Yochlol</a></li>
+<li><a href="young-black-dragon">Young Black Dragon</a></li>
+<li><a href="young-blue-dragon">Young Blue Dragon</a></li>
+<li><a href="young-brass-dragon">Young Brass Dragon</a></li>
+<li><a href="young-bronze-dragon">Young Bronze Dragon</a></li>
+<li><a href="young-copper-dragon">Young Copper Dragon</a></li>
+<li><a href="young-gold-dragon">Young Gold Dragon</a></li>
+<li><a href="young-green-dragon">Young Green Dragon</a></li>
+<li><a href="young-red-dragon">Young Red Dragon</a></li>
+<li><a href="young-red-shadow-dragon">Young Red Shadow Dragon</a></li>
+<li><a href="young-remorhaz">Young Remorhaz</a></li>
+<li><a href="young-silver-dragon">Young Silver Dragon</a></li>
+<li><a href="young-white-dragon">Young White Dragon</a></li>
+<li><a href="yuan-ti-abomination">Yuan-ti Abomination</a></li>
+<li><a href="yuan-ti-malison">Yuan-ti Malison</a></li>
+<li><a href="yuan-ti-pureblood">Yuan-ti Pureblood</a></li>
+<li><a href="zombie">Zombie</a></li>
+<li><a href="zuggtmoy">Zuggtmoy</a></li>
+</ul>
+</section>
+</body>
+</html>
