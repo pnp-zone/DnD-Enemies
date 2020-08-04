@@ -71,6 +71,13 @@ class Parser:
                                     r".*"  # Weird additions for only a few sheets
                                     r"</p>")
 
+        # Language
+        self.languages = re.compile(r"<p><strong>Languages</strong> "
+                                    r"(.*)"
+                                    #r"([\w, (?:&#8217;)\.-]*)"
+                                    r"</p>")
+        self.language = re.compile(r"[\w '\.-]+")  # TODO get more structure from it
+
     def parse(self, fname):
         #################################
         # Open and precut the html file #
@@ -103,6 +110,9 @@ class Parser:
         blind, dark, true, tremor, passive = self.senses.search(html).groups()
         cr, xp = self.challenge.search(html).groups()
 
+        languages, = self.languages.search(html).groups()
+        languages = self.language.findall(languages.replace("&#8217;", "'"))
+
         ####################
         # Create the sheet #
         ####################
@@ -115,7 +125,8 @@ class Parser:
                     "hp": hp_expr,
                     "ac": int(ac),
                     "cr": eval(cr),
-                    "xp": int(xp.replace(",", ""))
+                    "xp": int(xp.replace(",", "")),
+                    "languages": languages,
                 }
         for attr, val, mod in attrs:
             sheet[attr.lower()] = int(mod)
