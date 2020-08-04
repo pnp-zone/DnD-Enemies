@@ -1,8 +1,10 @@
 #!/usr/bin/env python3
 
-from sys import argv
-
+import os
+import json
 import re
+
+from sys import argv
 
 
 class Parser:
@@ -16,11 +18,11 @@ class Parser:
 
         # Description
         self.desc = re.compile(r"<p><em>"
-                                  r"(Medium|Large|Small|Huge|Tiny|Gargantuan|Diminutive|Colossal|Fine)"  # Size
-                                  r" ([\w ]+)"  # Race
-                                  r" ?(\(.*\))?"  # Subrace (optional)
-                                  r"(, [\w \-\(\)\%]+)"  # Alignment
-                                  r"</em></p>")
+                               r"(Medium|Large|Small|Huge|Tiny|Gargantuan|Diminutive|Colossal|Fine)"  # Size
+                               r" ([\w ]+)"  # Race
+                               r" ?(\(.*\))?"  # Subrace (optional)
+                               r"(, [\w \-\(\)\%]+)"  # Alignment
+                               r"</em></p>")
 
         # Hit Points
         self.hp = re.compile(r"<p><strong>Hit Points</strong> "
@@ -31,7 +33,8 @@ class Parser:
         # Armor Class
         self.ac = re.compile(r"<p><strong>Armor Class</strong> "
                              r"(\d+)"  # Numeric value
-                             r"(.+)?"  # Rest TODO
+                             r"(?: \((\d+ (?:with|while|in) [\w </>]+)\))?"  # Alternatives
+                             r"(?: \(([\w ,+1</>]+)\))?"  # Types
                              r"</p>")
 
         # Ability Scores
@@ -51,21 +54,26 @@ class Parser:
         self.throw = re.compile(r"(\w\w\w) "  # Ability score
                                 r"([+-]\d+)")  # Modifier
 
-    def parse(self, fpath):
-        # Read and precut
+    def open(self, fpath):
+        """
+        Open and precut a html file for futher processing
+
+        :param fpath:
+        :return:
+        """
         with open(fpath) as f:
             html = f.read()
 
         start = html.find(">", html.find("<section")) + 1
         end = html.find("</section>", start)
 
-        html = html[start:end]
+        return html[start:end]
 
-        # Match Regex
-        name = self.name.search(html).group(1)
+    def parse(self, html):
+        name, = self.name.search(html).groups()
         size, race, subrace, alignment = self.desc.search(html).groups()
-        hp = self.hp.search(html).group(2)
-        ac = self.ac.search(html).group(1)
+        hp_avg, hp_expr = self.hp.search(html).groups()
+        ac, ac_alt, ac_types = self.ac.search(html).groups()
         attrs = self.attr.findall(html)
         skills = self.skills.search(html)
         if skills is not None:
@@ -73,6 +81,8 @@ class Parser:
         throws = self.throws.search(html)
         if throws is not None:
             throws = self.throw.findall(throws.group(1))
+
+        return
 
         # Create sheet
         sheet = {
@@ -103,8 +113,6 @@ class Parser:
 
 
 if __name__ == "__main__":
-    import json, os
-
     if not os.path.isdir("sheets"):
         os.mkdir("sheets")
 
@@ -117,7 +125,7 @@ if __name__ == "__main__":
     parser = Parser()
 
     for name in files:
-        sheet = parser.parse(f"html/{name}.html")
+        sheet = parser.parse(parser.open(f"html/{name}.html"))
 
         with open(f"sheets/{name.replace('-', '_')}.json", "w") as f:
             json.dump(sheet, f, indent=4)
