@@ -76,10 +76,19 @@ def parse(html):
 
 
 if __name__ == "__main__":
-    import sys, json
+    import sys, json, os
 
-    for name in sys.argv[1:]:
-        html = get_section(f"html/{name}")
+    if not os.path.isdir("sheets"):
+        os.mkdir("sheets")
+
+    if len(sys.argv) > 1:
+        files = sys.argv[1:]
+    else:
+        with open("list") as f:
+            files = f.read().splitlines()
+
+    for name in files:
+        html = get_section(f"html/{name}.html")
         sheet = parse(html)
 
         with open(f"sheets/{name.replace('-', '_')}.json", "w") as f:
