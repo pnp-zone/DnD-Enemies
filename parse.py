@@ -54,44 +54,45 @@ class Parser:
         self.throw = re.compile(r"(\w\w\w) "  # Ability score
                                 r"([+-]\d+)")  # Modifier
 
-    def open(self, fpath):
-        """
-        Open and precut a html file for futher processing
-
-        :param fpath:
-        :return:
-        """
+    def parse(self, fpath):
+        #################################
+        # Open and precut the html file #
+        #################################
         with open(fpath) as f:
             html = f.read()
 
         start = html.find(">", html.find("<section")) + 1
         end = html.find("</section>", start)
 
-        return html[start:end]
+        html = html[start:end]
 
-    def parse(self, html):
+        ###############
+        # Match regex #
+        ###############
         name, = self.name.search(html).groups()
         size, race, subrace, alignment = self.desc.search(html).groups()
         hp_avg, hp_expr = self.hp.search(html).groups()
         ac, ac_alt, ac_types = self.ac.search(html).groups()
         attrs = self.attr.findall(html)
+
         skills = self.skills.search(html)
         if skills is not None:
             skills = self.skill.findall(skills.group(1))
+
         throws = self.throws.search(html)
         if throws is not None:
             throws = self.throw.findall(throws.group(1))
 
-        return
-
-        # Create sheet
+        ####################
+        # Create the sheet #
+        ####################
         sheet = {
                     "name": name,
                     "size": size,
                     "race": race,
                     "subrace": subrace,
                     "alignment": alignment,
-                    "hp": hp,
+                    "hp": hp_expr,
                     "ac": int(ac),
                 }
         for attr, val, mod in attrs:
