@@ -50,15 +50,25 @@ class Parser:
         self.skill = re.compile(r"(\w+) "  # Name
                                 r"([+-]\d+)")  # Modifier
 
+        # Throws
         self.throws = re.compile(r"<p><strong>Saving Throws</strong>(.*)</p>")  # Outer container
         self.throw = re.compile(r"(\w\w\w) "  # Ability score
                                 r"([+-]\d+)")  # Modifier
 
-    def parse(self, fpath):
+        # Senses
+        self.senses = re.compile(r"<p><strong>Senses</strong> "
+                                 r"(?:blindsight (\d+) ft\.(?: \(blind beyond this radius\))?, )?"
+                                 r"(?:darkvision (\d+) ft\., )?"
+                                 r"(?:truesight (\d+) ft\., )?"
+                                 r"(?:tremorsense (\d+) ft\., )?"
+                                 r"passive Perception (\d+)"
+                                 r"</p>")
+
+    def parse(self, fname):
         #################################
         # Open and precut the html file #
         #################################
-        with open(fpath) as f:
+        with open(f"html/{fname}.html") as f:
             html = f.read()
 
         start = html.find(">", html.find("<section")) + 1
@@ -82,6 +92,8 @@ class Parser:
         throws = self.throws.search(html)
         if throws is not None:
             throws = self.throw.findall(throws.group(1))
+
+        blind, dark, true, tremor, passive = self.senses.search(html).groups()
 
         ####################
         # Create the sheet #
@@ -110,7 +122,24 @@ class Parser:
                 throws_dict[throw.lower()] = int(mod)
             sheet["saving_throws"] = throws_dict
 
-        return sheet
+        senses_dict = {
+                    "passive": passive,
+                  }
+        if dark:
+            senses_dict["dakrvision"] = int(dark)
+        if blind:
+            senses_dict["blindsight"] = int(blind)
+        if true:
+            senses_dict["truesight"] = int(true)
+        if tremor:
+            senses_dict["tremorsense"] = int(tremor)
+        sheet["senses"] = senses_dict
+
+        ##########################
+        # Save the sheet as json #
+        ##########################
+        with open(f"sheets/{fname.replace('-', '_')}.json", "w") as f:
+            json.dump(sheet, f, indent=4)
 
 
 if __name__ == "__main__":
@@ -126,7 +155,4 @@ if __name__ == "__main__":
     parser = Parser()
 
     for name in files:
-        sheet = parser.parse(parser.open(f"html/{name}.html"))
-
-        with open(f"sheets/{name.replace('-', '_')}.json", "w") as f:
-            json.dump(sheet, f, indent=4)
+        parser.parse(name)
