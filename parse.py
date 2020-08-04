@@ -64,6 +64,13 @@ class Parser:
                                  r"passive Perception (\d+)"
                                  r"</p>")
 
+        # Challenge Rate
+        self.challenge = re.compile(r"<p><strong>Challenge</strong> "
+                                    r"([\d/]+) "  # Challange Rate
+                                    r"\(([\d,]+) XP\)"  # Expirience Points
+                                    r".*"  # Weird additions for only a few sheets
+                                    r"</p>")
+
     def parse(self, fname):
         #################################
         # Open and precut the html file #
@@ -94,6 +101,7 @@ class Parser:
             throws = self.throw.findall(throws.group(1))
 
         blind, dark, true, tremor, passive = self.senses.search(html).groups()
+        cr, xp = self.challenge.search(html).groups()
 
         ####################
         # Create the sheet #
@@ -106,6 +114,8 @@ class Parser:
                     "alignment": alignment,
                     "hp": hp_expr,
                     "ac": int(ac),
+                    "cr": eval(cr),
+                    "xp": int(xp.replace(",", ""))
                 }
         for attr, val, mod in attrs:
             sheet[attr.lower()] = int(mod)
