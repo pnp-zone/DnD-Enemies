@@ -1,11 +1,7 @@
 # DnD Sheets
 
-1. Get the html files by executing download.sh
+This project creates enemy sheets used in [PythonDM](https://github.com/pnp-zone/DnD-Enemies/PythonDM)
 
-2. Parse the html files into json files using parse.py
+1. Get the html files from [dnd-5e.herokuapp.com](https://dnd-5e.herokuapp.com/monsters/) by executing `download.sh`
 
-This repo contains/ creates the enemie sheets used in PythonDM
-
-html contains the monsters from https://dnd-5e.herokuapp.com/monsters/ and fixed\_head.py was used to simplify those files.
-
-parse.py is then used to parse the html into json.
+2. Parse the html files into json files using `parse.py`
