@@ -13,76 +13,75 @@ class Parser:
         """
         Initialize all patterns
         """
-        # Description
-        self.static = re.compile(r""
-                                 r"<h1>(?P<name>.*)</h1>"
-                                 r"\n\n"
-                                 r"<p><em>"
-                                 r"(?P<size>Medium|Large|Small|Huge|Tiny|Gargantuan|Diminutive|Colossal|Fine) "
-                                 r"(?P<race>[\w]+|swarm of Tiny beasts) ?"
-                                 r"(?:\((?P<subrace>.*)\))?, "
-                                 r"(?P<alignment>[\w \-\(\)\%]+)"
-                                 r"</em></p>"
-                                 r"\n\n"
-                                 r"<hr>"
-                                 r"\n\n"
-                                 r"<p><strong>Armor Class</strong> "
-                                 r"(?P<ac>\d+) ?"
-                                 r"(?P<ac_alt>\((\d+ (?:with|while|in) [\w </>]+)\))? ?"
-                                 r"(?P<ac_types>\(([\w ,+1</>]+)\))?"
-                                 r"</p>"
-                                 r"\n\n"
-                                 r"<p><strong>Hit Points</strong> "
-                                 r"(?P<hp_avg>\d+) "
-                                 r"\((?P<hp_expr>[d\d +-]+)\)"
-                                 r"</p>"
-                                 r"\n\n"
-                                 r"<p><strong>Speed</strong> (?P<speed>.*)</p>"  # Need further matching
-                                 r"\n\n"
-                                 r"<hr>"
-                                 r"\n\n"
-                                 r"<ul class=\"monster-stats\">\n"
-                                 r"<li><strong>STR</strong> (?P<str>\d+) \((?P<str_mod>[+-]\d+)\)</li>\n"
-                                 r"<li><strong>DEX</strong> (?P<dex>\d+) \((?P<dex_mod>[+-]\d+)\)</li>\n"
-                                 r"<li><strong>CON</strong> (?P<con>\d+) \((?P<con_mod>[+-]\d+)\)</li>\n"
-                                 r"<li><strong>INT</strong> (?P<int>\d+) \((?P<int_mod>[+-]\d+)\)</li>\n"
-                                 r"<li><strong>WIS</strong> (?P<wis>\d+) \((?P<wis_mod>[+-]\d+)\)</li>\n"
-                                 r"<li><strong>CHA</strong> (?P<cha>\d+) \((?P<cha_mod>[+-]\d+)\)</li>\n"
-                                 r"</ul>"
-                                 r"\n\n"
-                                 r"<hr>"
-                                 r"(?:\n\n"
-                                 r"<p><strong>Saving Throws</strong> (?P<throws>.*)</p>)?"  # Need further matching
-                                 r"(?:\n\n"
-                                 r"<p><strong>Skills</strong> (?P<skills>.*)</p>)?"  # Need further matching
-                                 r"(?:\n\n"
-                                 r"<p><strong>Damage Vulnerabilities</strong> (?P<dmg_vul>.*)</p>)?"  # Need further matching
-                                 r"(?:\n\n"
-                                 r"<p><strong>Damage Resistances</strong> (?P<dmg_res>.*)</p>)?"  # Need further matching
-                                 r"(?:\n\n"
-                                 r"<p><strong>Damage Immunities</strong> (?P<dmg_imm>.*)</p>)?"  # Need further matching
-                                 r"(?:\n\n"
-                                 r"<p><strong>Condition Immunities</strong> (?P<cond_imm>.*)</p>)?"  # Need further matching
-                                 r"\n\n"
-                                 r"<p><strong>Senses</strong> "
-                                 r"(?:blindsight (?P<blindsight>\d+) ft\.(?: \(blind beyond this radius\))?, )?"
-                                 r"(?:darkvision (?P<darkvision>\d+) ft\., )?"
-                                 r"(?:truesight (?P<truesight>\d+) ft\., )?"
-                                 r"(?:tremorsense (?P<tremorsense>\d+) ft\., )?"
-                                 r"passive Perception (?P<passive_perception>\d+)"
-                                 r"</p>"
-                                 r"\n\n"
-                                 r"<p><strong>Languages</strong> (?P<languages>.*)</p>"  # Need further matching
-                                 r"\n\n"
-                                 r"<p><strong>Challenge</strong> "
-                                 r"(?P<cr>[\d/]+) "
-                                 r"\((?P<xp>[\d,]+) XP\)"
-                                 r"(?:.*)"  # Weird additions for only a few sheets
-                                 r"</p>"
-                                 r"\n\n"
-                                 r"<hr>"
-                                 r"\n\n"
-                                 r"")
+        self.main = re.compile(r""
+                               r"<h1>(?P<name>.*)</h1>"
+                               r"\n\n"
+                               r"<p><em>"
+                               r"(?P<size>Medium|Large|Small|Huge|Tiny|Gargantuan|Diminutive|Colossal|Fine) "
+                               r"(?P<race>[\w]+|swarm of Tiny beasts) ?"
+                               r"(?:\((?P<subrace>.*)\))?, "
+                               r"(?P<alignment>[\w \-\(\)\%]+)"
+                               r"</em></p>"
+                               r"\n\n"
+                               r"<hr>"
+                               r"\n\n"
+                               r"<p><strong>Armor Class</strong> "
+                               r"(?P<ac>\d+) ?"
+                               r"(?P<ac_alt>\((\d+ (?:with|while|in) [\w </>]+)\))? ?"
+                               r"(?P<ac_types>\(([\w ,+1</>]+)\))?"
+                               r"</p>"
+                               r"\n\n"
+                               r"<p><strong>Hit Points</strong> "
+                               r"(?P<hp_avg>\d+) "
+                               r"\((?P<hp_expr>[d\d +-]+)\)"
+                               r"</p>"
+                               r"\n\n"
+                               r"<p><strong>Speed</strong> (?P<speed>.*)</p>"  # Need further matching
+                               r"\n\n"
+                               r"<hr>"
+                               r"\n\n"
+                               r"<ul class=\"monster-stats\">\n"
+                               r"<li><strong>STR</strong> (?P<str>\d+) \((?P<str_mod>[+-]\d+)\)</li>\n"
+                               r"<li><strong>DEX</strong> (?P<dex>\d+) \((?P<dex_mod>[+-]\d+)\)</li>\n"
+                               r"<li><strong>CON</strong> (?P<con>\d+) \((?P<con_mod>[+-]\d+)\)</li>\n"
+                               r"<li><strong>INT</strong> (?P<int>\d+) \((?P<int_mod>[+-]\d+)\)</li>\n"
+                               r"<li><strong>WIS</strong> (?P<wis>\d+) \((?P<wis_mod>[+-]\d+)\)</li>\n"
+                               r"<li><strong>CHA</strong> (?P<cha>\d+) \((?P<cha_mod>[+-]\d+)\)</li>\n"
+                               r"</ul>"
+                               r"\n\n"
+                               r"<hr>"
+                               r"(?:\n\n"
+                               r"<p><strong>Saving Throws</strong> (?P<throws>.*)</p>)?"  # Need further matching
+                               r"(?:\n\n"
+                               r"<p><strong>Skills</strong> (?P<skills>.*)</p>)?"  # Need further matching
+                               r"(?:\n\n"
+                               r"<p><strong>Damage Vulnerabilities</strong> (?P<dmg_vul>.*)</p>)?"  # Need further matching
+                               r"(?:\n\n"
+                               r"<p><strong>Damage Resistances</strong> (?P<dmg_res>.*)</p>)?"  # Need further matching
+                               r"(?:\n\n"
+                               r"<p><strong>Damage Immunities</strong> (?P<dmg_imm>.*)</p>)?"  # Need further matching
+                               r"(?:\n\n"
+                               r"<p><strong>Condition Immunities</strong> (?P<cond_imm>.*)</p>)?"  # Need further matching
+                               r"\n\n"
+                               r"<p><strong>Senses</strong> "
+                               r"(?:blindsight (?P<blindsight>\d+) ft\.(?: \(blind beyond this radius\))?, )?"
+                               r"(?:darkvision (?P<darkvision>\d+) ft\., )?"
+                               r"(?:truesight (?P<truesight>\d+) ft\., )?"
+                               r"(?:tremorsense (?P<tremorsense>\d+) ft\., )?"
+                               r"passive Perception (?P<passive_perception>\d+)"
+                               r"</p>"
+                               r"\n\n"
+                               r"<p><strong>Languages</strong> (?P<languages>.*)</p>"  # Need further matching
+                               r"\n\n"
+                               r"<p><strong>Challenge</strong> "
+                               r"(?P<cr>[\d/]+) "
+                               r"\((?P<xp>[\d,]+) XP\)"
+                               r"(?:.*)"  # Weird additions for only a few sheets
+                               r"</p>"
+                               r"\n\n"
+                               r"<hr>"
+                               r"\n\n"
+                               r"")
 
         # Skills
         self.skill = re.compile(r"(\w+) "  # Name
@@ -115,7 +114,7 @@ class Parser:
         ###############
         # Match regex #
         ###############
-        sheet = self.static.search(html).groupdict()
+        sheet = self.main.search(html).groupdict()
         # print(sheet)
         # return
 
@@ -126,8 +125,6 @@ class Parser:
             sheet["skills"] = dict(self.skill.findall(sheet["skills"]))
 
         sheet["languages"] = self.language.findall(sheet["languages"].replace("&#8217;", "'"))
-
-        return
 
         ##########################
         # Save the sheet as json #
