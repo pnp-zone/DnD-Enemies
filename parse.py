@@ -13,70 +13,92 @@ class Parser:
         """
         Initialize all patterns
         """
-        # Name
-        self.name = re.compile(r"<h1>(.+)</h1>")
-
         # Description
-        self.desc = re.compile(r"<p><em>"
-                               r"(Medium|Large|Small|Huge|Tiny|Gargantuan|Diminutive|Colossal|Fine)"  # Size
-                               r" ([\w ]+)"  # Race
-                               r" ?(\(.*\))?"  # Subrace (optional)
-                               r"(, [\w \-\(\)\%]+)"  # Alignment
-                               r"</em></p>")
-
-        # Hit Points
-        self.hp = re.compile(r"<p><strong>Hit Points</strong> "
-                             r"(\d+) "  # Average
-                             r"\(([d\d +-]+)\)"  # Dice Expr
-                             r"</p>")
-
-        # Armor Class
-        self.ac = re.compile(r"<p><strong>Armor Class</strong> "
-                             r"(\d+)"  # Numeric value
-                             r"(?: \((\d+ (?:with|while|in) [\w </>]+)\))?"  # Alternatives
-                             r"(?: \(([\w ,+1</>]+)\))?"  # Types
-                             r"</p>")
-
-        # Ability Scores
-        self.attr = re.compile(r"<li><strong>"
-                               r"(\w\w\w)"  # Score name
-                               r"</strong> "
-                               r"(\d+)"  # Absolte value
-                               r"\(([+-]\d+)\)"  # Modifier
-                               r"</li>")
+        self.static = re.compile(r""
+                                 r"<h1>(?P<name>.*)</h1>"
+                                 r"\n\n"
+                                 r"<p><em>"
+                                 r"(?P<size>Medium|Large|Small|Huge|Tiny|Gargantuan|Diminutive|Colossal|Fine) "
+                                 r"(?P<race>[\w]+|swarm of Tiny beasts) ?"
+                                 r"(?:\((?P<subrace>.*)\))?, "
+                                 r"(?P<alignment>[\w \-\(\)\%]+)"
+                                 r"</em></p>"
+                                 r"\n\n"
+                                 r"<hr>"
+                                 r"\n\n"
+                                 r"<p><strong>Armor Class</strong> "
+                                 r"(?P<ac>\d+) ?"
+                                 r"(?P<ac_alt>\((\d+ (?:with|while|in) [\w </>]+)\))? ?"
+                                 r"(?P<ac_types>\(([\w ,+1</>]+)\))?"
+                                 r"</p>"
+                                 r"\n\n"
+                                 r"<p><strong>Hit Points</strong> "
+                                 r"(?P<hp_avg>\d+) "
+                                 r"\((?P<hp_expr>[d\d +-]+)\)"
+                                 r"</p>"
+                                 r"\n\n"
+                                 r"<p><strong>Speed</strong> (?P<speed>.*)</p>"  # Need further matching
+                                 r"\n\n"
+                                 r"<hr>"
+                                 r"\n\n"
+                                 r"<ul class=\"monster-stats\">\n"
+                                 r"<li><strong>STR</strong> (?P<str>\d+) \((?P<str_mod>[+-]\d+)\)</li>\n"
+                                 r"<li><strong>DEX</strong> (?P<dex>\d+) \((?P<dex_mod>[+-]\d+)\)</li>\n"
+                                 r"<li><strong>CON</strong> (?P<con>\d+) \((?P<con_mod>[+-]\d+)\)</li>\n"
+                                 r"<li><strong>INT</strong> (?P<int>\d+) \((?P<int_mod>[+-]\d+)\)</li>\n"
+                                 r"<li><strong>WIS</strong> (?P<wis>\d+) \((?P<wis_mod>[+-]\d+)\)</li>\n"
+                                 r"<li><strong>CHA</strong> (?P<cha>\d+) \((?P<cha_mod>[+-]\d+)\)</li>\n"
+                                 r"</ul>"
+                                 r"\n\n"
+                                 r"<hr>"
+                                 r"(?:\n\n"
+                                 r"<p><strong>Saving Throws</strong> (?P<throws>.*)</p>)?"  # Need further matching
+                                 r"(?:\n\n"
+                                 r"<p><strong>Skills</strong> (?P<skills>.*)</p>)?"  # Need further matching
+                                 r"(?:\n\n"
+                                 r"<p><strong>Damage Vulnerabilities</strong> (?P<dmg_vul>.*)</p>)?"  # Need further matching
+                                 r"(?:\n\n"
+                                 r"<p><strong>Damage Resistances</strong> (?P<dmg_res>.*)</p>)?"  # Need further matching
+                                 r"(?:\n\n"
+                                 r"<p><strong>Damage Immunities</strong> (?P<dmg_imm>.*)</p>)?"  # Need further matching
+                                 r"(?:\n\n"
+                                 r"<p><strong>Condition Immunities</strong> (?P<cond_imm>.*)</p>)?"  # Need further matching
+                                 r"\n\n"
+                                 r"<p><strong>Senses</strong> "
+                                 r"(?:blindsight (?P<blindsight>\d+) ft\.(?: \(blind beyond this radius\))?, )?"
+                                 r"(?:darkvision (?P<darkvision>\d+) ft\., )?"
+                                 r"(?:truesight (?P<truesight>\d+) ft\., )?"
+                                 r"(?:tremorsense (?P<tremorsense>\d+) ft\., )?"
+                                 r"passive Perception (?P<passive_perception>\d+)"
+                                 r"</p>"
+                                 r"\n\n"
+                                 r"<p><strong>Languages</strong> (?P<languages>.*)</p>"  # Need further matching
+                                 r"\n\n"
+                                 r"<p><strong>Challenge</strong> "
+                                 r"(?P<cr>[\d/]+) "
+                                 r"\((?P<xp>[\d,]+) XP\)"
+                                 r"(?:.*)"  # Weird additions for only a few sheets
+                                 r"</p>"
+                                 r"\n\n"
+                                 r"<hr>"
+                                 r"\n\n"
+                                 r"")
 
         # Skills
-        self.skills = re.compile(r"<p><strong>Skills</strong>(.*)</p>")  # Outer container
         self.skill = re.compile(r"(\w+) "  # Name
                                 r"([+-]\d+)")  # Modifier
 
         # Throws
-        self.throws = re.compile(r"<p><strong>Saving Throws</strong>(.*)</p>")  # Outer container
         self.throw = re.compile(r"(\w\w\w) "  # Ability score
                                 r"([+-]\d+)")  # Modifier
 
-        # Senses
-        self.senses = re.compile(r"<p><strong>Senses</strong> "
-                                 r"(?:blindsight (\d+) ft\.(?: \(blind beyond this radius\))?, )?"
-                                 r"(?:darkvision (\d+) ft\., )?"
-                                 r"(?:truesight (\d+) ft\., )?"
-                                 r"(?:tremorsense (\d+) ft\., )?"
-                                 r"passive Perception (\d+)"
-                                 r"</p>")
-
-        # Challenge Rate
-        self.challenge = re.compile(r"<p><strong>Challenge</strong> "
-                                    r"([\d/]+) "  # Challange Rate
-                                    r"\(([\d,]+) XP\)"  # Expirience Points
-                                    r".*"  # Weird additions for only a few sheets
-                                    r"</p>")
-
-        # Language
-        self.languages = re.compile(r"<p><strong>Languages</strong> "
-                                    r"(.*)"
-                                    #r"([\w, (?:&#8217;)\.-]*)"
-                                    r"</p>")
+        # Languages
         self.language = re.compile(r"[\w '\.-]+")  # TODO get more structure from it
+        
+        #self.resistance = re.compile(r"(?:(?:slashing|piercing|bludgeoning|poison|acid|fire|cold|radiant|necrotic|lightning|thunder|force|psychic),? ?)*"
+        #                             r"(?:;? ?bludgeoning, piercing, and slashing (?:damage )?"
+        #                             r"from nonmagical attacks(?: that aren&#8217;t (?:silvered|adamantine))?)?"
+        #                             r"(.*)")
 
     def parse(self, fname):
         #################################
@@ -93,68 +115,19 @@ class Parser:
         ###############
         # Match regex #
         ###############
-        name, = self.name.search(html).groups()
-        size, race, subrace, alignment = self.desc.search(html).groups()
-        hp_avg, hp_expr = self.hp.search(html).groups()
-        ac, ac_alt, ac_types = self.ac.search(html).groups()
-        attrs = self.attr.findall(html)
+        sheet = self.static.search(html).groupdict()
+        # print(sheet)
+        # return
 
-        skills = self.skills.search(html)
-        if skills is not None:
-            skills = self.skill.findall(skills.group(1))
+        if sheet["throws"] is not None:
+            sheet["throws"] = dict(self.throw.findall(sheet["throws"]))
 
-        throws = self.throws.search(html)
-        if throws is not None:
-            throws = self.throw.findall(throws.group(1))
+        if sheet["skills"] is not None:
+            sheet["skills"] = dict(self.skill.findall(sheet["skills"]))
 
-        blind, dark, true, tremor, passive = self.senses.search(html).groups()
-        cr, xp = self.challenge.search(html).groups()
+        sheet["languages"] = self.language.findall(sheet["languages"].replace("&#8217;", "'"))
 
-        languages, = self.languages.search(html).groups()
-        languages = self.language.findall(languages.replace("&#8217;", "'"))
-
-        ####################
-        # Create the sheet #
-        ####################
-        sheet = {
-                    "name": name,
-                    "size": size,
-                    "race": race,
-                    "subrace": subrace,
-                    "alignment": alignment,
-                    "hp": hp_expr,
-                    "ac": int(ac),
-                    "cr": eval(cr),
-                    "xp": int(xp.replace(",", "")),
-                    "languages": languages,
-                }
-        for attr, val, mod in attrs:
-            sheet[attr.lower()] = int(mod)
-
-        if skills is not None:
-            skill_dict = {}
-            for skill, mod in skills:
-                skill_dict[skill.lower()] = int(mod)
-            sheet["skills"] = skill_dict
-
-        if throws is not None:
-            throws_dict = {}
-            for throw, mod in throws:
-                throws_dict[throw.lower()] = int(mod)
-            sheet["saving_throws"] = throws_dict
-
-        senses_dict = {
-                    "passive": passive,
-                  }
-        if dark:
-            senses_dict["dakrvision"] = int(dark)
-        if blind:
-            senses_dict["blindsight"] = int(blind)
-        if true:
-            senses_dict["truesight"] = int(true)
-        if tremor:
-            senses_dict["tremorsense"] = int(tremor)
-        sheet["senses"] = senses_dict
+        return
 
         ##########################
         # Save the sheet as json #
